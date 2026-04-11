@@ -1,0 +1,16 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Match files in the "uploads" folder, named with the user's UID
+    match /uploads/{userId}/{allPaths=**} {
+      // Only allow the user who owns the folder to read/write
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
