@@ -1,1 +1,72 @@
+<!-- Okay so just basic not anything crazy just something pretty to look at you know or at least something to look at lol-->
 
+<!DOCTYPE html>
+<html lang="eng">
+
+<body>
+    <h1>SyllaBye!</h1>
+    <form action="#" method="post" enctype="multipart/form-data">
+
+        <!-- We need to figure out how to make those dropdown menus oh yea here we go-->
+        <!-- Semester -->
+        <label for="semester" > Semester: </label><br>
+        <select id="semester" name="semester" required>
+            <option value="">Select Semester</option>
+            <option value="fall2026">Fall 2026</option>
+            <option value="spring2027">Fall 2027</option>
+        </select>
+        <br><br>
+
+        <!-- Okay that wasn't as bad as I though it would be KEEP IT ROLLING-->
+        <!--Department-->
+        <label for="department"> Department: </label><br>
+        <select id="department" name="department" required>
+            <option value="">Select Department</option>
+            <option value="CPSC">Computer Science</option>
+            <option value="MATH">Mathematics</option>
+        </select>
+        <br><br>
+
+        <!--Okay they need to know what course they're signing up for-->
+        <!--Course Name-->
+        <label for="coursename"> Course Name: </label><br>
+        <input type="text" id="coursename" name="coursename">
+        <br><br>
+
+
+        <!--I can see how these text boxes are gonna go wrong. However if it is just professors and deans office maybe not so much-->
+        <!--Course Number-->
+        <label for="coursenumber"> Course Number: </label><br>
+        <input type="text" id="coursenumber" name="coursenumber">
+        <br><br>
+
+        <!--Section time-->
+        <label for="section"> Section: </label><br>
+        <select id="section" name="section" required>
+            <option value="">Select Section Time</option>
+            <option value="001">001</option>
+            <option value="002">002</option>
+        </select>
+        <br><br>
+
+        <!--Instructor-->
+        <label for="instructor"> Instructor: </label><br>
+        <input type="text" id="instructor" name="coursename">
+        <br><br>
+
+        <!--I wish I could've done it in like all drop downs together but it doesn't logically flow right-->
+        <!--File upload-->
+        <label for="fileupload"> Upload Syllabus: </label><br>
+        <input type="file" id="fileupload" name="fileupload">
+        <br><br>
+
+        <!--
+        So the fine tuning will be down in other sprints, and gotta connect it to the database and what not. We shall figure it out!
+        -->
+
+
+    </form>
+</body>
+
+
+</html>
