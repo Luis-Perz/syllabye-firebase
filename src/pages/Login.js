@@ -5,13 +5,10 @@ import {signInWithPopup} from 'firebase/auth';
 
 function Login(){
     const nav = useNavigate()
-
+    const [error, setError] = useState(null);
 
     async function handleSignIn() {
-        const [setError] = useState(null);
         try {
-
-
             const result = await signInWithPopup(auth, provider)
             if (!result.user.email.endsWith('@lewisu.edu')) {
                 console.log("Access denied. Please sign in with your Lewis email.");
