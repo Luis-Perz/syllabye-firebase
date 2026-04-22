@@ -1,7 +1,7 @@
 import { db } from './firebase';
 import { collection, addDoc } from 'firebase/firestore'
 
-const storeSyllabus = async (term, department, courseNumber,
+const syllabus = async (term, department, courseNumber,
                             sectionNumber, courseName, instructorName )
     try{
         const docRef = await addDoc(collection(db, "syllabi"), {
@@ -16,3 +16,5 @@ const storeSyllabus = async (term, department, courseNumber,
     } catch (error) {
         console.log("Error adding document: ", error);
     }
+
+export default syllabus;
