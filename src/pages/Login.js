@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import {signInWithPopup} from 'firebase/auth';
 
 function Login(){
-    const [user, setUser] = useState(null)
     const nav = useNavigate()
-    const [error, setError] = useState(null);
+
 
     async function handleSignIn() {
+        const [setError] = useState(null);
         try {
+
+
             const result = await signInWithPopup(auth, provider)
             if (!result.user.email.endsWith('@lewisu.edu')) {
                 console.log("Access denied. Please sign in with your Lewis email.");
@@ -18,7 +20,6 @@ function Login(){
                 return;
             }
             console.log("success")
-            setUser(result.user)
             nav("/home")
         } catch (error) {
             console.log("error")
