@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
+// import Questions from "../components/Questions";
 
 function Home() {
 
@@ -22,6 +23,7 @@ function Home() {
     const fileInputRef = useRef();
 
     return (
+        <>
         <div className="Home">
             <h1>SyllaBye!</h1>
 
@@ -187,6 +189,10 @@ function Home() {
 
             </form>
         </div>
+        {/*<div>*/}
+        {/*    <Questions />*/}
+        {/*</div>*/}
+    </>
     );
 }
 
