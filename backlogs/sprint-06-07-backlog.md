@@ -19,7 +19,7 @@ Sprint 6 & 7 Backlog:
 
 | **ID** | **User Story / Task** | **Priority (1-10)** | **Estimate (SP)** | **Spike (Y/N)** | **Status** | **Assigned** |
 |--------|------------------------|--------------|--------------|------------|--------------|--------------|
-| 010 | As a user, I want a database that will store course syllabi so that I can look at the information associated with the syllabus | 10 | 2 | N | Ready | Luis P. |
+| 010 | As a user, I want a database that will store course syllabi so that I can look at the information associated with the syllabus | 10 | 2 | N | Done | Luis P. |
 | 001 | As a developer I want to implement development, test, and production CI/CD for the product | 8 | 2 | Y | Ready | Molly P. |
 | 002 | As a developer I want to implement development, test, and production CI/CD for the product | 8 | 2 | Y | Ready | Karen V. |
 | 003 | As a developer I want to implement development, test, and production CI/CD for the product | 8 | 2 | Y | Ready | Luis P. |
@@ -37,8 +37,8 @@ Sprint 6 & 7 Backlog:
 | 012 | As a user I would like to see the developers who created the site. The “credits” if you will. | 4 | 1 | N | Ready | Karen V. |
 | 013 | As a user I would like to see the developers who created the site. The “credits” if you will. | 4 | 1 | N | Ready | Luis P. |
 | 014 | As a user I would like to see the developers who created the site. The “credits” if you will. | 4 | 1 | N | Ready | Sadri O. |
-| 015 | As a user I want to be able to securely upload files so that I can save syllabi from the last semester | 3 | 3 | N | Ready | Karen V. |
+| 015 | As a user I want to be able to securely upload files so that I can save syllabi from the last semester | 3 | 3 | N | Done | Karen V. |
 | 016 | As a user I want to be able to contact developers | 1 | 1 | N | Ready | Sadri O. |
 | 017 | As a user I want a login interface that will secure the information that is being inputted. | 1 | 2 | N | Ready | Sadri O. |
-| 018 | As a developer, I want to add a way to authenticate that person uploading file is professor | 1 | 1 | Y | Ready | Luis P. |
-| 027 | As a developer I want to create the product and sprint backlogs on the GitHub repository | 1 | 1 | Y | Ready | Karen V. |
+| 018 | As a developer, I want to add a way to authenticate that person uploading file is professor | 1 | 1 | Y | Done | Luis P. |
+| 027 | As a developer I want to create the product and sprint backlogs on the GitHub repository | 1 | 1 | Y | Done | Karen V. |
