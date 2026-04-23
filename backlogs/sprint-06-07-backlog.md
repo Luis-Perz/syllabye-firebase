@@ -19,6 +19,7 @@ Sprint 6 & 7 Backlog:
 
 | **ID** | **User Story / Task** | **Priority (1-10)** | **Estimate (SP)** | **Spike (Y/N)** | **Status** | **Assigned** |
 |--------|------------------------|--------------|--------------|------------|--------------|--------------|
+| 028 | As a user I want to be able to upload files through the internal network | 10 | 2 | Y | Ready | -- |
 | 010 | As a user, I want a database that will store course syllabi so that I can look at the information associated with the syllabus | 10 | 2 | N | Done | Luis P. |
 | 001 | As a developer I want to implement development, test, and production CI/CD for the product | 8 | 2 | Y | Ready | Molly P. |
 | 002 | As a developer I want to implement development, test, and production CI/CD for the product | 8 | 2 | Y | Ready | Karen V. |
