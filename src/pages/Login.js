@@ -31,6 +31,8 @@ function Login(){
                 <button className="submit-btn" onClick={handleSignIn}>
                     Sign in with Lewis Email
                 </button>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
             </div>
         </>
     )
