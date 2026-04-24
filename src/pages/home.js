@@ -1,7 +1,13 @@
 import { useState, useRef } from "react";
 import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
-// import Questions from "../components/Questions";
+import "../css/home.css";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase";
+import helpIcon from "../images/questions.png";
+
+
 
 function Home() {
 
@@ -17,18 +23,43 @@ function Home() {
     });
 
     const [message, setMessage] = useState("");
-
     const [loading, setLoading] = useState(false);
-
     const fileInputRef = useRef();
+    const navigate = useNavigate();
 
     return (
-        <>
-        <div className="Home">
-            <h1>SyllaBye!</h1>
+        <div className="home-container">
 
-            <form
-                onSubmit={async (e) => {
+            <div className="top-bar">
+                <h1 className="logo">SyllaBye</h1>
+
+                <button
+                    className="signout-btn"
+                    onClick={async () => {
+                        await signOut(auth);
+                        navigate("/");
+                    }}
+                >
+                    Sign Out
+                </button>
+            </div>
+
+            {/*Question mark image that takes you to the about page*/}
+            <img
+                src={helpIcon}
+                className="help-icon"
+                onClick={() => navigate("/about")}
+                alt="Help"
+            />
+
+            <div className="form-card">
+                
+                <p className="subtitle">
+                    Upload your course syllabus information below
+                </p>
+
+
+            <form onSubmit={async (e) => {
                     // Prevents page reload so we can handle submission manually
                     // Required for processing form data and uploading to Firebase
                     e.preventDefault();
@@ -36,29 +67,39 @@ function Home() {
                     setMessage("");
                     setLoading(true);
 
-                    // Validates file selection before uploading
-                    if (!formData.file) {
+                    const file = formData.file;
+
+                    // Check if file exists
+                    if (!file) {
                         setMessage("No file selected");
                         setLoading(false);
                         return;
                     }
 
-                    // Files accepted are PDF and DOCX
+                    // validation extension
+                    const extension = file.name.split(".").pop().toLowerCase();
+
+
+                    // 3. Allowed types
                     const allowedTypes = [
                         "application/pdf",
                         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     ];
 
-                    // Rejects unsupported file types
-                    if (!allowedTypes.includes(formData.file.type)) {
-                        setMessage("Invalid file type. Only PDF or DOCX allowed.");
+                    const validExtensions = ["pdf", "docx"];
+
+                    // 4. Validate BOTH type + extension
+                    if (
+                        !allowedTypes.includes(file.type) &&
+                        !validExtensions.includes(extension)
+                    ) {
+                        setMessage("Only PDF or DOCX files are allowed.");
                         setLoading(false);
                         return;
-                    }
-
+                    }       
 
                     try {
-                        const fileURL = await uploadSyllabus(formData.file);
+                        const fileURL = await uploadSyllabus(file);
                         await syllabus({ ...formData, fileURL });
 
 
@@ -82,7 +123,7 @@ function Home() {
                         }
 
                     } catch (error) {
-                        console.error("Upload failed:", error);
+                        console.error(error);
                         setMessage("Upload failed. Try again.");
                     }
 
@@ -90,109 +131,110 @@ function Home() {
                 }}
             >
 
-                {/* Semester selection */}
-                <label>Semester:</label>
-                <select
-                    value={formData.semester}
-                    onChange={(e) =>
-                        setFormData({ ...formData, semester: e.target.value })
-                    }
-                >
-                    <option value="fall2026">Fall 2026</option>
-                    <option value="spring2027">Spring 2027</option>
-                    <option value="summer2027">Summer 2027</option>
-                </select>
+                {/* GRID */}
+                <div className="form-grid">
 
-                <br /><br />
+                    <div className="form-group">
+                        <label>Semester:</label>
+                        <select
+                            value={formData.semester}
+                            onChange={(e) =>
+                                setFormData({ ...formData, semester: e.target.value })
+                            }
+                        >
+                            <option value="fall2026">Fall 2026</option>
+                            <option value="spring2027">Spring 2027</option>
+                            <option value="summer2027">Summer 2027</option>
+                        </select>
+                    </div>
 
-                {/* Department selection */}
-                <label>Department:</label>
-                <select
-                    value={formData.department}
-                    onChange={(e) =>
-                        setFormData({ ...formData, department: e.target.value })
-                    }
-                >
-                    <option value="CPSC">Computer Science</option>
-                    <option value="MATH">Mathematics</option>
-                    <option value="PHYS">Physics</option>
-                </select>
+                    <div className="form-group">
+                        <label>Course Name:</label>
+                        <input
+                            type="text"
+                            value={formData.courseName}
+                            onChange={(e) =>
+                                setFormData({ ...formData, courseName: e.target.value })
+                            }
+                        />
+                    </div>
 
-                <br /><br />
+                    <div className="form-group">
+                        <label>Department:</label>
+                        <select
+                            value={formData.department}
+                            onChange={(e) =>
+                                setFormData({ ...formData, department: e.target.value })
+                            }
+                        >
+                            <option value="CPSC">Computer Science</option>
+                            <option value="MATH">Mathematics</option>
+                            <option value="PHYS">Physics</option>
+                        </select>
+                    </div>
 
-                {/* Course Name input */}
-                <label>Course Name:</label>
-                <input
-                    type="text"
-                    value={formData.courseName}
-                    onChange={(e) =>
-                        setFormData({ ...formData, courseName: e.target.value })
-                    }
-                />
+                    <div className="form-group">
+                        <label>Course Number:</label>
+                        <input
+                            type="text"
+                            value={formData.courseNumber}
+                            onChange={(e) =>
+                                setFormData({ ...formData, courseNumber: e.target.value })
+                            }
+                        />
+                    </div>
 
-                <br /><br />
+                    <div className="form-group">
+                        <label>Section:</label>
+                        <input
+                            type="text"
+                            value={formData.section}
+                            onChange={(e) =>
+                                setFormData({ ...formData, section: e.target.value })
+                            }
+                        />
+                    </div>
 
-                {/* Course Number input */}
-                <label>Course Number:</label>
-                <input
-                    type="text"
-                    value={formData.courseNumber}
-                    onChange={(e) =>
-                        setFormData({ ...formData, courseNumber: e.target.value })
-                    }
-                />
+                    <div className="form-group">
+                        <label>Instructor:</label>
+                        <input
+                            type="text"
+                            value={formData.instructor}
+                            onChange={(e) =>
+                                setFormData({ ...formData, instructor: e.target.value })
+                            }
+                        />
+                    </div>
 
-                <br /><br />
+                </div>
 
-                {/* Section input */}
-                <label>Section:</label>
-                <input
-                    type="text"
-                    value={formData.section}
-                    onChange={(e) =>
-                        setFormData({ ...formData, section: e.target.value })
-                    }
-                />
+                {/* UPLOAD BOX */}
+                <div className="upload-box">
 
-                <br /><br />
+                    <p>Drop your syllabus PDF or DOCX here</p>
 
-                {/* Instructor input */}
-                <label>Instructor:</label>
-                <input
-                    type="text"
-                    value={formData.instructor}
-                    onChange={(e) =>
-                        setFormData({ ...formData, instructor: e.target.value })
-                    }
-                />
+                    <input
+                        type="file"
+                        accept=".pdf,.docx"
+                        ref={fileInputRef}
+                        onChange={(e) =>
+                            setFormData({ ...formData, file: e.target.files[0] })
+                        }
+                    />
 
-                <br /><br />
-
-                {/* File upload input */}
-                <label>Upload Syllabus:</label>
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={(e) =>
-                        setFormData({ ...formData, file: e.target.files[0] })
-                    }
-                />
-
-                <br /><br />
-
-                <button type="submit" disabled={loading}>
+                </div>
+                <button className="submit-btn" type="submit" disabled={loading}>
                     {loading ? "Uploading..." : "Submit"}
                 </button>
 
-                {/* Displays success or error messages */}
-                <p>{message}</p>
+                <p className={message.includes("Upload successful") ? "success" : "error"}>
+                    {message}
+                </p>
 
             </form>
+            </div>
         </div>
-        {/*<div>*/}
-        {/*    <Questions />*/}
-        {/*</div>*/}
-    </>
+        
     );
 }
 
