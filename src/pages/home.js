@@ -245,7 +245,7 @@ function Home() {
                         {formData.department}-
                         {formData.courseNumber}-
                         {formData.section}-
-                        {formData.instructor}
+                        {formData.instructor}-
                         
                     </strong>
                 </p>
