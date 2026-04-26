@@ -178,10 +178,12 @@ function Home() {
                                 setFormData({ ...formData, department: e.target.value })
                             }
                         >
+                            <option value="BIOL">Biology</option>
+                            <option value="CHEM">Chemistry</option>
                             <option value="CPSC">Computer Science</option>
+                            <option vlaue="DATA">Data Science</option>
                             <option value="MATH">Mathematics</option>
                             <option value="PHYS">Physics</option>
-                            <option value="DATA">Data Science</option>
                         </select>
                     </div>
 
@@ -242,7 +244,7 @@ function Home() {
                         {formData.semester}-
                         {formData.department}-
                         {formData.courseNumber}-
-                        {formData.section}
+                        {formData.section}-
                         {formData.instructor}
                         
                     </strong>
