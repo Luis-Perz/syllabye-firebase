@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {auth, provider } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import {signInWithPopup} from 'firebase/auth';
+import "../css/login.css";
 
 function Login(){
     const nav = useNavigate()
@@ -23,18 +24,18 @@ function Login(){
             setError(error.message)
         }
     }
+    // Connects the login.css 
     return (
-        <>
-            <div className="App">
-                <h1 className="form-title">Welcome!</h1>
-                <p className="form-sub">Please sign in to upload a syllabus.</p>
-                <button className="submit-btn" onClick={handleSignIn}>
-                    Sign in with Lewis Email
+        <div className="login-container">
+            <div className="login-card">
+                <h1 className="form-title">Welcome to SyllaBye!</h1>
+                <p className="form-sub">Sign in with your Lewis University email to upload your course syllabi.</p>
+                <button className="submit-button" onClick={handleSignIn}>
+                    Sign in with Lewis email
                 </button>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-
+                {error && <p style={{color: "red", marginTop:"10px"}}>{error}</p>}
             </div>
-        </>
+        </div>
     )
 }
 

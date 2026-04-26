@@ -75,6 +75,17 @@ function Home() {
                         setLoading(false);
                         return;
                     }
+                    // Making sure all inputs are filled
+                    if(
+                        !formData.courseName || 
+                        !formData.courseNumber ||
+                        !formData.instructor ||
+                        !formData.section 
+                    ) {
+                        setMessage("Please fill in all fields.");
+                        setLoading(false);
+                        return;
+                    }
 
                     // validation extension
                     const extension = file.name.split(".").pop().toLowerCase();
@@ -170,6 +181,7 @@ function Home() {
                             <option value="CPSC">Computer Science</option>
                             <option value="MATH">Mathematics</option>
                             <option value="PHYS">Physics</option>
+                            <option value="DATA">Data Science</option>
                         </select>
                     </div>
 
@@ -223,6 +235,19 @@ function Home() {
                     />
 
                 </div>
+                
+                <p>
+                    File will be saved as:{" "}
+                    <strong>
+                        {formData.semester}-
+                        {formData.department}-
+                        {formData.courseNumber}-
+                        {formData.section}
+                        {formData.instructor}
+                        
+                    </strong>
+                </p>
+                
                 <button className="submit-btn" type="submit" disabled={loading}>
                     {loading ? "Uploading..." : "Submit"}
                 </button>

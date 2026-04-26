@@ -1,0 +1,52 @@
+.login-container{
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background: url("../images/LewisUniversityBackground.png") no-repeat center center/cover;
+}
+
+.login-container-before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4)
+}
+
+.login-card{
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.95);
+    border-radius:12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 320px;
+}
+
+.form-title{
+    margin-bottom: 10px;
+
+}
+
+.form-sub{
+    margin-bottom: 20px;
+    color: #c8102e;
+}
+
+.submit-button{
+    width: 100%;
+    padding: 10px;
+    background-color: #c8102e;
+    color: #f5f6f8;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submit-button-hover{
+    background-color: blue;
+}
+
