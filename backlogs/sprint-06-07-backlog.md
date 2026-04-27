@@ -29,9 +29,9 @@ Sprint 6 & 7 Backlog:
 | 025 | As a user I want to meet up with the development team so that I can give insight to what I want for the product | 8 | 1 | N | Done | Karen V. |
 | 023 | As a user I want to meet up with the development team so that I can give insight to what I want for the product | 8 | 1 | N | Done | Luis P. |
 | 005 | As a user, I want to have a visual interface where I am able to view a course syllabus. | 8 | 3 | N | Ready | Sadri O. |
-| 007 | As a user, I want a user friendly page with inputs for the naming conventions for the syllabi and file upload | 8 | 3 | N | Ready | Molly P. |
+| 007 | As a user, I want a user friendly page with inputs for the naming conventions for the syllabi and file upload | 8 | 3 | N | Done | Molly P. |
 | 009 | As a user I would want the product to be more appealing so that I can utilize the product successfully. | 8 | 2 | N | Done | Karen V. |
-| 006 | As a developer I want to fill out all the requirements for the Class Project Proposal. (Writing stuff, text file or html page of description) | 7 | 2 | Y | Ready | Molly P. |
+| 006 | As a developer I want to fill out all the requirements for the Class Project Proposal. (Writing stuff, text file or html page of description) | 7 | 2 | Y | Done | Molly P. |
 | 019 | As a user I want to have a cohesive design for the product | 6 | 2 | N | Ready | Luis P. |
 | 008 | As a developer, I want to create an API that will push and pull course syllabus to client | 5 | 2 | Y | Ready | Molly P. |
 | 011 | As a user I would like to see the developers who created the site. The “credits” if you will. | 4 | 1 | N | Ready | Molly P. |
