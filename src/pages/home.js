@@ -45,26 +45,6 @@ function Home() {
                 </button>
             </div>
 
-            {/*/!*Question mark image that takes you to the about page*!/*/}
-            {/*<Questions*/}
-            {/*    content={*/}
-            {/*        <div>*/}
-            {/*            <h1>Experiencing issues?</h1>*/}
-            {/*            <p>*/}
-            {/*                If you are experiencing issues with SyllaBye,*/}
-            {/*                please contact us at <a href="mailto:luisaperez1@lewisu.edu">luisaperez1@lewisu.edu</a> or*/}
-            {/*                visit our <a href="/about">About</a> page for more information.*/}
-            {/*            </p>*/}
-            {/*        </div>*/}
-            {/*    }*/}
-            {/*>*/}
-            {/*    <img*/}
-            {/*        src={helpIcon}*/}
-            {/*        className="help-icon"*/}
-            {/*        onClick={() => navigate("/about")}*/}
-            {/*        alt="Help"*/}
-            {/*    />*/}
-            {/*</Questions>*/}
             <div className="form-card">
                 
                 <p className="subtitle">
