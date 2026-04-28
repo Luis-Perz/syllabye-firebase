@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import helpIcon from "../images/questions.png";
+import Questions from "../components/Questions";
 
 
 
@@ -44,14 +45,26 @@ function Home() {
                 </button>
             </div>
 
-            {/*Question mark image that takes you to the about page*/}
-            <img
-                src={helpIcon}
-                className="help-icon"
-                onClick={() => navigate("/about")}
-                alt="Help"
-            />
-
+            {/*/!*Question mark image that takes you to the about page*!/*/}
+            {/*<Questions*/}
+            {/*    content={*/}
+            {/*        <div>*/}
+            {/*            <h1>Experiencing issues?</h1>*/}
+            {/*            <p>*/}
+            {/*                If you are experiencing issues with SyllaBye,*/}
+            {/*                please contact us at <a href="mailto:luisaperez1@lewisu.edu">luisaperez1@lewisu.edu</a> or*/}
+            {/*                visit our <a href="/about">About</a> page for more information.*/}
+            {/*            </p>*/}
+            {/*        </div>*/}
+            {/*    }*/}
+            {/*>*/}
+            {/*    <img*/}
+            {/*        src={helpIcon}*/}
+            {/*        className="help-icon"*/}
+            {/*        onClick={() => navigate("/about")}*/}
+            {/*        alt="Help"*/}
+            {/*    />*/}
+            {/*</Questions>*/}
             <div className="form-card">
                 
                 <p className="subtitle">
@@ -260,8 +273,29 @@ function Home() {
 
             </form>
             </div>
+            {/*Question mark image that takes you to the about page*/}
+            <Questions className="help-icon"
+                content={
+                    <div>
+                        <h2>Experiencing issues?</h2>
+                        <p>
+                            If you are experiencing issues with SyllaBye,
+                            please visit our About page for more information.
+                        </p>
+                        <p style={{color: 'dodgerblue', textAlign: 'center'}}>Syllabye was proudly built by
+                            the CookieMonster team</p>
+                    </div>
+                }
+            >
+                <img
+                    src={helpIcon}
+                    className="help-icon"
+                    onClick={() => navigate("/about")}
+                    alt="Help"
+                />
+            </Questions>
         </div>
-        
+
     );
 }
 
