@@ -28,22 +28,6 @@
     font-weight: 400;
 }
 
-/* Sign out button */
-.home-container .signout-btn {
-    position: absolute;
-    right: 20px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: none;
-    background: #c6c2c2;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.home-container .signout-btn:hover {
-    background: #d6d6d6;
-}
-
 /* Form card */
 .home-container .form-card {
     background: white;
