@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Sprint 6 & 7 Backlog
-permalink: /backlogs/sprint-06-07-backlog/
+title: Sprint 6 Backlog
+permalink: /backlogs/sprint-06-backlog/
 ---
 
-# 📋 Sprint 06 & 07 Backlog – *SyllaBye*
+# 📋 Sprint 06 Backlog – *SyllaBye*
 
 Scrum Master: Sadri Ozgul  
 
@@ -15,7 +15,7 @@ Sprint 6 Planning Date: 04/15/2026
 
 ---
 
-Sprint 6 & 7 Backlog:
+Sprint 6 Backlog:
 
 | **ID** | **User Story / Task** | **Priority (1-10)** | **Estimate (SP)** | **Spike (Y/N)** | **Status** | **Assigned** |
 |--------|------------------------|--------------|--------------|------------|--------------|--------------|

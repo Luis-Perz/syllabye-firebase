@@ -4,7 +4,7 @@ title: Product Backlog
 permalink: /backlogs/product-backlog/
 ---
 
-# 📋 Product Backlog – *SyllaBye*
+# 📋 Sprint 6 Product Backlog – *SyllaBye*
 
 | **ID** | **User Story / Task** | **Priority (1-10)** | **Estimate (SP)** | **Spike (Y/N)** | **Status** | **Assigned** |
 |--------|------------------------|--------------|--------------|------------|--------------|--------------|
