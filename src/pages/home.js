@@ -3,9 +3,11 @@ import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
 import "../css/home.css";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+// import { signOut } from "firebase/auth";
+// import { auth } from "../firebase/firebase";
 import helpIcon from "../images/questions.png";
+import Questions from "../components/Questions";
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -33,24 +35,17 @@ function Home() {
             <div className="top-bar">
                 <h1 className="logo">SyllaBye</h1>
 
-                <button
-                    className="signout-btn"
-                    onClick={async () => {
-                        await signOut(auth);
-                        navigate("/");
-                    }}
-                >
-                    Sign Out
-                </button>
+                {/*<button*/}
+                {/*    className="signout-btn"*/}
+                {/*    onClick={async () => {*/}
+                {/*        await signOut(auth);*/}
+                {/*        navigate("/");*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    Sign Out*/}
+                {/*</button>*/}
+                <Sidebar />
             </div>
-
-            {/*Question mark image that takes you to the about page*/}
-            <img
-                src={helpIcon}
-                className="help-icon"
-                onClick={() => navigate("/about")}
-                alt="Help"
-            />
 
             <div className="form-card">
                 
@@ -260,8 +255,29 @@ function Home() {
 
             </form>
             </div>
+            {/*Question mark image that takes you to the about page*/}
+            <Questions className="help-icon"
+                content={
+                    <div>
+                        <h2>Experiencing issues?</h2>
+                        <p>
+                            If you are experiencing issues with SyllaBye,
+                            please visit our About page for more information.
+                        </p>
+                        <p style={{color: 'dodgerblue', textAlign: 'center'}}>Syllabye was proudly built by
+                            the CookieMonster team</p>
+                    </div>
+                }
+            >
+                <img
+                    src={helpIcon}
+                    className="help-icon"
+                    onClick={() => navigate("/about")}
+                    alt="Help"
+                />
+            </Questions>
         </div>
-        
+
     );
 }
 

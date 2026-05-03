@@ -50,3 +50,12 @@
     background-color: blue;
 }
 
+/*  ADMIN LOGIN STYLES */
+.admin-login-container{
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background-color: rgb(120 109 109 / 0.38);
+}
+
