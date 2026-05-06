@@ -3,7 +3,43 @@
     display: flex;
     justify-content: center;
     align-items:center;
-    background: url("../images/LewisUniversityBackground.png") no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+/* This is wrapping the backgrounds into one giant thing */
+.background-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+/* This is the scrolling part of the images */
+.background-tracker{
+    display: inline-flex;
+    height: 100%;
+    width: fit-content;
+    animation: scroll 140s linear infinite;
+}
+
+.background-tracker img {
+    height: 100%;
+    width: auto;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .login-container-before{
@@ -13,7 +49,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.4)
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
 }
 
 .login-card{

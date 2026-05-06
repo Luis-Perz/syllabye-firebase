@@ -3,6 +3,7 @@ import {auth, provider } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import {signInWithPopup} from 'firebase/auth';
 import "../css/login.css";
+import LUTImage from "../images/LUT.png";
 
 function Login(){
     const nav = useNavigate()
@@ -27,6 +28,19 @@ function Login(){
     // Connects the login.css 
     return (
         <div className="login-container">
+            <div className="background-wrapper">
+                <div className="background-tracker">
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                    <img src={LUTImage}/>
+                </div>
+            </div>
+
             <div className="login-card">
                 <h1 className="form-title">Welcome to SyllaBye!</h1>
                 <p className="form-sub">Sign in with your Lewis University email to upload your course syllabi.</p>
