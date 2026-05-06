@@ -30,14 +30,14 @@ function Login(){
         <div className="login-container">
             <div className="background-wrapper">
                 <div className="background-tracker">
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
-                    <img src={LUTImage}/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
+                    <img src={LUTImage} alt=""/>
                 </div>
             </div>
 
