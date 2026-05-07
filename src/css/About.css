@@ -1,0 +1,72 @@
+
+
+body {
+  margin: 0;
+}
+
+.about-title {
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.about-title {
+    text-align: center;
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 90px;
+    color: #c8102e;
+    font-weight: 400;
+   
+}
+
+.about-title {
+  margin: 0;
+}
+
+ol {
+    list-style-position: inside; /* keeps numbers aligned with text */
+    text-align: center;          /* centers the text */
+    padding: 0;                  /* remove default padding */
+    margin: 0 auto;              /* center block if it has a width */
+    width: fit-content;          /* shrink to content width */
+}
+
+p {
+    text-align: center;
+}
+
+.signout-btn {
+  display: block; 
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.how-to-section {
+    text-align: center;
+   
+}
+
+.help {
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 65px;
+    color: #c8102e;
+    font-weight: 400;
+    margin-top: 25px;
+    
+}
+
+.how-to-use {
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 65px;
+    color: #c8102e;
+    font-weight: 400;  
+    
+}
+
+.help-section {
+
+    text-align: center;
+}
