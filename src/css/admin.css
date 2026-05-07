@@ -1,0 +1,49 @@
+/* Need a separate page for styling the admin page */
+.admin-login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f6fa;
+}
+
+.login-card{
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.form-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.form-submission {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background: #2f6fed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background: #1f5ad6;
+}
+
+.error-text {
+    color: red;
+    margin-top: 10px;
+}
+

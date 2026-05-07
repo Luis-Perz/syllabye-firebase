@@ -24,7 +24,7 @@
     display: inline-flex;
     height: 100%;
     width: fit-content;
-    animation: scroll 140s linear infinite;
+    animation: scroll 300s linear infinite;
 }
 
 .background-tracker img {

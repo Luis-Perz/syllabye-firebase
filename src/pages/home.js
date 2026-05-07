@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import helpIcon from "../images/questions.png";
 import Questions from "../components/Questions";
 import Sidebar from "../components/Sidebar";
+import LUBack from "../images/SmallLUT.png";
 
 
 
@@ -31,6 +32,10 @@ function Home() {
 
     return (
         <div className="home-container">
+
+            <div className="background">
+                <img src={LUBack} alt=""/>
+            </div>
 
             <div className="top-bar">
                 <h1 className="logo">SyllaBye</h1>
