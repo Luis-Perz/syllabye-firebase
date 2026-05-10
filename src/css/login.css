@@ -61,11 +61,11 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     text-align: center;
     width: 320px;
+    opacity: 0.9;
 }
 
 .form-title{
     margin-bottom: 10px;
-
 }
 
 .form-sub{
@@ -84,7 +84,7 @@
 }
 
 .submit-button-hover{
-    background-color: blue;
+    background: #a50d25;
 }
 
 /*  ADMIN LOGIN STYLES */

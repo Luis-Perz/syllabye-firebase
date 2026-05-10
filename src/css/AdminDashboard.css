@@ -12,15 +12,15 @@
 
 .syllabus-list {
   display: flex;
-  flex-direction: column;
   gap: 15px;
   max-width: 900px;
+  flex-direction: column;
   margin: 0 auto;
 }
 
 .syllabus-card {
-  background: white;
-  border: 1px solid #e6e6e6;
+  background: #f9f9f9;
+  border: 1px solid #c8102e;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -38,7 +38,7 @@
 .syllabus-meta {
   margin: 4px 0;
   font-size: 14px;
-  color: #444;
+  color: black;
 }
 
 .file-link {
@@ -51,4 +51,13 @@
 
 .file-link:hover {
   text-decoration: underline;
+}
+
+.columns{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.syllabus-meta2{
+  color: pink;
 }

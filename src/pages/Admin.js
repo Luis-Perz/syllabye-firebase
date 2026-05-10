@@ -7,10 +7,14 @@ import { signInWithPopup } from "firebase/auth";
 import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import "../css/admin.css";
+import LewisBack from "../images/SmallLUT.png"
 
 // GET TO WORK NOW RAAAHHHHH
 const ALLOWED_EMAILS = [
-    "mollyepaez@lewisu.edu"
+    "mollyepaez@lewisu.edu",
+    "mharless@lewisu.edu",
+    "legner@lewisu.edu",
+    "MorrowCh@lewisu.edu"
 ];
 
 function Admin() {
@@ -33,14 +37,17 @@ function Admin() {
 
     return (
         <div className="admin-login-container">
+            <div className="background">
+                <img src={LewisBack} alt =""/>
+            </div>
             <div className="login-card">
                 <h1 className="form-title">Admin Login</h1>
                 <p className="form-submission">
-                    Only approved emails can access this dashboard.
+                    Access to all syllabus that has been submitted. 
                 </p>
 
                 <button className="submit-button" onClick={handleLogin}>
-                    Continue with Google
+                    Login
                 </button>
 
                 {error && <p className="error-text">{error}</p>}

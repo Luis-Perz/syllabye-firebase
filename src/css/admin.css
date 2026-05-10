@@ -1,11 +1,8 @@
-/* Need a separate page for styling the admin page */
 .admin-login-container {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: #f5f6fa;
-}
+    align-items: center;}
 
 .login-card{
     width: 400px;
@@ -14,6 +11,7 @@
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    opacity: 0.9;
 }
 
 .form-title {
@@ -30,7 +28,7 @@
 .submit-button {
     width: 100%;
     padding: 12px;
-    background: #2f6fed;
+    background: #c8102e;
     color: white;
     border: none;
     border-radius: 8px;
@@ -39,11 +37,23 @@
 }
 
 .submit-button:hover {
-    background: #1f5ad6;
+    background: #a50d25;
 }
 
 .error-text {
     color: red;
     margin-top: 10px;
+}
+
+.background{
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "../css/AdminDashboard.css";
+import LUBack from "../images/SmallLUT.png"
 
 function AdminDashboard() {
   const [syllabi, setSyllabi] = useState([]);
@@ -28,6 +29,7 @@ function AdminDashboard() {
 
   return (
     <div className="admin-dashboard-container">
+      <div className="columns">
       <h1 className="admin-title">Admin Dashboard</h1>
 
       <div className="syllabus-list">
@@ -48,7 +50,7 @@ function AdminDashboard() {
                 <b>Department:</b> {item.department}
               </p>
 
-              <p className="syllabus-meta">
+              <p className="syllabus-meta2">
                 <b>Semester:</b> {item.semester}
               </p>
 
@@ -69,6 +71,7 @@ function AdminDashboard() {
             </div>
           ))
         )}
+      </div>
       </div>
     </div>
   );
