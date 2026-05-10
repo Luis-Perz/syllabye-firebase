@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "../css/AdminDashboard.css";
-import LUBack from "../images/SmallLUT.png"
+// import LUBack from "../images/SmallLUT.png"
 
 function AdminDashboard() {
   const [syllabi, setSyllabi] = useState([]);
