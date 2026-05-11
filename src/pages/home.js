@@ -30,6 +30,93 @@ function Home() {
     const fileInputRef = useRef();
     const navigate = useNavigate();
 
+
+    //Grouping the professors by their department for later selection (Proffesors from ECAMS faculty roster)
+    const professorsByDepartment = {
+        CPSC: [
+            { value: "boxu", label: "Bo Xu" },
+            { value: "danadominiak", label: "Dana Dominiak" },
+            { value: "davidnowak", label: "David Nowak" },
+            { value: "cindyhoward", label: "Cindy Howard" },
+            { value: "ericspangler", label: "Eric Spangler" },
+            { value: "ericpogue", label: "Eric Pogue" },
+            { value: "fadiwedyan", label: "Fadi Wedyan" },
+            { value: "fuadabuzahra", label: "Fuad Abu Zahra" },
+            { value: "ginamartinez", label: "Gina Martinez" },
+            { value: "jakecho", label: "Jake Cho" },
+            { value: "jasonperry", label: "Jason Perry" },
+            { value: "jaymespeva", label: "Jayme Speva" },
+            { value: "khaledalrfou", label: "Khaled Alrfou" },
+            { value: "khaledalzoubi", label: "Khaled Alzoubi" },
+            { value: "mahmoodal-khassaweneh", label: "Mahmood Al-Khassaweneh" },
+            { value: "manojmbhat", label: "Manoj M. Bhat" },
+            { value: "mattplass", label: "Matt Plass" },
+            { value: "paulyoungjunekim", label: "Paul Young June Kim" },
+            { value: "piotrszczurek", label: "Piotr Szczurek" },
+            { value: "ramikhasawneh", label: "Rami Khasawneh" },
+            { value: "rayklump", label: "Ray Klump" },
+            { value: "safwanomari", label: "Safwan Omari" },
+            { value: "samabuomar", label: "Sam Abuomar" },
+            { value: "sunghkim", label: "Sung H. Kim" },
+            { value: "vadimbiryukov", label: "Vadim Biryukov" },
+            { value: "victoriaheekyungkim", label: "Victoria Heekyung Kim" },
+            { value: "wanyuzang", label: "Wanyu Zang" },
+            { value: "yazanalsmadi", label: "Yazan Alsmadi" },
+            { value: "ziadal-sharif", label: "Ziad Al-Sharif" }
+        ],
+
+        MATH: [
+            { value: "adamschultze", label: "Adam Schultze" },
+            { value: "amandaharsy", label: "Amanda Harsy" },
+            { value: "brittanystephenson", label: "Brittany Stephenson" },
+            { value: "carasulyok", label: "Cara Sulyok" },
+            { value: "jasonperry", label: "Jason Perry" },
+            { value: "mariemeyer", label: "Marie Meyer" },
+            { value: "michaelsmith", label: "Michael Smith" },
+            { value: "thomasfscdupre", label: "Thomas FSC Dupre" }
+        ],
+
+        DATA: [
+            { value: "boxu", label: "Bo Xu" },
+            { value: "brittanystephenson", label: "Brittany Stephenson" },
+            { value: "indikaudagedara", label: "Indika Udagedara" },
+            { value: "manojmbhat", label: "Manoj M. Bhat" },
+            { value: "piotrszczurek", label: "Piotr Szczurek" }
+        ],
+
+        PHYS: [
+            { value: "jameshofmann", label: "James Hofmann" },
+            { value: "josephkozminski", label: "Joseph Kozminski" },
+            { value: "philipchumbley", label: "Philip Chumbley" },
+            { value: "ryanjhooper", label: "Ryan J. Hooper" }
+                    
+        ],
+
+        CHEM: [
+            { value: "br.pierrest.raymondfsc", label: "Br. Pierre St. Raymond, FSC" },
+            { value: "chriscondeiu", label: "Chris Condeiu" },
+            { value: "danielkissel", label: "Daniel Kissel" },
+            { value: "jasonkeleher", label: "Jason Keleher" },
+            { value: "marycharles", label: "Mary Charles" },
+            { value: "samarmakhlouf", label: "Samar Makhlouf" },
+            { value: "teresabixby", label: "Teresa Bixby" }
+        ],
+
+        BIOL: [
+            { value: "cynthiamisischia", label: "Cynthia Misischia" },
+            { value: "erinzimmer", label: "Erin Zimmer" },
+            { value: "hollysnyder", label: "Holly Snyder" },
+            { value: "jamesrago", label: "James Rago" },
+            { value: "jerrykavouras", label: "Jerry Kavouras" },
+            { value: "jeannettepifer", label: "Jeannette Pifer" },
+            { value: "lisakozak", label: "Lisa Kozak" },
+            { value: "malloryhavens", label: "Mallory Havens" },
+            { value: "marnebailey", label: "Marne Bailey" },
+            { value: "sarahpowers", label: "Sarah Powers" },
+            { value: "williamchura", label: "William Chura" }
+        ]
+    };
+
     return (
         <div className="home-container">
 
@@ -76,12 +163,7 @@ function Home() {
                         return;
                     }
                     // Making sure all inputs are filled
-                    if(
-                        !formData.courseName || 
-                        !formData.courseNumber ||
-                        !formData.instructor ||
-                        !formData.section 
-                    ) {
+                    if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
                         setMessage("Please fill in all fields.");
                         setLoading(false);
                         return;
@@ -175,9 +257,10 @@ function Home() {
                         <select
                             value={formData.department}
                             onChange={(e) =>
-                                setFormData({ ...formData, department: e.target.value })
+                                setFormData({ ...formData, department: e.target.value, instructor: "" })
                             }
                         >
+                            
                             <option value="BIOL">Biology</option>
                             <option value="CHEM">Chemistry</option>
                             <option value="CPSC">Computer Science</option>
@@ -200,24 +283,48 @@ function Home() {
 
                     <div className="form-group">
                         <label>Section:</label>
-                        <input
-                            type="text"
+                        <select
                             value={formData.section}
                             onChange={(e) =>
                                 setFormData({ ...formData, section: e.target.value })
                             }
-                        />
+                        >
+                            <option value="001">001</option>
+                            <option value="002">002</option>
+                            <option value="003">003</option>
+                            <option value="004">004</option>
+                            <option value="005">005</option>
+                            <option value="006">006</option>
+                            <option value="007">007</option>
+                            <option value="008">008</option>
+                            <option value="009">009</option>
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="012">012</option>
+
+                        </select>
                     </div>
 
                     <div className="form-group">
                         <label>Instructor:</label>
-                        <input
-                            type="text"
+                        <select
                             value={formData.instructor}
                             onChange={(e) =>
                                 setFormData({ ...formData, instructor: e.target.value })
                             }
-                        />
+                        >
+                            <option value="">Select Professor</option>
+
+                            {professorsByDepartment[formData.department]?.map((professor) => (
+                                <option
+                                    key={professor.value}
+                                    value={professor.value}
+                                >
+                                    {professor.label}
+                                </option>
+                            ))}
+                            
+                        </select>
                     </div>
 
                 </div>
@@ -239,14 +346,14 @@ function Home() {
                 </div>
                 
                 <p>
-                    File will be saved as:{" "}
+                    File will be saved as: {""}
                     <strong>
-                        {formData.semester}-
                         {formData.department}-
                         {formData.courseNumber}-
                         {formData.section}-
                         {formData.instructor}-
-                        
+                        {formData.semester}
+                                            
                     </strong>
                 </p>
                 
