@@ -58,7 +58,7 @@ nav {
 /* Dropdown menu */
 .hidden-menu {
     position: absolute;
-    height: 80px;
+    height: 100px;
     width: 100px;
     top: 60px;       /* sits just below the ham-menu */
     right: 0;
@@ -82,6 +82,16 @@ nav {
     flex-direction: column;
     gap: 15px;
 }
+
+.nav-link{
+    background-color: #d6d6d6;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 5px;
+}
 .nav-link:hover{
     color: #c8102e;
     transform: translateY(-1px);
@@ -93,6 +103,7 @@ nav {
     border-radius: 6px;
     padding: 8px 16px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .signout-button:hover{
     background-color: #c8102e;
