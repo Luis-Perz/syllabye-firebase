@@ -3,8 +3,6 @@ import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
 import "../css/home.css";
 import { useNavigate } from "react-router-dom";
-// import { signOut } from "firebase/auth";
-// import { auth } from "../firebase/firebase";
 import helpIcon from "../images/questions.png";
 import Questions from "../components/Questions";
 import Sidebar from "../components/Sidebar";

@@ -12,6 +12,7 @@ import LewisBack from "../images/SmallLUT.png"
 // GET TO WORK NOW RAAAHHHHH
 const ALLOWED_EMAILS = [
     "mollyepaez@lewisu.edu",
+    "luisaperez1@lewisu.edu",
     "mharless@lewisu.edu",
     "legner@lewisu.edu",
     "MorrowCh@lewisu.edu",

@@ -29,7 +29,7 @@ export default function Sidebar() {
                     <div className={`hidden-menu ${isOpen ? "active" : ""}`}
                          style={{ display: isOpen ? "flex" : "none" }}>
                         <ul>
-                            <li className="nav-link" onClick={() => navigate("/Admin")}>
+                            <li className="nav-link" onClick={() => navigate("/admin/dashboard")}>
                                 Admin
                             </li>
                             <li className="signout-button" onClick={handleSignOut}>Sign Out</li>

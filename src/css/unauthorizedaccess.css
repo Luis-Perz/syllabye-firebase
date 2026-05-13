@@ -1,0 +1,42 @@
+
+
+.ua-image{
+    width: 200px;
+    height: 200px;
+}
+
+.ua-container{
+    height: 100vh;
+    width: 100%;
+    background-color: #d5d2d2;
+    display: flex;
+    justify-content: center;
+    overflow-y: hidden;
+}
+.ua-message{
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ua-message h1{
+    color: #a50d25;
+}
+
+.ua-message button{
+    background-color: #a50d25;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    /*transition: background-color 0.3s ease;*/
+}
+.ua-message button:hover{
+    background-color: #e69b9b;
+    transition: background-color 0.3s ease;
+    color: #a50d25;
+}
+
