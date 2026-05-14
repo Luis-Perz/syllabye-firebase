@@ -18,7 +18,7 @@ function Home() {
         department: "CPSC",
         courseName: "",
         courseNumber: "",
-        section: "",
+        section: "001",
         instructor: "",
         file: null
     });
@@ -29,7 +29,7 @@ function Home() {
     const navigate = useNavigate();
 
 
-    //Grouping the professors by their department for later selection (Proffesors from ECAMS faculty roster)
+    //Grouping the professors by their department for later department selection (Proffesors from ECAMS faculty roster)
     const professorsByDepartment = {
         CPSC: [
             { value: "boxu", label: "Bo Xu" },
@@ -113,6 +113,242 @@ function Home() {
             { value: "sarahpowers", label: "Sarah Powers" },
             { value: "williamchura", label: "William Chura" }
         ]
+    };
+
+    //Course lookup table grouped by department, course name autofills when course number is put in (can add more later)
+    //Eventually will need to semester too because classes change based on that too
+    const courseLookup = {
+        CPSC: {
+            "19605": "Wksp: Raspberry Pi",
+            "20000": "Intro to Computer Science",
+            "20200": "Fundamentals of AI",
+            "21000": "Programming Fundamentals",
+            "22000": "Introduction to Linux",
+            "24500": "Object-Oriented Programming",
+            "24700": "Web and Distributed Prog",
+            "28100": "Introduction to Networks",
+            "28200": "Switch, Routing, and Wireless",
+            "30000": "Computer Organization",
+            "32100": "Cybersecurity Essentials",
+            "33000": "Database Systems",
+            "34000": "Algorithms and Data Structures",
+            "38200": "Network Security",
+            "41700": "Mobile Application Development",
+            "42500": "Encryption and Authentication",
+            "42800": "Programming:Digital Forensics",
+            "44000": "Software Engineering",
+            "46500": "Theory Algorithms Computation",
+            "47000": "Artificial Intelligence",
+            "48000": "Client-Server Computing",
+            "49200": "Software Systms Capstone Prjct",
+            "49300": "Comp Infrstrctr Capstone Prjct",
+            "50000": "Computer Organization",
+            "50100": "Programming Fundamentals",
+            "50300": "Algorithms and Data Structures",
+            "50500": "Communications and Networking",
+            "50600": "Cyber Security Essentials",
+            "50700": "Advanced Cyber Security",
+            "50900": "Database Systems",
+            "51500": "Operating Systems",
+            "52000": "Network Security Essentials",
+            "52500": "Encryption and Authentication",
+            "55500": "Distributed Computing Systems",
+            "56000": "Securing Operating Systems",
+            "57100": "Artificial Intelligence 1",
+            "57200": "Artificial Intelligence 2",
+            "57500": "Ethics in AI",
+            "57600": "Responsible AI & Strategic App",
+            "57700": "Machine Learning Operations",
+            "57900": "Generative AI",
+            "58100": "Vibe Coding",
+            "58200": "Agentic AI",
+            "59100": "Cybersecurity Project",
+            "59700": "Research in Computer Science",
+            "60000": "Object Oriented Development",
+            "60500": "Software Engineering",
+            "61200": "Software Architect and Design",
+            "61400": "Software Production Process",
+            "65000": "Robotics",
+            "65100": "Reinforcement Learning",
+            "65500": "Cloud Computing/Virtualization",
+            "66500": "Application Security",
+            "67300": "Digital Forensics",
+            "68000": "Advanced Network Security",
+            "68500": "Enterprise Network Security",
+            "69100": "Comp Sci Master's Project"
+        },
+
+        MATH: {
+            "10300": "Elementary Mathematics",
+            "10400": "Intermediate Algebra",
+            "10500": "Introductory Statistics",
+            "10700": "Mathematics for Culinary Art",
+            "11500": "Intro to Mathematical Thinking",
+            "11600": "Win Lose or Draw",
+            "11900": "College Algebra",
+            "14100": "GeometryandMsrmnt Concpt Tchr",
+            "17000": "Finite Mathematics",
+            "19900": "Precalculus",
+            "20400": "Calculus for the Life Sciences",
+            "20900": "Calculus 1",
+            "21000": "Discrete Mathematics",
+            "22000": "Applied Probability and Stats",
+            "23500": "Calculus 2",
+            "25000": "Calculus 3",
+            "27000": "History of Mathematics",
+            "30500": "Linear Algebra",
+            "30600": "Advanced Linear Algebra",
+            "32500": "Foundations Adv Mathematics",
+            "39604": "ST: Intro to Graph Theory",
+            "47500": "Mathematics Research",
+            "48000": "Senior Seminar"
+        },
+
+        PHYS: {
+            "10000": "Elementary Laboratory Physics",
+            "10500": "Introduction to Astronomy",
+            "12000": "Integrated Science 1",
+            "12100": "Integrated Science 1 Lab",
+            "20500": "College Physics 2",
+            "20600": "College Physics 2 Lab",
+            "21000": "General Physics 1",
+            "21100": "General Physics 1 Lab",
+            "21500": "General Physics 2",
+            "21600": "General Physics 2 Lab",
+            "21800": "General Physics 3",
+            "21900": "General Physics 3 Lab",
+            "29600": "Research Methods Seminar",
+            "30000": "Mechanics",
+            "31100": "Analog and Digital Elec",
+            "34100": "Modern Physics",
+            "41100": "Computational Electrodynamics",
+            "46500": "Capstone Project",
+            "47000": "Undergraduate Research",
+            "49801": "ST: Astrophysics",
+            "51000": "Electromagnetic Theory and App",
+            "68001": "ST: Astrophysics",
+            "69500": "Graduate Capstone",
+            "69600": "Graduate Seminar",
+            "69800": "Master's Thesis"
+        },
+
+        CHEM: {
+        "10100": "Basic Inorganic Chemistry",
+        "10200": "Basic Inorganic Chemistry Lab",
+        "10500": "Intro to OrganicBiochemistry",
+        "10700": "Chemistry Hazardous Materials",
+        "10900": "Chemistry and Society",
+        "11000": "General Chemistry 1",
+        "11100": "General Chemistry 1 Lab",
+        "11200": "Chem of Mind Altering Drugs",
+        "11500": "General Chemistry 2",
+        "11600": "General Chemistry 2 Lab",
+        "12200": "Intro Forensic Chemistry",
+        "12300": "Intro Forensic Chemistry Lab",
+        "22100": "Organic Chemistry 1 Lab",
+        "22600": "Organic Chemistry 2 Lab",
+        "23000": "Organic Chemistry 1",
+        "23500": "Organic Chemistry 2",
+        "23600": "Organic Chemistry 2 Lab",
+        "24200": "Intro to Solid State Chemistry",
+        "29600": "Research Methods Seminar",
+        "30500": "Physical Chemistry 2",
+        "30600": "Physical Chemistry 2 Lab",
+        "32000": "Analytical Chemistry",
+        "40700": "Biochemistry 2",
+        "40800": "Biochemistry 2 Lab",
+        "45000": "Research",
+        "46500": "Capstone Project",
+        "68012": "ST: Advanced Materials",
+        "68013": "ST: Computational Chemistry",
+        "69600": "Graduate Seminar",
+        "69800": "Master's Thesis"
+    },
+
+        BIOL: {
+            "10100": "Anatomy and Physiology 1",
+            "10101": "Human A&P 1",
+            "10200": "Anatomy and Physiology 1 Lab",
+            "10201": "Human A&P Lab 1",
+            "10300": "Anatomy and Physiology 2",
+            "10400": "Anatomy and Physiology 2 Lab",
+            "10600": "Intro to Environmental Science",
+            "10700": "Human Heredity",
+            "10800": "Introduction to Human Biology",
+            "11000": "General Biology 1",
+            "11100": "General Biology 1 Lab",
+            "11500": "General Biology 2",
+            "11600": "General Biology 2 Lab",
+            "12200": "Integrated Science 2",
+            "12300": "Integrated Science 2 Lab",
+            "13800": "Medical Terminology",
+            "22000": "Genetics",
+            "22100": "Genetics Lab",
+            "22200": "Earth Science",
+            "22400": "General Microbiology",
+            "22500": "Microbiology",
+            "22501": "Intro to Microbio Resp Therapy",
+            "22600": "General Microbiology Lab",
+            "22700": "Microbiology Lab",
+            "22701": "Intro to Microbio Lab",
+            "24300": "Principles of Sustainability",
+            "27000": "Pathophysiology",
+            "31200": "Intro Geographical Info Sysym",
+            "32000": "Biostatistics",
+            "33500": "Advanced Clinical Physiology",
+            "33600": "Case Stdy Human Physiology",
+            "35700": "Nutritional Biochemistry Clncl",
+            "36000": "Radiation Detctn/Instrmt",
+            "36300": "Biomimicry Whole Syst Thinking",
+            "36500": "Medical Law and Ethics",
+            "37500": "Issues in Environmentl Science",
+            "38500": "Biology Journal Club",
+            "39000": "Professional Clinical Practicu",
+            "39400": "Major Field Test",
+            "39701": "ACCA: Marine/Island Ecology",
+            "39708": "Forest Ecology in Chnging Wrld",
+            "39900": "Human ID Crimnl Investigation",
+            "40600": "Molecular Cell Biology",
+            "41501": "Radiographic Procedures 5/Lab",
+            "42600": "Immunology",
+            "43500": "Ethics:Scientific PrinPrac",
+            "44000": "Mgmt/Mthds Patient Care 2",
+            "44200": "Cmptd Tomogrphy Crs-Sect Anat",
+            "44600": "Diag Nuclear Imaging Pract 2a",
+            "44800": "Clinical Nuclear Med Proc 2",
+            "45000": "Radionuclide Chem/Radiopharm",
+            "45200": "Radiation Biology",
+            "45400": "Radiographic Pathology",
+            "45800": "Radiographic Clinical 5",
+            "45801": "Radiographic Clinical 6",
+            "45802": "Radiographic Clinical 7",
+            "45900": "ARRT Review",
+            "49000": "Undergraduate Research",
+            "49600": "Biology Senior Capstone",
+            "51200": "Research in Biotechnology",
+            "59000": "aData Science Project:Life Sci"
+        },
+
+        DATA: {
+            "20000": "Introduction to Data Science",
+            "23500": "Programming for Data Analysis",
+            "40000": "Big Data Systems",
+            "47200": "Introduction to Data Mining",
+            "49000": "Data Science Capstone Project",
+            "50000": "Mathematics: Data Scientists",
+            "50100": "Prob and Stats Data Scientists",
+            "51000": "Data Mining and Analytics",
+            "51100": "Statistical Programming",
+            "51200": "Multivariate Data Analysis",
+            "53000": "Data Visualization",
+            "54000": "LargeScale Data Storage System",
+            "55000": "Supervised Machine Learning",
+            "55100": "Unsupervised Machine Learning",
+            "55200": "Semantic Web",
+            "56000": "Neural Network & Deep Learning",
+            "56600": "Digital Image Processing",
+            "59000": "Data Science Master's Project"
+        }
     };
 
     return (
@@ -200,10 +436,10 @@ function Home() {
                         // Reset form data after successful upload
                         setFormData({
                             semester: "fall2026",
-                            department: "CPSC",
+                            department: e.target.value,
                             courseName: "",
                             courseNumber: "",
-                            section: "",
+                            section: "001",
                             instructor: "",
                             file: null
                         });
@@ -240,16 +476,20 @@ function Home() {
                     </div>
 
                     <div className="form-group">
-                        <label>Course Name:</label>
+                        <label>Course Number:</label>
                         <input
                             type="text"
-                            value={formData.courseName}
-                            onChange={(e) =>
-                                setFormData({ ...formData, courseName: e.target.value })
-                            }
+                            value={formData.courseNumber}
+                            onChange={(e) => {
+                                const courseNumber = e.target.value.trim();
+                                const department = formData.department;
+
+                            
+                                setFormData({ ...formData, courseNumber, courseName: courseLookup[department]?.[courseNumber] || "" });
+                            }}
                         />
                     </div>
-
+                    
                     <div className="form-group">
                         <label>Department:</label>
                         <select
@@ -269,15 +509,16 @@ function Home() {
                     </div>
 
                     <div className="form-group">
-                        <label>Course Number:</label>
+                        <label>Course Name:</label>
                         <input
                             type="text"
-                            value={formData.courseNumber}
+                            value={formData.courseName}
                             onChange={(e) =>
-                                setFormData({ ...formData, courseNumber: e.target.value })
+                                setFormData({ ...formData, courseName: e.target.value })
                             }
                         />
                     </div>
+
 
                     <div className="form-group">
                         <label>Section:</label>
