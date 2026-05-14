@@ -426,7 +426,7 @@ function Home() {
                     }       
 
                     try {
-                        const fileURL = await uploadSyllabus(file);
+                        const fileURL = await uploadSyllabus(file, formData);
                         await syllabus({ ...formData, fileURL });
 
 
