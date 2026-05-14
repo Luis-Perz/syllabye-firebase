@@ -82,7 +82,8 @@ function AdminDashboard() {
         <p>
           Each drop down menu contains all of the submitted syllabi for each specific
           department. Inside those drop downs you will find each file and when it is clicked
-          it will download. You may also delete the files.
+          it will download. In the parenthesis it represents the (course number-section number-professor-semester). 
+          You may also delete the files.
         </p>
       </div>
 
@@ -108,7 +109,7 @@ function AdminDashboard() {
                           target="_blank"
                           rel="noreferrer"
                         >
-                          {item.courseName} ({item.courseNumber})
+                          {item.courseName} ({item.courseNumber}-{item.section}-{item.instructor}-{item.semester})
                         </a>
 
                       <button 

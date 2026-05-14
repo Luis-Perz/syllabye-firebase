@@ -16,13 +16,6 @@ read and organize as well as looking aesthetically pleasing.
   text-align: center;
 }
 
-.syllabus-list {
-  max-height: 400px;
-  margin-top: 15px;
-  overflow-y: auto;
-  padding-right: 5px;
-}
-
 .syllabus-card {
   background: #fafafa;
   border: 1px solid #ddd;
@@ -39,11 +32,6 @@ read and organize as well as looking aesthetically pleasing.
   margin-bottom: 8px;
 }
 
-.syllabus-meta {
-  margin: 4px 0;
-  font-size: 14px;
-  color: black;
-}
 
 .file-link {
   color: #2f6fed;
@@ -108,8 +96,9 @@ read and organize as well as looking aesthetically pleasing.
 
 .card-buttons {
   display: flex;
-  gap: 521px;
+  align-items: center;
   margin-top: 12px;
+  width: 100%;
 }
 
 .delete-button {
@@ -119,6 +108,7 @@ read and organize as well as looking aesthetically pleasing.
   padding: 8px 10px;
   border-radius: 6px;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .delete-button:hover {
@@ -133,8 +123,17 @@ read and organize as well as looking aesthetically pleasing.
   margin-bottom: 20px;
   margin-top: 20px;
   padding-left: 20px;
+  max-height: 400px;
+  margin-top: 15px;
+  overflow-y: auto;
+  padding-right: 5px;
 }
 
 .syllabus-item{
   margin-bottom: 10px;
+}
+
+html, body, #root {
+  min-height: 100%;
+  overflow-y: auto;
 }

@@ -93,7 +93,8 @@ nav {
     margin-top: 5px;
 }
 .nav-link:hover{
-    color: #c8102e;
+    background-color: #c8102e;
+    color: #fff;
     transform: translateY(-1px);
 }
 .signout-button{
