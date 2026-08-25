@@ -5,11 +5,17 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDZW0cWkqHJS6s7y_rLcVXXvYyJbS97V2o",
-    authDomain: "syllabye-4a90d.webapp.com",
+
+    authDomain: "syllabye-4a90d.firebaseapp.com",
+
     projectId: "syllabye-4a90d",
+
     storageBucket: "syllabye-4a90d.firebasestorage.app",
+
     messagingSenderId: "556619147073",
+
     appId: "1:556619147073:web:3dd772560ccaca68f0e3c0"
+
 };
 
 // Initialize Firebase
