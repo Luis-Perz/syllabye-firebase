@@ -12,12 +12,12 @@ function Login(){
     async function handleSignIn() {
         try {
             const result = await signInWithPopup(auth, provider)
-            // if (!result.user.email.endsWith('@lewisu.edu')) {
-            //     console.log("Access denied. Please sign in with your Lewis email.");
-            //     await auth.signOut();
-            //     setError("Access denied. Please sign in with your Lewis email.");
-            //     return;
-            // }
+            if (!result.user.email.endsWith('@gmail.com')) {
+                console.log("Access denied. Please sign in with your Google email.");
+                await auth.signOut();
+                setError("Access denied. Please sign in with your Google email.");
+                return;
+            }
             console.log("success")
             nav("/home")
         } catch (error) {
