@@ -19,7 +19,7 @@ const ALLOWED_EMAILS = [
     "MorrowCh@lewisu.edu",
     "karencvillasenor@lewisu.edu",
     "sadrimozgul@lewisu.edu",
-    "luisaperez1@lewisu.edu"
+    "luis998.ap@gmail.com"
 ];
 
 function Admin() {
