@@ -12,8 +12,7 @@ function Login(){
     async function handleSignIn() {
         try {
             const result = await signInWithPopup(auth, provider)
-            if (!result.user.email.endsWith('@lewisu.edu')) {
-            if (!result.user.email.endsWith('@gmail.com')) {
+            if (!result.user.email.endsWith('@lewisu.edu') && !result.user.email.endsWith('@gmail.com')) {
                 console.log("Access denied. Please sign in with your Google email.");
                 await auth.signOut();
                 setError("Access denied. Please sign in with your Google email.");
