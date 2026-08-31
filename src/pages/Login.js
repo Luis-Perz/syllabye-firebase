@@ -43,9 +43,9 @@ function Login(){
 
             <div className="login-card">
                 <h1 className="form-title">Welcome to SyllaBye!</h1>
-                <p className="form-sub">Sign in with your Lewis University email to upload your course syllabi.</p>
+                <p className="form-sub">Sign in with your Google email to upload your course syllabi.</p>
                 <button className="submit-button" onClick={handleSignIn}>
-                    Sign in with Lewis email
+                    Sign in with Google email
                 </button>
                 {error && <p style={{color: "red", marginTop:"10px"}}>{error}</p>}
             </div>
