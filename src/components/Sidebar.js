@@ -21,10 +21,7 @@ export default function Sidebar() {
 
     return (
         <>
-
             <nav >
-
-
                 <div className="nav-inner">
                     <div className={`hidden-menu ${isOpen ? "active" : ""}`}
                          style={{ display: isOpen ? "flex" : "none" }}>
@@ -42,7 +39,6 @@ export default function Sidebar() {
                         <span></span>
                         <span></span>
                     </div>
-
                 </div>
             </nav>
         </>

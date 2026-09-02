@@ -111,12 +111,14 @@
 
 /* Upload box*/
 .home-container .upload-box {
-    margin-top: 30px;
+    margin:0 auto;
     border: 2px dashed #c8102e;
     border-radius: 12px;
     padding: 25px;
     text-align: center;
     background: #fafafa;
+    z-index: 5;
+    width:100%;
 }
 
 /* Upload text */

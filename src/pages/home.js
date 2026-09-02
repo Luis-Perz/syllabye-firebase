@@ -1,4 +1,6 @@
-import { useState, useRef } from "react";
+import React from "react";
+import { FileUploader } from "react-drag-drop-files";
+import { useState } from "react";
 import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
 import "../css/home.css";
@@ -25,9 +27,10 @@ function Home() {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const fileInputRef = useRef();
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
+    const fileTypes = ["PDF", "DOCX"];
+    const [file, setFile] = useState(null);
 
     //Grouping the professors by their department for later department selection (Proffesors from ECAMS faculty roster)
     const professorsByDepartment = {
@@ -360,16 +363,6 @@ function Home() {
 
             <div className="top-bar">
                 <h1 className="logo">SyllaBye</h1>
-
-                {/*<button*/}
-                {/*    className="signout-btn"*/}
-                {/*    onClick={async () => {*/}
-                {/*        await signOut(auth);*/}
-                {/*        navigate("/");*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*    Sign Out*/}
-                {/*</button>*/}
                 <Sidebar />
             </div>
 
@@ -388,7 +381,7 @@ function Home() {
                     setMessage("");
                     setLoading(true);
 
-                    const file = formData.file;
+
 
                     // Check if file exists
                     if (!file) {
@@ -443,11 +436,7 @@ function Home() {
                             instructor: "",
                             file: null
                         });
-
-                        // Clears file input visually
-                        if (fileInputRef.current) {
-                            fileInputRef.current.value = null;
-                        }
+                        setFile(null);
 
                     } catch (error) {
                         console.error(error);
@@ -478,13 +467,13 @@ function Home() {
                     <div className="form-group">
                         <label>Course Number:</label>
                         <input
-                            type="text"
+                            type="number"
                             value={formData.courseNumber}
                             onChange={(e) => {
                                 const courseNumber = e.target.value.trim();
                                 const department = formData.department;
 
-                            
+
                                 setFormData({ ...formData, courseNumber, courseName: courseLookup[department]?.[courseNumber] || "" });
                             }}
                         />
@@ -569,19 +558,16 @@ function Home() {
                 </div>
 
                 {/* UPLOAD BOX */}
-                <div className="upload-box">
-
+                <div>
                     <p>Drop your syllabus PDF or DOCX here</p>
 
-                    <input
-                        type="file"
-                        accept=".pdf,.docx"
-                        ref={fileInputRef}
-                        onChange={(e) =>
-                            setFormData({ ...formData, file: e.target.files[0] })
-                        }
+                    <FileUploader
+                        handleChange={(uploadedFile) => setFile(uploadedFile)}
+                        name="file"
+                        types={fileTypes}
+                        classes="upload-box"
                     />
-
+                    {file && <p>Selected: {file.name}</p>}
                 </div>
                 
                 <p>
@@ -628,7 +614,6 @@ function Home() {
                 />
             </Questions>
         </div>
-
     );
 }
 
