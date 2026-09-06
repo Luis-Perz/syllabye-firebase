@@ -10,8 +10,8 @@ Scrum Master: Molly P.
 
 Product Owner: Luis P.
 
-Sprint 7 Planning Participants: Molly P., Luis P., and Bobby D. (in person)  
-Sprint 7 Planning Date: 08/26/2026  
+Sprint 1 Planning Participants: Molly P., Luis P., and Bobby D. (in person)  
+Sprint 1 Planning Date: 08/26/2026  
 
 ---
 
