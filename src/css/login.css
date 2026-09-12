@@ -83,8 +83,8 @@
     cursor: pointer;
 }
 
-.submit-button-hover{
-    background: #a50d25;
+.submit-button:hover {
+    background: #a50d25
 }
 
 /*  ADMIN LOGIN STYLES */

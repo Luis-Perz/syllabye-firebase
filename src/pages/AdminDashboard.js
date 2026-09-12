@@ -71,6 +71,14 @@ function AdminDashboard() {
     <div className="admin-dashboard-container">
       <div className="dashboard-header">
         <h1 className="admin-title">Syllabus Storage</h1>
+
+        <button
+          className="home-button"
+          onClick = {() => navigate("/home")}
+        >
+          Home
+        </button>
+
         <button
         className="logout-button"
         onClick={handleLogout}
