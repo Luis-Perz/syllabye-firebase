@@ -503,7 +503,10 @@ function Home() {
                             type="text"
                             value={formData.courseName}
                             onChange={(e) =>
-                                setFormData({ ...formData, courseName: e.target.value })
+                                setFormData({ ...formData, courseName: e.target.value 
+                                    .toLowerCase()
+                                    .replace(/\s+/g, "")
+                                })
                             }
                         />
                     </div>
@@ -576,6 +579,7 @@ function Home() {
                         {formData.department}-
                         {formData.courseNumber}-
                         {formData.section}-
+                        {formData.courseName.toLowerCase().replace(/\s+/g, "")}-
                         {formData.instructor}-
                         {formData.semester}
                                             

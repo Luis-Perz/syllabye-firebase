@@ -20,7 +20,10 @@ export async function uploadSyllabus(file, data) {
         .toLowerCase();
     const semester = data.semester
         .replace(/\s+/g, "");
-    const cleanName = `${data.department}-${data.courseNumber}-${data.section}-${professorName}-${semester}.${extension}`;
+    const courseName = data.courseName
+        .toLowerCase()
+        .replace(/\s+/g, "");
+    const cleanName = `${data.department}-${data.courseNumber}-${data.section}-${courseName}-${professorName}-${semester}.${extension}`;
     
     const path = `syllabi/${cleanName}`;
     const storageRef = ref(storage, path);
