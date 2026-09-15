@@ -29,7 +29,9 @@ function Login(){
             setError(error.message)
         }
     }
-  const navigateToHome = nav("/home");
+function navigateToHome() {
+    nav("/home");
+}
         return (
         <>
             <div className="login-container">
