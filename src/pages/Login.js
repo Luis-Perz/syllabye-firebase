@@ -29,6 +29,7 @@ function Login(){
             setError(error.message)
         }
     }
+  const navigateToHome = nav("/home");
         return (
         <>
             <div className="login-container">
@@ -58,7 +59,7 @@ function Login(){
                     )}
                     {view === "login" && (
                         <>
-                            <LoginForm onSuccess={nav("/home")} />
+                            <LoginForm onSuccess={navigateToHome} />
                             <p className="back-link" onClick={() => setView("google")}> &lt; Back </p>
                             <p className="reset-link" onClick={() => setView("reset")}>Reset Password</p>
                         </>
@@ -66,7 +67,7 @@ function Login(){
 
                     {view === "create" && (
                         <>
-                            <CreateUserForm onSuccess={nav("/home")} />
+                            <CreateUserForm onSuccess={navigateToHome} />
                             <p className="back-link" onClick={() => setView("google")}>&lt; Back</p>
                         </>
                     )}
