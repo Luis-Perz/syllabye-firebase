@@ -55,6 +55,7 @@
 
 .login-card{
     position: relative;
+    padding: 15px;
     z-index: 1;
     background: rgba(255,255,255,0.95);
     border-radius:12px;
@@ -73,7 +74,7 @@
     color: #c8102e;
 }
 
-.submit-button{
+.google-sign-in-button{
     width: 100%;
     padding: 10px;
     background-color: #c8102e;
@@ -83,8 +84,37 @@
     cursor: pointer;
 }
 
-.submit-button:hover {
-    background: #a50d25
+.google-sign-in-button:hover {
+    background: #a50d25;
+}
+
+.email-auth{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+    gap: 16px;
+}
+.email-sign-in{
+    width: 100%;
+    text-align: center;
+}
+.email-sign-in:hover{
+    cursor: pointer;
+    color: #a50d25;
+}
+.divider{
+    height: 20px;
+    width: 1px;
+    background: #c8102e;
+}
+.create-account{
+    width: 100%;
+    text-align: center;
+}
+.create-account:hover{
+    cursor: pointer;
+    color: #a50d25;
 }
 
 /*  ADMIN LOGIN STYLES */
@@ -95,4 +125,48 @@
     align-items:center;
     background-color: rgb(120 109 109 / 0.38);
 }
-
+.back-link{
+    width: 100px;
+    margin: 0 auto;
+}
+.back-link:hover, .reset-link:hover{
+    cursor: pointer;
+    color: #a50d25;
+}
+/* Email login*/
+.login-form{
+    max-height:200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.login-inputs input{
+    margin-bottom: 5px;
+    height: 35px;
+    width: 90%;
+    border-radius: 6px;
+    padding: 5px;
+}
+.login-inputs:hover button{
+    cursor: pointer;
+}
+.create-login-inputs input{
+    margin-bottom: 5px;
+    height: 25px;
+    border-radius: 6px;
+    padding: 5px;
+}
+.login-submit-btn, .submit-reset{
+    height: 35px;
+    width: 95%;
+    background-color: #c8102e;
+    border-radius: 6px;
+    color:#fff;
+    margin-bottom: 15px;
+}
+.email-login-submit-btn:hover{
+    cursor: pointer;
+    background-color: #a50d25;
+}

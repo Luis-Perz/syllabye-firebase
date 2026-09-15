@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, addDoc, setDoc } from "firebase/firestore";
 
 export async function syllabus(data) {
     await addDoc(collection(db, "syllabi"), {
@@ -11,4 +11,11 @@ export async function syllabus(data) {
         instructor: data.instructor,
         fileURL: data.fileURL
     });
+}
+
+export async function setUser(user, role) {
+    await setDoc(doc(db, "roles", user.email.toLowerCase()), {
+        role: role,
+    })
+
 }
