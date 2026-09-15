@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import { ThemeContext } from "./ThemeContext";
 import "../css/sidebar.css";
 
 export default function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const { toggleTheme } = useContext(ThemeContext);
 
     const toggleMenu = () => {
         const next = !isOpen;
@@ -30,6 +33,7 @@ export default function Sidebar() {
                                 Admin
                             </li>
                             <li className="signout-button" onClick={handleSignOut}>Sign Out</li>
+                            <li className="theme-button" onClick={toggleTheme}>Switch Theme</li>
                         </ul>
                     </div>
 

@@ -58,11 +58,11 @@ nav {
 /* Dropdown menu */
 .hidden-menu {
     position: absolute;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     top: 60px;       /* sits just below the ham-menu */
     right: 0;
-    background-color: #fff;
+    background-color: var(--bg);
     border: 2px solid #c8102e;
     border-radius: 8px;
     padding: 10px;
@@ -84,8 +84,8 @@ nav {
 }
 
 .nav-link{
-    background-color: #d6d6d6;
-    color: #000;
+    background-color: var(--bgSidebar);
+    color: var(--text);
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
@@ -98,8 +98,8 @@ nav {
     transform: translateY(-1px);
 }
 .signout-button{
-    background-color: #d6d6d6;
-    color: #000;
+    background-color: var(--bgSidebar);
+    color: var(--text);
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
@@ -107,6 +107,21 @@ nav {
     margin-bottom: 5px;
 }
 .signout-button:hover{
+    background-color: #c8102e;
+    color: #fff;
+    transform: translateY(2px);
+}
+
+.theme-button{
+    background-color: var(--bgSidebar);
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.theme-button:hover{
     background-color: #c8102e;
     color: #fff;
     transform: translateY(2px);

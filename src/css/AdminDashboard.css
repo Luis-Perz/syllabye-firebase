@@ -5,7 +5,7 @@ read and organize as well as looking aesthetically pleasing.
 
 .admin-dashboard-container {
   padding: 30px;
-  background: #f0ebeb;
+  background: var(--bg2);
   min-height: 100vh;
 }
 
@@ -13,10 +13,11 @@ read and organize as well as looking aesthetically pleasing.
   font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
+  color: var(--text);
 }
 
 .syllabus-card {
-  background: #fafafa;
+  background: var(--bg);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 12px;
@@ -85,7 +86,7 @@ read and organize as well as looking aesthetically pleasing.
 }
 
 .department-card{
-  background: white;
+  background: var(--bg);
   border-radius: 25px;
   padding: 15px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.30);
@@ -132,6 +133,7 @@ read and organize as well as looking aesthetically pleasing.
 
 .title-description{
   margin-bottom: 30px;
+  color: var(--text);
 }
 
 .syllabus-list{

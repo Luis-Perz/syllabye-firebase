@@ -561,7 +561,7 @@ function Home() {
                 </div>
 
                 {/* UPLOAD BOX */}
-                <div>
+                <div className="file">
                     <p>Drop your syllabus PDF or DOCX here</p>
 
                     <FileUploader
@@ -573,18 +573,20 @@ function Home() {
                     {file && <p>Selected: {file.name}</p>}
                 </div>
                 
-                <p>
-                    File will be saved as: {""}
-                    <strong>
-                        {formData.department}-
-                        {formData.courseNumber}-
-                        {formData.section}-
-                        {formData.courseName.toLowerCase().replace(/\s+/g, "")}-
-                        {formData.instructor}-
-                        {formData.semester}
-                                            
-                    </strong>
-                </p>
+                <div className="file">
+                    <p>
+                        File will be saved as: {""}
+                        <strong>
+                            {formData.department}-
+                            {formData.courseNumber}-
+                            {formData.section}-
+                            {formData.courseName.toLowerCase().replace(/\s+/g, "")}-
+                            {formData.instructor}-
+                            {formData.semester}
+                                                
+                        </strong>
+                    </p>
+                </div>
                 
                 <button className="submit-btn" type="submit" disabled={loading}>
                     {loading ? "Uploading..." : "Submit"}
