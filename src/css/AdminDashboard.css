@@ -72,7 +72,7 @@ read and organize as well as looking aesthetically pleasing.
   padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
-  transform: translateX(525px);
+  transform: translateX(245px);
 }
 
 .home-button:hover{
@@ -156,4 +156,13 @@ html, body, #root {
   height: auto;
   margin: 0;
   padding: 0;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 250px;
+  transform: translateX(485px)
 }

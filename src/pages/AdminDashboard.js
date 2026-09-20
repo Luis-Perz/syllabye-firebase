@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 function AdminDashboard() {
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
   const [openDepartments, setOpenDepartments] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,25 +68,50 @@ function AdminDashboard() {
       }));
     };
 
+    const filteredGrouped = {};
+
+    Object.keys(groupedSyllabi).forEach((dept) => {
+      filteredGrouped[dept] = groupedSyllabi[dept].filter((item) => {
+        const search = searchTerm.toLowerCase();
+
+        return (
+          item.courseName?.toLowerCase().includes(search) ||
+          item.courseNumber?.toLowerCase().includes(search) ||
+          item.section?.toLowerCase().includes(search) ||
+          item.instructor?.toLowerCase().includes(search) ||
+          item.semester?.toLowerCase().includes(search)
+        );
+      });
+    });
+
   return(
     <div className="admin-dashboard-container">
       <div className="dashboard-header">
         <h1 className="admin-title">Syllabus Storage</h1>
 
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search syllabi..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
         <button
           className="home-button"
-          onClick = {() => navigate("/home")}
+          onClick={() => navigate("/home")}
         >
           Home
         </button>
 
         <button
-        className="logout-button"
-        onClick={handleLogout}
+          className="logout-button"
+          onClick={handleLogout}
         >
           Logout
         </button>
       </div>
+
       <div className="title-description">
         <p>
           Each drop down menu contains all of the submitted syllabi for each specific
@@ -96,7 +122,7 @@ function AdminDashboard() {
       </div>
 
       <div className="department-grid">
-        {Object.keys(groupedSyllabi).map((dept) => (
+        {Object.keys(filteredGrouped).map((dept) => (
           <div key={dept} className="department-card">
 
             <button 
@@ -107,7 +133,7 @@ function AdminDashboard() {
             </button>
             {openDepartments[dept] && (
               <ul className="syllabus-list">
-                {groupedSyllabi[dept].map((item) => (
+                {filteredGrouped[dept].map((item) => (
                   <li key={item.id} className="syllabus-item">                    
                       {item.fileURL && (
                         <>
