@@ -12,6 +12,9 @@ import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import "../css/AdminDashboard.css";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+
 
 // import LUBack from "../images/SmallLUT.png"
 
@@ -84,6 +87,32 @@ function AdminDashboard() {
       });
     });
 
+    const downloadAllDepartment = async (dept) => {
+      const docs = groupedSyllabi[dept];
+      if (!docs || docs.length === 0) return;
+
+      const zip = new JSZip();
+      await Promise.all(
+          docs.map(async (item) => {
+            if (!item.fileURL) return;
+
+            try{
+              const response = await fetch(item.fileURL);
+              const blob = await response.blob();
+
+              const fileName = `${item.courseName}-${item.courseNumber}-${item.department}-${item.instructor}-${item.section}-${item.semester}.pdf`
+                  .replace(/[/\\?%*:|"<>]/g, "-");
+              zip.file(fileName, blob);
+            }catch(err) {
+              console.log(err);
+            }
+          })
+      )
+      const zipBlob = await zip.generateAsync({type: "blob"});
+      saveAs(zipBlob, `${dept}-syallabi.zip`);
+    }
+
+
   return(
     <div className="admin-dashboard-container">
       <div className="dashboard-header">
@@ -129,7 +158,12 @@ function AdminDashboard() {
             className="department-button"
             onClick={() => toggleDepartment(dept)}
             >
-              {dept}
+              <div className="department-button-inner">
+                {dept}
+                <div className="department-button-option" onClick={() => downloadAllDepartment(dept)}>
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
             </button>
             {openDepartments[dept] && (
               <ul className="syllabus-list">

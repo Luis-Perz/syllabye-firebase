@@ -105,6 +105,25 @@ read and organize as well as looking aesthetically pleasing.
   font-size: 18px;
   text-align: left;
 }
+.department-button-inner{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+}
+.department-button-option{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  gap: 5px;
+}
+.department-button-inner span{
+  background-color: #fff;
+  border-radius: 10px;
+  width: 5px;
+  height: 5px;
+  align-self: center;
+}
 
 .department-button:hover {
   background: #d9534f;
@@ -138,7 +157,6 @@ read and organize as well as looking aesthetically pleasing.
 
 .syllabus-list{
   margin-bottom: 20px;
-  margin-top: 20px;
   padding-left: 20px;
   max-height: 400px;
   margin-top: 15px;
