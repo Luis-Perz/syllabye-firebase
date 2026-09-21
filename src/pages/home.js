@@ -429,7 +429,7 @@ function Home() {
                         // Reset form data after successful upload
                         setFormData({
                             semester: "fall2026",
-                            department: e.target.value,
+                            department: "Biology",
                             courseName: "",
                             courseNumber: "",
                             section: "001",
@@ -465,6 +465,23 @@ function Home() {
                     </div>
 
                     <div className="form-group">
+                        <label>Department:</label>
+                        <select
+                            value={formData.department}
+                            onChange={(e) =>
+                                setFormData({ ...formData, department: e.target.value, instructor: "" })
+                            }
+                        >
+
+                            <option value="BIOL">Biology</option>
+                            <option value="CHEM">Chemistry</option>
+                            <option value="CPSC">Computer Science</option>
+                            <option value="DATA">Data Science</option>
+                            <option value="MATH">Mathematics</option>
+                            <option value="PHYS">Physics</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
                         <label>Course Number:</label>
                         <input
                             type="number"
@@ -478,24 +495,7 @@ function Home() {
                             }}
                         />
                     </div>
-                    
-                    <div className="form-group">
-                        <label>Department:</label>
-                        <select
-                            value={formData.department}
-                            onChange={(e) =>
-                                setFormData({ ...formData, department: e.target.value, instructor: "" })
-                            }
-                        >
-                            
-                            <option value="BIOL">Biology</option>
-                            <option value="CHEM">Chemistry</option>
-                            <option value="CPSC">Computer Science</option>
-                            <option value="DATA">Data Science</option>
-                            <option value="MATH">Mathematics</option>
-                            <option value="PHYS">Physics</option>
-                        </select>
-                    </div>
+
 
                     <div className="form-group">
                         <label>Course Name:</label>
