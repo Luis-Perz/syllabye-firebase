@@ -7,6 +7,7 @@ read and organize as well as looking aesthetically pleasing.
   padding: 30px;
   background: var(--bg2);
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 .admin-title {
