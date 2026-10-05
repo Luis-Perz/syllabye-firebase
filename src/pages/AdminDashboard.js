@@ -15,9 +15,6 @@ import { useNavigate } from "react-router-dom";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-
-// import LUBack from "../images/SmallLUT.png"
-
 function AdminDashboard() {
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
   const [openDepartments, setOpenDepartments] = useState({});
@@ -118,27 +115,29 @@ function AdminDashboard() {
       <div className="dashboard-header">
         <h1 className="admin-title">Syllabus Storage</h1>
 
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search syllabi..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <nav className="dashboard-nav">
+          <input
+              type="text"
+              className="search-bar"
+              placeholder="Search syllabi..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+          />
 
-        <button
-          className="home-button"
-          onClick={() => navigate("/home")}
-        >
-          Home
-        </button>
+          <button
+              className="home-button"
+              onClick={() => navigate("/home")}
+          >
+            Home
+          </button>
 
-        <button
-          className="logout-button"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
+          <button
+              className="logout-button"
+              onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </nav>
       </div>
 
       <div className="title-description">
@@ -152,20 +151,26 @@ function AdminDashboard() {
 
       <div className="department-grid">
         {Object.keys(filteredGrouped).map((dept) => (
-          <div key={dept} className="department-card">
+            <div key={dept} className="department-card">
+              <div className="department-header">
+                <button
+                    type="button"
+                    className="department-button"
+                    onClick={() => toggleDepartment(dept)}
+                >
+                  {dept}
+                </button>
 
-            <button 
-            className="department-button"
-            onClick={() => toggleDepartment(dept)}
-            >
-              <div className="department-button-inner">
-                {dept}
-                <div className="department-button-option" onClick={() => downloadAllDepartment(dept)}>
+                <button
+                    type="button"
+                    className={`department-button-option ${openDepartments[dept] ? "show" : ""}`}
+                    title="Download all as zip"
+                    onClick={() => downloadAllDepartment(dept)}
+                >
                   <span></span><span></span><span></span>
-                </div>
+                </button>
               </div>
-            </button>
-            {openDepartments[dept] && (
+            {openDepartments[dept] &&(
               <ul className="syllabus-list">
                 {filteredGrouped[dept].map((item) => (
                   <li key={item.id} className="syllabus-item">                    
@@ -179,7 +184,6 @@ function AdminDashboard() {
                         >
                           {item.courseName} ({item.courseNumber}-{item.section}-{item.instructor}-{item.semester})
                         </a>
-
                       <button 
                       className="delete-button"
                       onClick={() => handleDelete(item.id)}>
