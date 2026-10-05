@@ -1,3 +1,12 @@
+/* Top bar section */
+/*.home-container {
+    min-height: 100vh;
+    background: #f5f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 120px;
+}*/
 :root[data-theme="light"] {
     --bg: #ffffff;
     --bg2: #f9f9f9;
@@ -11,32 +20,32 @@
     --bgSidebar: #010101;
     --text: #ffffff;
 }
-.home-container{
-    margin:0 auto;
-    padding: 5rem;
-}
-.form-container {
-    height: 100%;
-    padding: 10rem;
-}
-.successful-upload-container{
-    text-align: center;
+
+.home-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 40px;
 }
 
 .background {
-    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: fixed;
     top: 0;
     left: 0;
-    height:100%;
-    width: 100%;
     z-index: -1;
 }
-.background img{
-    width: 100%;
-    height: 100%;
-}
 
-.top-bar {
+.home-container .top-bar {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 80px;
     background: var(--bg2);
@@ -45,11 +54,9 @@
     justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 100;
-    margin-bottom: 20px;
-    border: 2px
 }
 
-.logo {
+.home-container .logo {
     font-family: 'Alumni Sans Collegiate One', sans-serif;
     font-size: 90px;
     color: #c8102e;
@@ -57,48 +64,49 @@
 }
 
 /* Form card */
-.form-card {
+.home-container .form-card {
     background: var(--bg);
     padding: 30px;
-    position: relative;
-    align-content: center;
     border-radius: 16px;
     width: 650px;
     min-height: 450px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    z-index: 2;
 }
 
-.subtitle {
+.home-container .subtitle {
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     color: var(--text);
     margin-bottom: 30px;
 }
 
 /* 2 column format */
-.form-grid {
+.home-container .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px 24px;
 }
 
 /* Form group */
-.form-group {
+.home-container .form-group {
     display: flex;
     flex-direction: column;
 }
 
 /* Labels */
-.form-group label {
+.home-container .form-group label {
     font-weight: 600;
     margin-bottom: 6px;
     color: var(--text);
 }
 
 /* Inputs */
-.form-group input,
-.form-group select {
+.home-container .form-group input,
+.home-container .form-group select {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #dcdcdc;
@@ -108,50 +116,39 @@
 }
 
 /* Focus effect */
-.form-group input:focus,
-.form-group select:focus {
+.home-container .form-group input:focus,
+.home-container .form-group select:focus {
     outline: none;
     border-color: #c8102e;
     box-shadow: 0 0 5px rgba(200,16,46,0.2);
 }
 
 /* Upload box*/
-.file{
-    width:100%;
-    font-size: 20px;
-}
-.file .upload-box {
+.home-container .upload-box {
+    margin:0 auto;
     border: 2px dashed #c8102e;
     border-radius: 12px;
-    display: flex;
-    height: 150px;
-    max-width: 100%;
-    min-width: 0;
-    flex-direction: column;
-    gap: 8px;
-}
-.file .upload-box svg {
-    width: 40px;
-    height: 40px;
-    margin-top: 2rem;
-}
-.file .upload-box span {
-    color: #c8102e;
-    display: flex;
-    flex-direction: row;
-}
-.file .upload-file{
-    margin: 16px auto;
+    padding: 25px;
     text-align: center;
-    font-size: 15px;
+    background: var(--bg);
+    z-index: 5;
+    width:100%;
 }
-.file .upload-file img{
-    width: 50px;
+/* Upload text */
+.home-container .upload-box p {
+    margin-bottom: 5px;
+    color: var(--text);
+}
+
+/* File input */
+.home-container .upload-box input[type="file"] {
+    margin-bottom: 5px;
 }
 
 /* Upload button */
-.submit-btn {
+.home-container .submit-btn {
     display: block;
+    margin: 25px auto 0 auto; /* centers it */
     padding: 10px 22px;
     background: #c8102e;
     color: white;
@@ -159,66 +156,71 @@
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    margin: 15px auto;
 }
-.submit-btn:hover {
+
+.home-container .submit-btn:hover {
     background: #a50d25;
-}
-.upload-box-btns{
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 25px;
-}
-.upload-box-btns .submit-btn {
-    margin: 0;
-}
-.upload-box-signout{
-    background: transparent;
-    border: 1px solid #a50d25;
-    border-radius: 8px;
-    color: #a50d25;
 }
 
 /* Disabled button */
-.form-container button:disabled {
+.home-container button:disabled {
     background: #e69b9b;
     cursor: not-allowed;
 }
 
 /* Success and error messages*/
-.form-container .success {
+.home-container .success {
     color: green;
     text-align: center;
     margin-top: 15px;
 }
 
-.form-container .error {
+.home-container .error {
     color: red;
     text-align: center;
     margin-top: 15px;
 }
 
 /* "About page" question mark image */
-.help-icon {
-    position: absolute;
+.home-container .help-icon {
+    position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 5;
-    text-align: end;
-    width: 100%;
-}
-.help-icon-image:hover {
-    transform: translateY(-2px);
+    width: 45px;
     cursor: pointer;
-}
-.help-icon-image{
-    height: 25px;
-    width: 25px;
+    transition: transform 0.2s ease;
 }
 
-.form-container .file {
+.home-container .help-icon:hover {
+    transform: scale(1.1);
+}
+
+.home-container .file {
     color: var(--text);
+}
+
+.help-icon{
+    position: fixed;        /* or absolute — whatever .help-icon was */
+    bottom: 20px;           /* adjust to match your original placement */
+    right: 20px;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 50;
+}
+.questions-window{
+    position: fixed;
+    bottom: 60px;
+    right: 60px;             /* aligns to the right edge of the icon */
+    background: var(--bg);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: 220px;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 0.875rem;
+    color: var(--text);
+    pointer-events: none;
 }
 
 @media (max-width: 700px) {

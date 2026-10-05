@@ -55,18 +55,14 @@
 
 .login-card{
     position: relative;
-    padding: 30px;
+    padding: 15px;
     z-index: 1;
     background: rgba(255,255,255,0.95);
     border-radius:12px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     text-align: center;
-    max-width: 500px;
-    opacity: 1;
-}
-.lewis-logo-login{
-    max-width: 120px;
-    height: 100%;
+    width: 320px;
+    opacity: 0.9;
 }
 
 .form-title{
@@ -75,6 +71,7 @@
 
 .form-sub{
     margin-bottom: 20px;
+    color: #c8102e;
 }
 
 .google-sign-in-button{
@@ -168,9 +165,6 @@
     border-radius: 6px;
     color:#fff;
     margin-bottom: 15px;
-}
-.login-submit-btn:hover, .submit-reset:hover{
-    background: #a50d25;
 }
 .email-login-submit-btn:hover{
     cursor: pointer;
