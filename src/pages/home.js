@@ -3,15 +3,17 @@ import { FileUploader } from "react-drag-drop-files";
 import { useState, useEffect } from "react";
 import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
-import "../css/home.css";
-import { useNavigate } from "react-router-dom";
-import helpIcon from "../images/questions.png";
-import Questions from "../components/Questions";
-import Sidebar from "../components/Sidebar";
-import LUBack from "../images/SmallLUT.png";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-
+import {signOut} from "firebase/auth";
+import {auth} from "../firebase/firebase";
+import { useNavigate } from "react-router-dom";
+import "../css/home.css";
+import Sidebar from "../components/Sidebar";
+import uploadIcon from "../images/upload.png"
+import uploadSuccess from "../images/successful-upload.png";
+import helpIcon from "../images/questions.png";
+import LUBack from "../images/SmallLUT.png";
 
 
 function Home() {
@@ -31,9 +33,15 @@ function Home() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const handleSignOut = async () => {
+        await signOut(auth);
+        navigate("/");
+    };
+
     const fileTypes = ["PDF", "DOCX"];
     const [file, setFile] = useState(null);
-    
+    const [view, setView] = useState("form");
+
     async function loadCourseLookup() {
         const snapshot = await getDocs(collection(db, "Department"));
         const lookup = {};
@@ -51,10 +59,9 @@ function Home() {
                 label: fields.name
             });
         });
-
         return lookup;
     }
-    //Grouping the professors by their department for later department selection (Proffesors from ECAMS faculty roster)
+    //Grouping the professors by their department for later department selection (Professors from ECAMS faculty roster)
     const professorsByDepartment = {
         CPSC: [
             { value: "boxu", label: "Bo Xu" },
@@ -179,274 +186,280 @@ function Home() {
     }, []);
 
     return (
-        <div className="home-container">
-
-            <div className="background">
-                <img src={LUBack} alt=""/>
-            </div>
-
+        <>
             <div className="top-bar">
                 <h1 className="logo">SyllaBye</h1>
                 <Sidebar />
             </div>
-
-            <div className="form-card">
-                
-                <p className="subtitle">
-                    Upload your course syllabus information below
-                </p>
-
-
-            <form onSubmit={async (e) => {
-                    // Prevents page reload so we can handle submission manually
-                    // Required for processing form data and uploading to Firebase
-                    e.preventDefault();
-
-                    setMessage("");
-                    setLoading(true);
-
-
-
-                    // Check if file exists
-                    if (!file) {
-                        setMessage("No file selected");
-                        setLoading(false);
-                        return;
-                    }
-                    // Making sure all inputs are filled
-                    if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
-                        setMessage("Please fill in all fields.");
-                        setLoading(false);
-                        return;
-                    }
-
-                    // validation extension
-                    const extension = file.name.split(".").pop().toLowerCase();
-
-
-                    // 3. Allowed types
-                    const allowedTypes = [
-                        "application/pdf",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                    ];
-
-                    const validExtensions = ["pdf", "docx"];
-
-                    // 4. Validate BOTH type + extension
-                    if (
-                        !allowedTypes.includes(file.type) &&
-                        !validExtensions.includes(extension)
-                    ) {
-                        setMessage("Only PDF or DOCX files are allowed.");
-                        setLoading(false);
-                        return;
-                    }       
-
-                    try {
-                        const fileURL = await uploadSyllabus(file, formData);
-                        await syllabus({ ...formData, fileURL });
-
-
-                        console.log("Upload successful!");
-                        setMessage("Upload successful!");
-
-                        // Reset form data after successful upload
-                        setFormData({
-                            semester: "fall2026",
-                            department: "Biology",
-                            courseName: "",
-                            courseNumber: "",
-                            section: "001",
-                            instructor: "",
-                            file: null
-                        });
-                        setFile(null);
-
-                    } catch (error) {
-                        console.error(error);
-                        setMessage("Upload failed. Try again.");
-                    }
-
-                    setLoading(false);
-                }}
-            >
-
-                {/* GRID */}
-                <div className="form-grid">
-
-                    <div className="form-group">
-                        <label>Semester:</label>
-                        <select
-                            value={formData.semester}
-                            onChange={(e) =>
-                                setFormData({ ...formData, semester: e.target.value })
-                            }
-                        >
-                            <option value="fall2026">Fall 2026</option>
-                            <option value="spring2027">Spring 2027</option>
-                            <option value="summer2027">Summer 2027</option>
-                        </select>
+            <div className="home-container">
+                <div className="form-container">
+                    <div className="background">
+                        <img src={LUBack} alt=""/>
                     </div>
+                    <div className="form-card">
+                        <form onSubmit={async (e) => {
+                            // Prevents page reload so we can handle submission manually
+                            // Required for processing form data and uploading to Firebase
+                            e.preventDefault();
 
-                    <div className="form-group">
-                        <label>Department:</label>
-                        <select
-                            value={formData.department}
-                            onChange={(e) =>
+                            setMessage("");
+                            setLoading(true);
+
+                            // Check if file exists
+                            if (!file) {
+                                setMessage("No file selected");
+                                setLoading(false);
+                                return;
+                            }
+                            // Making sure all inputs are filled
+                            if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
+                                setMessage("Please fill in all fields.");
+                                setLoading(false);
+                                return;
+                            }
+
+                            // validation extension
+                            const extension = file.name.split(".").pop().toLowerCase();
+
+                            // 3. Allowed types
+                            const allowedTypes = [
+                                "application/pdf",
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                            ];
+
+                            const validExtensions = ["pdf", "docx"];
+
+                            // 4. Validate BOTH type + extension
+                            if (
+                                !allowedTypes.includes(file.type) &&
+                                !validExtensions.includes(extension)
+                            ) {
+                                setMessage("Only PDF or DOCX files are allowed.");
+                                setLoading(false);
+                                return;
+                            }
+
+                            try {
+                                const fileURL = await uploadSyllabus(file, formData);
+                                await syllabus({ ...formData, fileURL });
+
+
+                                console.log("Upload successful!");
+                                setView("success")
+
+                                // Reset form data after successful upload
                                 setFormData({
-                                    ...formData,
-                                    department: e.target.value,
-                                    instructor: ""
-                                })
+                                    semester: "fall2026",
+                                    department: "Biology",
+                                    courseName: "",
+                                    courseNumber: "",
+                                    section: "001",
+                                    instructor: "",
+                                    file: null
+                                });
+                                setFile(null);
+
+                            } catch (error) {
+                                console.error(error);
+                                setMessage("Upload failed. Try again.");
                             }
+
+                            setLoading(false);
+                        }}
                         >
-                            {departments.map((dept) => (
-                                <option key={dept.id} value={dept.id}>
-                                    {dept.label}
-                                </option>
-                            ))}
-                        </select>
+                            {/* GRID */}
+
+                            {view === "form" && (
+                                <>
+                                    <p className="subtitle">
+                                        Enter course information below
+                                    </p>
+                                    <div className="form-grid">
+                                        <div className="form-group">
+                                            <label>Semester:</label>
+                                            <select
+                                                value={formData.semester}
+                                                onChange={(e) =>
+                                                    setFormData({ ...formData, semester: e.target.value })
+                                                }
+                                            >
+                                                <option value="fall2026">Fall 2026</option>
+                                                <option value="spring2027">Spring 2027</option>
+                                                <option value="summer2027">Summer 2027</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Department:</label>
+                                            <select
+                                                value={formData.department}
+                                                onChange={(e) =>
+                                                    setFormData({
+                                                        ...formData,
+                                                        department: e.target.value,
+                                                        instructor: ""
+                                                    })
+                                                }
+                                            >
+                                                {departments.map((dept) => (
+                                                    <option key={dept.id} value={dept.id}>
+                                                        {dept.label}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Course Number:</label>
+                                            <input
+                                                type="number"
+                                                value={formData.courseNumber}
+                                                onChange={(e) => {
+                                                    const courseNumber = e.target.value.trim();
+                                                    const department = formData.department;
+
+
+                                                    setFormData({ ...formData, courseNumber, courseName: courseLookup[department]?.[courseNumber] || "" });
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Section:</label>
+                                            <select
+                                                value={formData.section}
+                                                onChange={(e) =>
+                                                    setFormData({ ...formData, section: e.target.value })
+                                                }
+                                            >
+                                                <option value="001">001</option>
+                                                <option value="002">002</option>
+                                                <option value="003">003</option>
+                                                <option value="004">004</option>
+                                                <option value="005">005</option>
+                                                <option value="006">006</option>
+                                                <option value="007">006</option>
+                                                <option value="008">006</option>
+                                                <option value="009">006</option>
+                                                <option value="010">006</option>
+                                                <option value="011">006</option>
+                                                <option value="012">006</option>
+                                                <option value="LT1">LT1</option>
+                                                <option value="LT2">LT2</option>
+                                                <option value="LT3">LT3</option>
+                                                <option value="LT4">LT3</option>
+                                                <option value="LT5">LT3</option>
+                                                <option value="TS1">TS1</option>
+                                                <option value="TS2">TS2</option>
+                                                <option value="LU1">TS2</option>
+                                                <option value="LU2">TS2</option>
+                                                <option value="LS1">TS2</option>
+                                                <option value="LS2">TS2</option>
+                                                <option value="LS3">TS2</option>
+                                                <option value="LS4">TS2</option>
+                                                <option value="LS5">TS2</option>
+                                                <option value="LS6">TS2</option>
+                                                <option value="LS7">TS2</option>
+                                                <option value="LS8">TS2</option>
+                                                <option value="LR1">TS2</option>
+                                                <option value="LR2">TS2</option>
+                                                <option value="L01">TS2</option>
+                                                <option value="L02">TS2</option>
+                                                <option value="L03">TS2</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Course Name:</label>
+                                            <input
+                                                type="text"
+                                                value={formData.courseName}
+                                                onChange={(e) =>
+                                                    setFormData({ ...formData, courseName: e.target.value
+                                                            .toLowerCase()
+                                                            .replace(/\s+/g, "")
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Instructor:</label>
+                                            <select
+                                                value={formData.instructor}
+                                                onChange={(e) =>
+                                                    setFormData({ ...formData, instructor: e.target.value })
+                                                }
+                                            >
+                                                <option value="">Select Professor</option>
+
+                                                {professorsByDepartment[formData.department]?.map((professor) => (
+                                                    <option
+                                                        key={professor.value}
+                                                        value={professor.value}
+                                                    >
+                                                        {professor.label}
+                                                    </option>
+                                                ))}
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button className="submit-btn" onClick={() => setView("upload-box")}>Next</button>
+                                </>
+                            )}
+                            {view === "upload-box" && (
+                                <>
+                                    <div className="file">
+                                        <p>Drop your syllabus PDF or DOCX here</p>
+
+                                        <FileUploader
+                                            handleChange={(uploadedFile) => setFile(uploadedFile)}
+                                            name="file"
+                                            types={fileTypes}
+                                            classes="upload-box"
+                                        >
+                                            <div className="upload-file">
+                                                <img src={uploadIcon} alt="" className="upload-icon" />
+                                                <p>Drop here or <u>browse</u></p>
+                                                <small>PDF or DOCX</small>
+                                            </div>
+                                        </FileUploader>
+                                        {file && <p>Selected: {file.name}</p>}
+                                    </div>
+                                    <div className="upload-box-btns">
+                                        <button className="submit-btn" onClick={() => setView("form")}>Back</button>
+                                        <button className="submit-btn" type="submit" disabled={loading}>
+                                            {loading ? "Uploading..." : "Upload Syllabus"}
+                                        </button>
+                                    </div>
+                                    <p className={message.includes("Upload successful") ? "success" : "error"}>
+                                        {message}
+                                    </p>
+                                </>
+                            )}
+                            {view === "success" && (
+                                <div className="successful-upload-container">
+                                    <img src={uploadSuccess} alt="syllabus successfully uploaded" />
+                                    <p>Syllabus succesfully uploaded</p>
+                                    <div className="upload-box-btns">
+                                        <button className="upload-box-signout" onClick={handleSignOut}>Logout</button>
+                                        <button className="submit-btn" onClick={() => setView("form")}>Upload Another</button>
+                                    </div>
+
+                                </div>
+                            )}
+                            <div className="help-icon">
+                                <img
+                                    src={helpIcon}
+                                    className="help-icon-image"
+                                    onClick={() => navigate("/about")}
+                                    alt="Help"
+                                />
+                            </div>
+                        </form>
+
                     </div>
-
-                    <div className="form-group">
-                        <label>Course Number:</label>
-                        <input
-                            type="number"
-                            value={formData.courseNumber}
-                            onChange={(e) => {
-                                const courseNumber = e.target.value.trim();
-                                const department = formData.department;
-
-
-                                setFormData({ ...formData, courseNumber, courseName: courseLookup[department]?.[courseNumber] || "" });
-                            }}
-                        />
-                    </div>
-
-
-                    <div className="form-group">
-                        <label>Course Name:</label>
-                        <input
-                            type="text"
-                            value={formData.courseName}
-                            onChange={(e) =>
-                                setFormData({ ...formData, courseName: e.target.value 
-                                    .toLowerCase()
-                                    .replace(/\s+/g, "")
-                                })
-                            }
-                        />
-                    </div>
-
-
-                    <div className="form-group">
-                        <label>Section:</label>
-                        <select
-                            value={formData.section}
-                            onChange={(e) =>
-                                setFormData({ ...formData, section: e.target.value })
-                            }
-                        >
-                            <option value="001">001</option>
-                            <option value="002">002</option>
-                            <option value="003">003</option>
-                            <option value="004">004</option>
-                            <option value="005">005</option>
-                            <option value="006">006</option>
-                            <option value="007">007</option>
-                            <option value="008">008</option>
-                            <option value="009">009</option>
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                            <option value="012">012</option>
-
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Instructor:</label>
-                        <select
-                            value={formData.instructor}
-                            onChange={(e) =>
-                                setFormData({ ...formData, instructor: e.target.value })
-                            }
-                        >
-                            <option value="">Select Professor</option>
-
-                            {professorsByDepartment[formData.department]?.map((professor) => (
-                                <option
-                                    key={professor.value}
-                                    value={professor.value}
-                                >
-                                    {professor.label}
-                                </option>
-                            ))}
-                            
-                        </select>
-                    </div>
-
                 </div>
-
-                {/* UPLOAD BOX */}
-                <div className="file">
-                    <p>Drop your syllabus PDF or DOCX here</p>
-
-                    <FileUploader
-                        handleChange={(uploadedFile) => setFile(uploadedFile)}
-                        name="file"
-                        types={fileTypes}
-                        classes="upload-box"
-                    />
-                    {file && <p>Selected: {file.name}</p>}
-                </div>
-                
-                <div className="file">
-                    <p>
-                        File will be saved as: {""}
-                        <strong>
-                            {formData.department}-
-                            {formData.courseNumber}-
-                            {formData.section}-
-                            {formData.courseName.toLowerCase().replace(/\s+/g, "")}-
-                            {formData.instructor}-
-                            {formData.semester}
-                                                
-                        </strong>
-                    </p>
-                </div>
-                
-                <button className="submit-btn" type="submit" disabled={loading}>
-                    {loading ? "Uploading..." : "Submit"}
-                </button>
-
-                <p className={message.includes("Upload successful") ? "success" : "error"}>
-                    {message}
-                </p>
-
-            </form>
             </div>
-            {/*Question mark image that takes you to the about page*/}
-            <Questions className="help-icon"
-                content={
-                    <div>
-                        <h2>Experiencing issues?</h2>
-                        <p>
-                            If you are experiencing issues with SyllaBye,
-                            please visit our About page for more information.
-                        </p>
-                        <p style={{color: 'dodgerblue', textAlign: 'center'}}>Syllabye was proudly built by
-                            the CookieMonster team</p>
-                    </div>
-                }
-            >
-                <img
-                    src={helpIcon}
-                    className="help-icon"
-                    onClick={() => navigate("/about")}
-                    alt="Help"
-                />
-            </Questions>
-        </div>
+
+        </>
+
     );
 }
 

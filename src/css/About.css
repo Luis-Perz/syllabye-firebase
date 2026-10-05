@@ -1,72 +1,157 @@
-
-
-body {
-  margin: 0;
+.about-return-btn {
+    display: block;
+    margin:  10px auto;
+    background:none;
+    cursor: pointer;
+    border: 1px solid #f9f9f9;
+    border-radius: 8px;
+}
+.about-return-btn:hover {
+    color: #a50d25;
+}
+.about h2{
+    margin: 0;
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    text-align: start;
+    color: #c8102e;
+    font-size: 65px;
+    font-weight: 400;
 }
 
 .about-title {
-    background: #eeeeee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #c8102e;
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    color: #d6d6d6;
     z-index: 100;
-}
-
-.about-title {
+    margin: 0 auto;
     text-align: center;
     font-family: 'Alumni Sans Collegiate One', sans-serif;
     font-size: 90px;
-    color: #c8102e;
     font-weight: 400;
-   
 }
-
-.about-title {
-  margin: 0;
-}
-
-ol {
-    list-style-position: inside; /* keeps numbers aligned with text */
-    text-align: center;          /* centers the text */
-    padding: 0;                  /* remove default padding */
-    margin: 0 auto;              /* center block if it has a width */
-    width: fit-content;          /* shrink to content width */
-}
-
-p {
+.about-section{
+    max-height: 500px;
     text-align: center;
+    padding: 50px;
+    margin: 0 auto;
 }
 
-.signout-btn {
-  display: block; 
-  margin: 0 auto;
-  margin-top: 50px;
-}
+.about-section-inner{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    align-items: center;
+    gap: 100px;
+    font-size: 25px;
+    padding: 0 10rem;
 
+}
 .how-to-section {
+    max-height: 500px;
     text-align: center;
-   
+    padding: 50px;
+    margin: 0 auto;
 }
+.how-to-selector-container{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 26%;
 
+}
+.how-to-selector{
+    height: 30px;
+    display: flex;
+    background-color: #fff;
+    border: none;
+    align-items: center;
+    margin: 15px auto;
+    padding: 20px;
+}
+.how-to-selector:hover{
+    cursor: pointer;
+}
+.active{
+    background-color: #c8102e;
+    color: #fff;
+    border-radius: 30px;
+    transition: 0.5s ease-in-out;
+}
+.account-and-upload{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.account-and-upload p{
+    text-align: start;
+    padding: 5px;
+    font-size: 14px;
+}
+.walkthrough-card{
+    border: 1px solid #c8102e;
+    border-radius: 10px;
+    max-width: 300px;
+    height: 450px;
+}
+.walkthrough-card img{
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-top: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+}
+.walkthrough-card em{
+    color: red;
+}
+.help-section {
+    max-height: 500px;
+    text-align: center;
+    padding: 50px;
+    margin: 0 auto;
+}
 .help {
     font-family: 'Alumni Sans Collegiate One', sans-serif;
     font-size: 65px;
     color: #c8102e;
     font-weight: 400;
     margin-top: 25px;
-    
+}
+ol{
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center
+}
+ol li{
+    width: 15%;
+    margin: 0 auto;
+    text-align: start;
 }
 
 .how-to-use {
     font-family: 'Alumni Sans Collegiate One', sans-serif;
     font-size: 65px;
     color: #c8102e;
-    font-weight: 400;  
-    
+    font-weight: 400;
+
 }
-
-.help-section {
-
+footer{
+    align-content: center;
+    background: #dcdcdc;
+    margin: 0 auto;
+    height: 80px;
     text-align: center;
+    color: #a50d25;
+    font-size: 18px;
 }
+footer a{
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+

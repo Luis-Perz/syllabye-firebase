@@ -15,9 +15,6 @@ import { useNavigate } from "react-router-dom";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-
-// import LUBack from "../images/SmallLUT.png"
-
 function AdminDashboard() {
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
   const [openDepartments, setOpenDepartments] = useState({});
@@ -27,174 +24,181 @@ function AdminDashboard() {
   useEffect(() => {
     fetchData();
   }, []);
-    const fetchData = async () => {
-      const snapshot = await getDocs(collection(db, "syllabi"));
+  const fetchData = async () => {
+    const snapshot = await getDocs(collection(db, "syllabi"));
 
-      const data = snapshot.docs.map((docItem) => ({
-        id: docItem.id,
-        ...docItem.data()
-      }));
+    const data = snapshot.docs.map((docItem) => ({
+      id: docItem.id,
+      ...docItem.data()
+    }));
 
-      const grouped = {};
-      data.forEach((item) => {
-        let dept = item.department;
-        if(typeof dept !=="string") {
-          dept = Object.keys(dept || {})[0] || "Other";
-        }
+    const grouped = {};
+    data.forEach((item) => {
+      let dept = item.department;
+      if(typeof dept !=="string") {
+        dept = Object.keys(dept || {})[0] || "Other";
+      }
 
-        if (!grouped[dept]) {
-          grouped[dept] = [];
-        }
-        grouped[dept].push(item);
-      });
+      if (!grouped[dept]) {
+        grouped[dept] = [];
+      }
+      grouped[dept].push(item);
+    });
     setGroupedSyllabi(grouped);
   };
 
-    const handleLogout = async () => {
-      await signOut(auth);
-      navigate("/");
-    };
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/");
+  };
 
-    const handleDelete = async (id) => {
-      try{
-        await deleteDoc(doc(db, "syllabi", id));
-        fetchData();
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const handleDelete = async (id) => {
+    try{
+      await deleteDoc(doc(db, "syllabi", id));
+      fetchData();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    const toggleDepartment = (dept) => {
-      setOpenDepartments((prev) => ({
-        ...prev,
-        [dept]: !prev[dept]
-      }));
-    };
+  const toggleDepartment = (dept) => {
+    setOpenDepartments((prev) => ({
+      ...prev,
+      [dept]: !prev[dept]
+    }));
+  };
 
-    const filteredGrouped = {};
+  const filteredGrouped = {};
 
-    Object.keys(groupedSyllabi).forEach((dept) => {
-      filteredGrouped[dept] = groupedSyllabi[dept].filter((item) => {
-        const search = searchTerm.toLowerCase();
+  Object.keys(groupedSyllabi).forEach((dept) => {
+    filteredGrouped[dept] = groupedSyllabi[dept].filter((item) => {
+      const search = searchTerm.toLowerCase();
 
-        return (
+      return (
           item.courseName?.toLowerCase().includes(search) ||
           item.courseNumber?.toLowerCase().includes(search) ||
           item.section?.toLowerCase().includes(search) ||
           item.instructor?.toLowerCase().includes(search) ||
           item.semester?.toLowerCase().includes(search)
-        );
-      });
+      );
     });
+  });
 
-    const downloadAllDepartment = async (dept) => {
-      const docs = groupedSyllabi[dept];
-      if (!docs || docs.length === 0) return;
+  const downloadAllDepartment = async (dept) => {
+    const docs = groupedSyllabi[dept];
+    if (!docs || docs.length === 0) return;
 
-      const zip = new JSZip();
-      await Promise.all(
-          docs.map(async (item) => {
-            if (!item.fileURL) return;
+    const zip = new JSZip();
+    await Promise.all(
+        docs.map(async (item) => {
+          if (!item.fileURL) return;
 
-            try{
-              const response = await fetch(item.fileURL);
-              const blob = await response.blob();
+          try{
+            const response = await fetch(item.fileURL);
+            const blob = await response.blob();
 
-              const fileName = `${item.courseName}-${item.courseNumber}-${item.department}-${item.instructor}-${item.section}-${item.semester}.pdf`
-                  .replace(/[/\\?%*:|"<>]/g, "-");
-              zip.file(fileName, blob);
-            }catch(err) {
-              console.log(err);
-            }
-          })
-      )
-      const zipBlob = await zip.generateAsync({type: "blob"});
-      saveAs(zipBlob, `${dept}-syallabi.zip`);
-    }
+            const fileName = `item.courseName-{item.courseNumber}-item.department-{item.instructor}-item.section-{item.semester}.pdf`
+                .replace(/[/\\?%*:|"<>]/g, "-");
+            zip.file(fileName, blob);
+          }catch(err) {
+            console.log(err);
+          }
+        })
+    )
+    const zipBlob = await zip.generateAsync({type: "blob"});
+    saveAs(zipBlob, `${dept}-syallabi.zip`);
+  }
 
 
   return(
-    <div className="admin-dashboard-container">
-      <div className="dashboard-header">
-        <h1 className="admin-title">Syllabus Storage</h1>
+      <div className="admin-dashboard-container">
+        <div className="dashboard-header">
+          <h1 className="admin-title">Syllabus Storage</h1>
 
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search syllabi..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+          <nav className="dashboard-nav">
+            <input
+                type="text"
+                className="search-bar"
+                placeholder="Search syllabi..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
 
-        <button
-          className="home-button"
-          onClick={() => navigate("/home")}
-        >
-          Home
-        </button>
-
-        <button
-          className="logout-button"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      </div>
-
-      <div className="title-description">
-        <p>
-          Each drop down menu contains all of the submitted syllabi for each specific
-          department. Inside those drop downs you will find each file and when it is clicked
-          it will download. In the parenthesis it represents the (course number-section number-professor-semester). 
-          You may also delete the files.
-        </p>
-      </div>
-
-      <div className="department-grid">
-        {Object.keys(filteredGrouped).map((dept) => (
-          <div key={dept} className="department-card">
-
-            <button 
-            className="department-button"
-            onClick={() => toggleDepartment(dept)}
+            <button
+                className="home-button"
+                onClick={() => navigate("/home")}
             >
-              <div className="department-button-inner">
-                {dept}
-                <div className="department-button-option" onClick={() => downloadAllDepartment(dept)}>
-                  <span></span><span></span><span></span>
-                </div>
-              </div>
+              Home
             </button>
-            {openDepartments[dept] && (
-              <ul className="syllabus-list">
-                {filteredGrouped[dept].map((item) => (
-                  <li key={item.id} className="syllabus-item">                    
-                      {item.fileURL && (
-                        <>
-                          <a
-                          className="file-link"
-                          href={item.fileURL}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {item.courseName} ({item.courseNumber}-{item.section}-{item.instructor}-{item.semester})
-                        </a>
 
-                      <button 
-                      className="delete-button"
-                      onClick={() => handleDelete(item.id)}>
-                        Delete
-                      </button>
-                    </>
-              )}
-             </li>
-            ))}
-            </ul>
-            )}
-          </div>
-        ))}
+            <button
+                className="logout-button"
+                onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </nav>
+        </div>
+
+        <div className="title-description">
+          <p>
+            Each drop down menu contains all of the submitted syllabi for each specific
+            department. Inside those drop downs you will find each file and when it is clicked
+            it will download. In the parenthesis it represents the (course number-section number-professor-semester).
+            You may also delete the files.
+          </p>
+        </div>
+
+        <div className="department-grid">
+          {Object.keys(filteredGrouped).map((dept) => (
+              <div key={dept} className="department-card">
+                <div className="department-header">
+                  <button
+                      type="button"
+                      className="department-button"
+                      onClick={() => toggleDepartment(dept)}
+                  >
+                    {dept}
+                  </button>
+
+                  <button
+                      type="button"
+                      className={`department-button-option ${openDepartments[dept] ? "show" : ""}`}
+                      title="Download all as zip"
+                      onClick={() => downloadAllDepartment(dept)}
+                  >
+                    <span></span><span></span><span></span>
+                  </button>
+                </div>
+                {openDepartments[dept] &&(
+                    <ul className="syllabus-list">
+                      {filteredGrouped[dept].map((item) => (
+                          <li key={item.id} className="syllabus-item">
+                            {item.fileURL && (
+                                <>
+                                  <a
+                                      className="file-link"
+                                      href={item.fileURL}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                  >
+                                    {item.courseName} ({item.courseNumber}-{item.section}-{item.instructor}-{item.semester})
+                                  </a>
+                                  <button
+                                      className="delete-button"
+                                      onClick={() => handleDelete(item.id)}>
+                                    Delete
+                                  </button>
+                                </>
+                            )}
+                          </li>
+                      ))}
+                    </ul>
+                )}
+              </div>
+          ))}
+        </div>
       </div>
-    </div>
   );
 }
 export default AdminDashboard;
