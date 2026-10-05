@@ -7,6 +7,7 @@ import LoginForm from "../components/LogInForm";
 import ResetUser from '../components/ResetPassword';
 import "../css/login.css";
 import LUTImage from "../images/LUT.png";
+import LewisLogo from "../images/lewis-logo.png"
 
 function Login(){
     const nav = useNavigate()
@@ -42,6 +43,7 @@ function navigateToHome() {
                 </div>
 
                 <div className="login-card">
+                    <img src={LewisLogo} className="lewis-logo-login" alt="Lewis University Logo"/>
                     <h1 className="form-title">Welcome to SyllaBye!</h1>
                     {view === "google" && (
                         <>

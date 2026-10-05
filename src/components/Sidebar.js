@@ -32,7 +32,7 @@ export default function Sidebar() {
                             <li className="nav-link" onClick={() => navigate("/admin/dashboard")}>
                                 Admin
                             </li>
-                            <li className="signout-button" onClick={handleSignOut}>Sign Out</li>
+                            <li className="signout-button" onClick={handleSignOut}>Logout</li>
                             <li className="theme-button" onClick={toggleTheme}>Switch Theme</li>
                         </ul>
                     </div>
