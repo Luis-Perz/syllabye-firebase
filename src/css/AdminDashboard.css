@@ -2,6 +2,7 @@
   background: var(--bg2);
   min-height: 100vh;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .admin-title {
