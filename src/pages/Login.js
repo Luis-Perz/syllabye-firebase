@@ -33,6 +33,9 @@ function Login(){
     function navigateToHome() {
         nav("/home");
     }
+    function navigateToLogin() {
+        nav("/");
+    }
     return (
         <>
             <div className="login-container">
@@ -71,7 +74,7 @@ function Login(){
 
                     {view === "create" && (
                         <>
-                            <CreateUserForm onSuccess={navigateToHome} />
+                            <CreateUserForm onSuccess={navigateToLogin} />
                             <p className="back-link" onClick={() => setView("google")}>&lt; Back</p>
                         </>
                     )}

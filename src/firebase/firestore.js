@@ -13,9 +13,6 @@ export async function syllabus(data) {
     });
 }
 
-export async function setUser(user, role) {
-    await setDoc(doc(db, "roles", user.email.toLowerCase()), {
-        role: role,
-    })
-
+export async function setUser(email, role="user") {
+    await setDoc(doc(db, "roles", email.trim().toLowerCase()), {role});
 }

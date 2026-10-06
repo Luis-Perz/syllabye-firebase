@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginWithEmailAndPassword } from "../firebase/createAccount";
+import loginWithEmailAndPassword from "../firebase/createAccount";
 
 export default function LoginForm({ onSuccess }) {
     const [email, setEmail] = useState("");
@@ -13,6 +13,7 @@ export default function LoginForm({ onSuccess }) {
             const user = await loginWithEmailAndPassword(email, password);
             if (user) onSuccess?.(user);
         } catch (err) {
+            console.error("Login failed:", err.code, err.message);
             setError(mapFirebaseError(err.code));
         }
     };
@@ -35,7 +36,8 @@ function mapFirebaseError(code) {
     switch (code) {
         case "auth/wrong-password":
         case "auth/invalid-credential": return "Incorrect email or password.";
-        case "auth/user-not-found": return "No account found with this email.";
+        case "auth/email-not-verified": return "Please verify your email address before logging in.";
+        case "auth/too-many-requests": return "Too many attempts. Please try again later.";
         default: return "Something went wrong. Please try again.";
     }
 }

@@ -15,7 +15,12 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/home" element={
+                   <CheckAccess allowedRoles={["admin", "user"]}>
+                      <Home />
+                  </CheckAccess>
+                }
+              />
               <Route path="/about" element={<About />} />
               <Route path="/admin/dashboard" element={
                   <CheckAccess allowedRoles={["admin"]}>

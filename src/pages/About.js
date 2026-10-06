@@ -74,7 +74,7 @@ function About() {
                                             to login using your gmail</p>
                                     </div>
                                     <div className="walkthrough-card">
-                                        <b>Step 2: Google email Login</b>
+                                        <b>Step 2: Email Login</b>
                                         <img src={LoginScreen} alt="Email login screen"/>
                                         <p>Please enter your account information to login.<br />
                                             <em>Note: You can also reset password from this screen.</em>

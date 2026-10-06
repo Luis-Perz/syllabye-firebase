@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CreateAccount } from "../firebase/createAccount";
 
-export default function CreateUserForm({ onSuccess }) {
+export default function CreateUserForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -15,10 +15,10 @@ export default function CreateUserForm({ onSuccess }) {
             if (user) {
                 setEmail("");
                 setPassword("");
-                setMessage("Account created successfully.");
-                onSuccess?.(user);
+                setMessage("Account created successfully. Check your Lewis email and click on link to verify your email.");
             }
-        } catch (err) {
+        }
+        catch (err) {
             setError(checkError(err.code));
         }
     };

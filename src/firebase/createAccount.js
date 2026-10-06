@@ -1,9 +1,9 @@
 import { auth } from "./firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { setUser } from "./firestore";
 
 function isLewisEmail(email) {
-    return email?.toLowerCase().endsWith("@lewisu.edu");
+    return email?.trim().toLowerCase().endsWith("@lewisu.edu");
 }
 
 export async function CreateAccount(email, password) {
@@ -12,13 +12,25 @@ export async function CreateAccount(email, password) {
         err.code = "auth/invalid-email";
         throw err;
     }
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    await setUser(user, "user");
+    const { user } = await createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password)
+    try{
+        await sendEmailVerification(user)
+        await setUser(user.email, "user");
+    }finally{
+        await signOut(auth);
+    }
     return user;
 }
 
-export async function loginWithEmailAndPassword(email, password) {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
+async function loginWithEmailAndPassword(email, password) {
+    const {user} = await signInWithEmailAndPassword(auth, email.trim().toLowerCase(), password);
+    if (!user.emailVerified){
+        await signOut(auth);
+        const err = new Error("Please verify your email before logging in.");
+        err.code = "auth/email-not-verified";
+        throw err;
+    }
+    return user;
 }
+
+export default loginWithEmailAndPassword
