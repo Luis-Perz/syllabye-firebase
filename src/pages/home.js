@@ -185,17 +185,28 @@ function Home() {
         fetchCourses();
     }, []);
 
+const inputFieldCheck = () =>{
+        if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
+            setMessage("Please fill in all fields.");
+            setLoading(false);
+            return false;
+        }
+        setMessage("")
+        setView("upload-box")
+        return true;
+    };
+
     return (
         <>
-            <div className="top-bar">
-                <h1 className="logo">SyllaBye</h1>
-                <Sidebar />
-            </div>
             <div className="home-container">
+                <div className="background">
+                    <img src={LUBack} alt=""/>
+                </div>
+                <div className="top-bar">
+                    <h1 className="logo">SyllaBye</h1>
+                    <Sidebar />
+                </div>
                 <div className="form-container">
-                    <div className="background">
-                        <img src={LUBack} alt=""/>
-                    </div>
                     <div className="form-card">
                         <form onSubmit={async (e) => {
                             // Prevents page reload so we can handle submission manually
@@ -400,7 +411,8 @@ function Home() {
                                             </select>
                                         </div>
                                     </div>
-                                    <button className="submit-btn" onClick={() => setView("upload-box")}>Next</button>
+                                    <button type="button" className="submit-btn" onClick={inputFieldCheck}>Next</button>
+                                    {message && <p className="error">{message}</p>}
                                 </>
                             )}
                             {view === "upload-box" && (
@@ -423,7 +435,7 @@ function Home() {
                                         {file && <p>Selected: {file.name}</p>}
                                     </div>
                                     <div className="upload-box-btns">
-                                        <button className="submit-btn" onClick={() => setView("form")}>Back</button>
+                                        <button type="button" className="submit-btn" onClick={() => setView("form")}>Back</button>
                                         <button className="submit-btn" type="submit" disabled={loading}>
                                             {loading ? "Uploading..." : "Upload Syllabus"}
                                         </button>
@@ -436,7 +448,7 @@ function Home() {
                             {view === "success" && (
                                 <div className="successful-upload-container">
                                     <img src={uploadSuccess} alt="syllabus successfully uploaded" />
-                                    <p>Syllabus succesfully uploaded</p>
+                                    <p>Syllabus successfully uploaded</p>
                                     <div className="upload-box-btns">
                                         <button className="upload-box-signout" onClick={handleSignOut}>Logout</button>
                                         <button className="submit-btn" onClick={() => setView("form")}>Upload Another</button>
