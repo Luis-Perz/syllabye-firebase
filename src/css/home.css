@@ -228,7 +228,18 @@
 .form-container .file {
     color: var(--text);
 }
-
+@media (max-width: 1024px){
+    .logo{
+        font-size: 65px;
+    }
+    .form-container{
+        border-radius: 0;
+    }
+    .form-card{
+        border-radius: 0;
+        opacity: 90%;
+    }
+}
 @media (max-width: 700px) {
     .form-card {
         width: 90%;

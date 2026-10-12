@@ -5,14 +5,13 @@ nav {
     display: flex;
     align-items: center;
     padding: 8px 14px;
-    position: fixed;
+    position: absolute;
     top: 5px;
     right: 20px;
     font-weight: 600;
 }
 
 .nav-inner {
-    position: relative;
     height: 100%;
     width: 100%;
 }
@@ -93,4 +92,16 @@ nav {
 }
 .hidden-menu.active{
     border-radius: 10px;
+}
+@media ( max-width: 1024px) {
+    .ham-menu{
+        top: 15%;
+        width: 40px;
+        margin-left: 10px;
+    }
+
+    .hidden-menu {
+        top: 75px;
+        right: 0;
+    }
 }

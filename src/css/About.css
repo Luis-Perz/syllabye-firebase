@@ -1,7 +1,7 @@
 .about-return-btn {
     display: block;
-    margin:  10px auto;
-    background:none;
+    margin: 10px auto;
+    background: none;
     cursor: pointer;
     border: 1px solid #f9f9f9;
     border-radius: 8px;
@@ -9,7 +9,8 @@
 .about-return-btn:hover {
     color: #a50d25;
 }
-.about h2{
+
+.about h2 {
     margin: 0;
     font-family: 'Alumni Sans Collegiate One', sans-serif;
     text-align: start;
@@ -20,7 +21,7 @@
 
 .about-title {
     background: #c8102e;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     color: #d6d6d6;
     z-index: 100;
     margin: 0 auto;
@@ -29,14 +30,14 @@
     font-size: 90px;
     font-weight: 400;
 }
-.about-section{
+.about-section {
     max-height: 500px;
     text-align: center;
     padding: 50px;
     margin: 0 auto;
 }
 
-.about-section-inner{
+.about-section-inner {
     display: flex;
     flex-direction: row;
     width: auto;
@@ -45,7 +46,10 @@
     gap: 100px;
     font-size: 25px;
     padding: 0 10rem;
-
+}
+.about-section-inner img {
+    max-width: 100%;
+    height: auto;
 }
 .how-to-section {
     max-height: 500px;
@@ -53,15 +57,14 @@
     padding: 50px;
     margin: 0 auto;
 }
-.how-to-selector-container{
+.how-to-selector-container {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
     justify-content: space-between;
     width: 26%;
-
 }
-.how-to-selector{
+.how-to-selector {
     height: 30px;
     display: flex;
     background-color: #fff;
@@ -70,16 +73,16 @@
     margin: 15px auto;
     padding: 20px;
 }
-.how-to-selector:hover{
+.how-to-selector:hover {
     cursor: pointer;
 }
-.active{
+.active {
     background-color: #c8102e;
     color: #fff;
     border-radius: 30px;
     transition: 0.5s ease-in-out;
 }
-.account-and-upload{
+.account-and-upload {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -87,25 +90,25 @@
     align-items: center;
     justify-content: center;
 }
-.account-and-upload p{
+.account-and-upload p {
     text-align: start;
     padding: 5px;
     font-size: 14px;
 }
-.walkthrough-card{
+.walkthrough-card {
     border: 1px solid #c8102e;
     border-radius: 10px;
     max-width: 300px;
     height: 450px;
 }
-.walkthrough-card img{
+.walkthrough-card img {
     max-width: 300px;
     height: 300px;
     object-fit: cover;
     border-top: 1px solid #121212;
     border-bottom: 1px solid #121212;
 }
-.walkthrough-card em{
+.walkthrough-card em {
     color: red;
 }
 .help-section {
@@ -121,13 +124,14 @@
     font-weight: 400;
     margin-top: 25px;
 }
-ol{
+ol {
     list-style: none;
     width: 100%;
     margin: 0 auto;
-    text-align: center
+    padding: 0;
+    text-align: center;
 }
-ol li{
+ol li {
     width: 15%;
     margin: 0 auto;
     text-align: start;
@@ -138,9 +142,8 @@ ol li{
     font-size: 65px;
     color: #c8102e;
     font-weight: 400;
-
 }
-footer{
+footer {
     align-content: center;
     background: #dcdcdc;
     margin: 0 auto;
@@ -149,9 +152,166 @@ footer{
     color: #a50d25;
     font-size: 18px;
 }
-footer a{
+footer a {
     text-decoration: none;
     color: dodgerblue;
 }
 
+@media (max-width: 1024px) {
+    .about {
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    .about-title {
+        font-size: 64px;
+    }
+    .about h2,
+    .how-to-use,
+    .help {
+        font-size: 48px;
+        text-align: center;
+    }
 
+    .about-section,
+    .how-to-section,
+    .help-section {
+        max-height: none;
+        width: 100%;
+        padding: 32px 24px;
+        box-sizing: border-box;
+    }
+
+    .about-section-inner {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        font-size: 20px;
+        padding: 0;
+        text-align: start;
+    }
+    .about-section-inner img {
+        max-width: 280px;
+    }
+
+    .how-to-selector-container {
+        width: 100%;
+        max-width: 420px;
+        justify-content: center;
+        gap: 12px;
+    }
+    .how-to-selector {
+        margin: 12px 0;
+        min-height: 44px;
+        height: auto;
+        flex: 1;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .account-and-upload {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        justify-content: center;
+        gap: 20px;
+    }
+    .walkthrough-card {
+        flex: 0 1 300px;
+        height: auto;
+        padding-bottom: 8px;
+    }
+    .walkthrough-card img {
+        width: 100%;
+        max-width: 100%;
+        height: 260px;
+    }
+    .account-and-upload p {
+        font-size: 15px;
+    }
+
+    .help-section {
+        font-size: 16px;
+    }
+    ol li {
+        width: 70%;
+        padding: 6px 0;
+        overflow-wrap: anywhere;
+    }
+    footer {
+        height: auto;
+        padding: 20px 16px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    button{
+        text-decoration: none;
+        color: #000;
+    }
+    .about-title {
+        font-size: 50px;
+        padding: 8px 0;
+    }
+    .about-return-btn {
+        min-height: 44px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+    .about h2,
+    .how-to-use,
+    .help {
+        font-size: 50px;
+    }
+
+    .about-section,
+    .how-to-section,
+    .help-section {
+        padding: 24px 16px;
+    }
+
+    .about-section-inner {
+        font-size: 16px;
+        gap: 16px;
+    }
+    .about-section-inner img {
+        max-width: 200px;
+    }
+
+    .how-to-selector-container {
+        max-width: none;
+        gap: 8px;
+    }
+    .how-to-selector {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .account-and-upload {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .walkthrough-card {
+        flex: none;
+        width: 100%;
+        max-width: 360px;
+    }
+    .walkthrough-card img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+    .account-and-upload p {
+        font-size: 14px;
+    }
+
+    ol li {
+        width: 100%;
+        font-size: 15px;
+    }
+    footer {
+        font-size: 15px;
+    }
+}
