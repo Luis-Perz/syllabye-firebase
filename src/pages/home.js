@@ -62,6 +62,9 @@ function Home() {
         return lookup;
     }
     //Grouping the professors by their department for later department selection (Professors from ECAMS faculty roster)
+    const [instructorsByDepartment, setInstructorsByDepartment] = useState({});
+
+
     const professorsByDepartment = {
         CPSC: [
             { value: "boxu", label: "Bo Xu" },
@@ -160,13 +163,14 @@ function Home() {
 
     const [departments, setDepartments] = useState([]);
     useEffect(() => {
-        async function fetchCourses() {
-            const snapshot = await getDocs(collection(db, "Department"));
-
+        async function fetchData() {
+            // 1. Load departments
+            const deptSnapshot = await getDocs(collection(db, "Department"));
             const lookup = {};
             const deptList = [];
+            const instructorMap = {};
 
-            snapshot.forEach(docItem => {
+            for (const docItem of deptSnapshot.docs) {
                 const deptName = docItem.id;
                 const fields = docItem.data();
 
@@ -176,14 +180,31 @@ function Home() {
                     id: deptName,
                     label: fields.name
                 });
-            });
+
+                // 2. Load instructors for this department
+                const instructorSnapshot = await getDocs(
+                    collection(db, `Department/${deptName}/Instructor`)
+                );
+
+                const instructors = instructorSnapshot.docs.map((instDoc) => {
+                    const instData = instDoc.data();
+                    return {
+                        value: instData.name,   // stored value
+                        label: instData.name    // displayed label
+                    };
+                });
+
+                instructorMap[deptName] = instructors;
+            }
 
             setCourseLookup(lookup);
             setDepartments(deptList);
+            setInstructorsByDepartment(instructorMap);
         }
 
-        fetchCourses();
+        fetchData();
     }, []);
+
 
 const inputFieldCheck = () =>{
         if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
@@ -399,15 +420,12 @@ const inputFieldCheck = () =>{
                                             >
                                                 <option value="">Select Professor</option>
 
-                                                {professorsByDepartment[formData.department]?.map((professor) => (
-                                                    <option
-                                                        key={professor.value}
-                                                        value={professor.value}
-                                                    >
+                                                {instructorsByDepartment[formData.department]?.map((professor) => (
+                                                    <option key={professor.value} value={professor.value}>
                                                         {professor.label}
                                                     </option>
                                                 ))}
-
+                                                
                                             </select>
                                         </div>
                                     </div>
