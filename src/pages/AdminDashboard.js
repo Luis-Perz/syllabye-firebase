@@ -9,7 +9,6 @@ import { saveAs } from "file-saver";
 
 function AdminDashboard() {
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
-  const [openDepartments, setOpenDepartments] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSemester, setSelectedSemester] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
