@@ -1,11 +1,3 @@
-// Now this is where I actually need to move everything that's in the
-// firebase syllabi folder to here. 
-
-// WHHHYY WORK JUST WORK PLEASE LAAWWDD
-// I tried to make it so that each would follow a specific title card
-// I could not figure it out there's a few things in here that I thought
-// would fix it. 
-
 import { useEffect, useState } from "react";
 import { db,auth } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
@@ -19,8 +11,16 @@ function AdminDashboard() {
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
   const [openDepartments, setOpenDepartments] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState(null);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  const formatSemester = (semester) => {
+    return semester
+        .replace(/(\d{4})/, " $1")
+        .replace(/^./, (char) => char.toUpperCase());
+};
   useEffect(() => {
     fetchData();
   }, []);
@@ -38,11 +38,16 @@ function AdminDashboard() {
       if(typeof dept !=="string") {
         dept = Object.keys(dept || {})[0] || "Other";
       }
-
-      if (!grouped[dept]) {
-        grouped[dept] = [];
+      const semester = item.semester || "Unknown Semester";
+      if(!grouped[semester]) {
+        grouped[semester] = {};
       }
-      grouped[dept].push(item);
+
+      if (!grouped[semester][dept]) {
+        grouped[semester][dept] = [];
+      }
+
+      grouped[semester][dept].push(item);
     });
     setGroupedSyllabi(grouped);
   };
@@ -69,23 +74,27 @@ function AdminDashboard() {
   };
 
   const filteredGrouped = {};
+  const search = searchTerm.toLowerCase();
 
-  Object.keys(groupedSyllabi).forEach((dept) => {
-    filteredGrouped[dept] = groupedSyllabi[dept].filter((item) => {
-      const search = searchTerm.toLowerCase();
+  Object.keys(groupedSyllabi).forEach((semester) => {
+    filteredGrouped[semester] = {};
 
-      return (
+    Object.keys(groupedSyllabi[semester]).forEach((dept) => {
+      const matches = groupedSyllabi[semester][dept].filter((item) =>
           item.courseName?.toLowerCase().includes(search) ||
           item.courseNumber?.toLowerCase().includes(search) ||
           item.section?.toLowerCase().includes(search) ||
           item.instructor?.toLowerCase().includes(search) ||
           item.semester?.toLowerCase().includes(search)
       );
+      if (matches.length > 0) {
+        filteredGrouped[semester][dept] = matches;
+      }
     });
   });
 
-  const downloadAllDepartment = async (dept) => {
-    const docs = groupedSyllabi[dept];
+  const downloadAllDepartment = async (semester, dept) => {
+    const docs = groupedSyllabi[semester]?.[dept];
     if (!docs || docs.length === 0) return;
 
     const zip = new JSZip();
@@ -109,96 +118,145 @@ function AdminDashboard() {
     saveAs(zipBlob, `${dept}-syallabi.zip`);
   }
 
+    return (
+    <div className="admin-dashboard-container">
+      <div className="dashboard-header">
 
-  return(
-      <div className="admin-dashboard-container">
-        <div className="dashboard-header">
-          <h1 className="admin-title">Syllabus Storage</h1>
-
-          <nav className="dashboard-nav">
-            <input
-                type="text"
-                className="search-bar"
-                placeholder="Search syllabi..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-
-            <button
-                className="home-button"
-                onClick={() => navigate("/home")}
-            >
-              Home
-            </button>
-
-            <button
-                className="logout-button"
-                onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </nav>
+        <div className="header-left">
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search Syllabi..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
 
-        <div className="title-description">
-          <p>
-            Each drop down menu contains all of the submitted syllabi for each specific
-            department. Inside those drop downs you will find each file and when it is clicked
-            it will download. In the parenthesis it represents the (course number-section number-professor-semester).
-            You may also delete the files.
-          </p>
-        </div>
+        <h1 className="admin-title">Syllabus Storage</h1>
+        <div className="header-right">
+          <button
+            className="menu-button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle Navigation Menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
-        <div className="department-grid">
-          {Object.keys(filteredGrouped).map((dept) => (
-              <div key={dept} className="department-card">
-                <div className="department-header">
-                  <button
-                      type="button"
-                      className="department-button"
-                      onClick={() => toggleDepartment(dept)}
-                  >
-                    {dept}
-                  </button>
-
-                  <button
-                      type="button"
-                      className={`department-button-option ${openDepartments[dept] ? "show" : ""}`}
-                      title="Download all as zip"
-                      onClick={() => downloadAllDepartment(dept)}
-                  >
-                    <span></span><span></span><span></span>
-                  </button>
-                </div>
-                {openDepartments[dept] &&(
-                    <ul className="syllabus-list">
-                      {filteredGrouped[dept].map((item) => (
-                          <li key={item.id} className="syllabus-item">
-                            {item.fileURL && (
-                                <>
-                                  <a
-                                      className="file-link"
-                                      href={item.fileURL}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                  >
-                                    {item.courseName} ({item.courseNumber}-{item.section}-{item.instructor}-{item.semester})
-                                  </a>
-                                  <button
-                                      className="delete-button"
-                                      onClick={() => handleDelete(item.id)}>
-                                    Delete
-                                  </button>
-                                </>
-                            )}
-                          </li>
-                      ))}
-                    </ul>
-                )}
-              </div>
-          ))}
+          {menuOpen && (
+            <div className="dropdown-menu">
+              <button onClick={() => navigate("/home")}>Home</button>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )}
         </div>
       </div>
+
+      <div className="title-description">
+        <p>
+          Please first select the semester you would like to view. Then 
+          select the department and then in the third column you will see
+          all the syllabi for that department in that specific semester.
+        </p>
+      </div>
+
+      <div className="syllabus-browser">
+
+        <div className="browser-column">
+          <h2>Semesters</h2>
+
+          {Object.keys(filteredGrouped).map((semester) => (
+            <button
+              key={semester}
+              className={`browser-button ${
+                selectedSemester === semester ? "active" : ""
+              }`}
+              onClick={() => {
+                setSelectedSemester(semester);
+                setSelectedDepartment(null);
+              }}
+            >
+              {formatSemester(semester)}
+            </button>
+          ))}
+        </div>
+
+        <div className="browser-column">
+          <h2>Departments</h2>
+
+          {selectedSemester &&
+            Object.keys(filteredGrouped[selectedSemester] || {}).map((dept) => (
+              <button
+                key={dept}
+                className={`browser-button ${
+                  selectedDepartment === dept ? "active" : ""
+                }`}
+                onClick={() => setSelectedDepartment(dept)}
+              >
+                {dept}
+              </button>
+            ))}
+        </div>
+
+        <div className="browser-column">
+          <div className="syllabi-header">
+            <h2>Syllabi</h2>
+
+            {selectedSemester && selectedDepartment && (
+              <button
+                className="download-all-button"
+                onClick={() =>
+                  downloadAllDepartment(selectedSemester, selectedDepartment)
+                }
+              >
+                Download All
+              </button>
+          )}
+        </div>
+
+          {!selectedSemester && (
+            <p>Select a semester to begin.</p>
+          )}
+
+          {selectedSemester && !selectedDepartment && (
+            <p>Select a department to view its syllabi.</p>
+          )}
+
+          {selectedSemester &&
+            selectedDepartment &&
+            (filteredGrouped[selectedSemester]?.[selectedDepartment] || []).map(
+              (item) => (
+                <div key={item.id} className="syllabus-item">
+                  {item.fileURL && (
+                    <>
+                      <a
+                        className="file-link"
+                        href={item.fileURL}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.courseName} (
+                        {item.courseNumber}-{item.section}-
+                        {item.instructor}-{item.semester})
+                      </a>
+
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </>
+                  )}
+                </div>
+              )
+            )}
+        </div>
+
+      </div>
+    </div>
   );
 }
+
 export default AdminDashboard;
