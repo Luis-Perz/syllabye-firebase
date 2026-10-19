@@ -66,12 +66,6 @@ function AdminDashboard() {
     }
   };
 
-  const toggleDepartment = (dept) => {
-    setOpenDepartments((prev) => ({
-      ...prev,
-      [dept]: !prev[dept]
-    }));
-  };
 
   const filteredGrouped = {};
   const search = searchTerm.toLowerCase();
