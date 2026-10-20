@@ -24,31 +24,36 @@ function AdminDashboard() {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, "syllabi"));
 
-    const data = snapshot.docs.map((docItem) => ({
-      id: docItem.id,
-      ...docItem.data()
-    }));
+    try{
+      const snapshot = await getDocs(collection(db, "syllabi"));
 
-    const grouped = {};
-    data.forEach((item) => {
-      let dept = item.department;
-      if(typeof dept !=="string") {
-        dept = Object.keys(dept || {})[0] || "Other";
-      }
-      const semester = item.semester || "Unknown Semester";
-      if(!grouped[semester]) {
-        grouped[semester] = {};
-      }
+      const data = snapshot.docs.map((docItem) => ({
+        id: docItem.id,
+        ...docItem.data()
+      }));
 
-      if (!grouped[semester][dept]) {
-        grouped[semester][dept] = [];
-      }
+      const grouped = {};
+      data.forEach((item) => {
+        let dept = item.department;
+        if(typeof dept !=="string") {
+          dept = Object.keys(dept || {})[0] || "Other";
+        }
+        const semester = item.semester || "Unknown Semester";
+        if(!grouped[semester]) {
+          grouped[semester] = {};
+        }
 
-      grouped[semester][dept].push(item);
-    });
-    setGroupedSyllabi(grouped);
+        if (!grouped[semester][dept]) {
+          grouped[semester][dept] = [];
+        }
+
+        grouped[semester][dept].push(item);
+      });
+      setGroupedSyllabi(grouped);
+    }catch(err){
+      console.log(err);
+    }
   };
 
   const handleLogout = async () => {
@@ -99,7 +104,7 @@ function AdminDashboard() {
             const response = await fetch(item.fileURL);
             const blob = await response.blob();
 
-            const fileName = `item.courseName-{item.courseNumber}-item.department-{item.instructor}-item.section-{item.semester}.pdf`
+            const fileName = `${item.courseName}-${item.courseNumber}-${item.department}-${item.instructor}-${item.section}-${item.semester}.pdf`
                 .replace(/[/\\?%*:|"<>]/g, "-");
             zip.file(fileName, blob);
           }catch(err) {

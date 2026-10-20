@@ -1,5 +1,5 @@
 import {Navigate} from "react-router-dom";
-import { useRole } from "../hooks/useRole";
+import { useRole } from "../context/AuthContext";
 
 
 export function CheckAccess({children, allowedRoles}) {

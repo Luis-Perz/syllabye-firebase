@@ -1,6 +1,6 @@
 import { auth } from "./firebase";
 import {createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut} from "firebase/auth";
-import { setUser } from "./firestore";
+
 
 function isLewisEmail(email) {
     return email?.trim().toLowerCase().endsWith("@lewisu.edu");
@@ -15,7 +15,6 @@ export async function CreateAccount(email, password) {
     const { user } = await createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password)
     try{
         await sendEmailVerification(user)
-        await setUser(user.email, "user");
     }finally{
         await signOut(auth);
     }
