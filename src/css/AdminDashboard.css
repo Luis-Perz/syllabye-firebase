@@ -5,14 +5,13 @@
 }
 
 .admin-title {
-    margin: 0;
-    font-family: 'Alumni Sans Collegiate One', sans-serif;
-    text-align: center;
-    color: #c8102e;
-    font-size: 65px;
-    font-weight: 400;
+  margin: 0;
+  font-family: 'Alumni Sans Collegiate One', sans-serif;
+  text-align: center;
+  color: #c8102e;
+  font-size: 65px;
+  font-weight: 400;
 }
-
 
 .syllabus-card {
   background: var(--bg);
@@ -113,7 +112,7 @@
 .department-button{
   flex: 1;
   background: none;
-  color: white;
+  color: var(text);
   border: none;
   padding: 15px 15px 15px 20px;
   border-radius: 50px;
@@ -139,7 +138,7 @@
   display: flex;
 }
 .department-button-option span {
-  background-color: #fff;
+  background-color: var(--bg);
   border-radius: 50%;
   width: 5px;
   height: 5px;
@@ -171,6 +170,7 @@
     height: auto;
     gap: 100px;
     font-size: 18px;
+    color: var(--text);
 }
 
 .syllabus-list{
@@ -209,6 +209,7 @@ html, body, #root {
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 20px;
   align-items: start;
+  color: var(--text);
 }
 
 .browser-column {
@@ -234,7 +235,7 @@ html, body, #root {
   text-align: left;
   cursor: pointer;
   background: var(--bg2);
-  color: inherit;
+  color: var(--text);
 }
 
 .browser-button:hover,
@@ -271,6 +272,7 @@ html, body, #root {
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  color: var(--text);
 }
 
 .syllabi-header h2 {
@@ -318,6 +320,7 @@ html, body, #root {
   padding: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 10;
+  color: var(--text)
 }
 
 .dropdown-menu button {

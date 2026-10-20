@@ -141,6 +141,7 @@ function AdminDashboard() {
             <div className="dropdown-menu">
               <button onClick={() => navigate("/home")}>Home</button>
               <button onClick={handleLogout}>Logout</button>
+              <button>Manage User (WIP)</button>
             </div>
           )}
         </div>
@@ -207,7 +208,7 @@ function AdminDashboard() {
               </button>
           )}
         </div>
-
+        
           {!selectedSemester && (
             <p>Select a semester to begin.</p>
           )}
