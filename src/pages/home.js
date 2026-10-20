@@ -78,47 +78,50 @@ function Home() {
     const [departments, setDepartments] = useState([]);
     useEffect(() => {
         async function fetchData() {
-            // 1. Load departments
-            const deptSnapshot = await getDocs(collection(db, "Department"));
-            const lookup = {};
-            const deptList = [];
-            const instructorMap = {};
+            try {
+                // 1. Load departments
+                const deptSnapshot = await getDocs(collection(db, "Department"));
+                const lookup = {};
+                const deptList = [];
+                const instructorMap = {};
 
-            for (const docItem of deptSnapshot.docs) {
-                const deptName = docItem.id;
-                const fields = docItem.data();
+                for (const docItem of deptSnapshot.docs) {
+                    const deptName = docItem.id;
+                    const fields = docItem.data();
 
-                lookup[deptName] = fields;
+                    lookup[deptName] = fields;
 
-                deptList.push({
-                    id: deptName,
-                    label: fields.name
-                });
+                    deptList.push({
+                        id: deptName,
+                        label: fields.name
+                    });
 
-                // 2. Load instructors for this department
-                const instructorSnapshot = await getDocs(
-                    collection(db, `Department/${deptName}/Instructor`)
-                );
+                    // 2. Load instructors for this department
+                    const instructorSnapshot = await getDocs(
+                        collection(db, `Department/${deptName}/Instructor`)
+                    );
 
-                const instructors = instructorSnapshot.docs.map((instDoc) => {
-                    const instData = instDoc.data();
-                    return {
-                        value: instData.name,   // stored value
-                        label: instData.name    // displayed label
-                    };
-                });
+                    const instructors = instructorSnapshot.docs.map((instDoc) => {
+                        const instData = instDoc.data();
+                        return {
+                            value: instData.name,
+                            label: instData.name
+                        };
+                    });
 
-                instructorMap[deptName] = instructors;
+                    instructorMap[deptName] = instructors;
+                }
+
+                setCourseLookup(lookup);
+                setDepartments(deptList);
+                setInstructorsByDepartment(instructorMap);
+            } catch (err) {
+                console.error(err);
             }
-
-            setCourseLookup(lookup);
-            setDepartments(deptList);
-            setInstructorsByDepartment(instructorMap);
         }
 
         fetchData();
     }, []);
-
 
 const inputFieldCheck = () =>{
         if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {

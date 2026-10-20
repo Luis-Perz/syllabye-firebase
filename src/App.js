@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import About from './pages/About';
 import UnauthorizedAccess from "./pages/UnauthorizedAccess";
 import AdminDashboard from './pages/AdminDashboard';
+import {AuthProvider} from './context/AuthContext';
 import { CheckAccess } from './components/CheckAccess';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext";
@@ -11,27 +12,29 @@ import { ThemeProvider } from "./components/ThemeContext";
 function App() {
   return (
       <>
-        <ThemeProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/home" element={
-                   <CheckAccess allowedRoles={["admin", "user"]}>
-                      <Home />
-                  </CheckAccess>
-                }
-              />
-              <Route path="/about" element={<About />} />
-              <Route path="/admin/dashboard" element={
-                  <CheckAccess allowedRoles={["admin"]}>
-                      <AdminDashboard />
-                  </CheckAccess>
-                  }
-              />
-                <Route path="/unauthorizedaccess" element={<UnauthorizedAccess />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeProvider>
+          <AuthProvider>
+              <ThemeProvider>
+                  <BrowserRouter>
+                      <Routes>
+                          <Route path="/" element={<Login />} />
+                          <Route path="/home" element={
+                              <CheckAccess allowedRoles={["admin", "user"]}>
+                                  <Home />
+                              </CheckAccess>
+                          }
+                          />
+                          <Route path="/about" element={<About />} />
+                          <Route path="/admin/dashboard" element={
+                              <CheckAccess allowedRoles={["admin"]}>
+                                  <AdminDashboard />
+                              </CheckAccess>
+                          }
+                          />
+                          <Route path="/unauthorizedaccess" element={<UnauthorizedAccess />} />
+                      </Routes>
+                  </BrowserRouter>
+              </ThemeProvider>
+          </AuthProvider>
       </>
   );
 }
