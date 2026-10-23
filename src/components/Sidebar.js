@@ -14,7 +14,6 @@ export default function Sidebar() {
     const toggleMenu = () => {
         const next = !isOpen;
         setIsOpen(next);
-        document.documentElement.style.overflowY = next ? "hidden" : "";
     };
 
     const handleSignOut = async () => {
