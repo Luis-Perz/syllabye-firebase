@@ -1,4 +1,3 @@
-import React from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useState, useEffect } from "react";
 import { syllabus } from "../firebase/firestore";
@@ -9,7 +8,6 @@ import {signOut} from "firebase/auth";
 import {auth} from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import "../css/home.css";
-import Sidebar from "../components/Sidebar";
 import uploadIcon from "../images/upload.png"
 import uploadSuccess from "../images/successful-upload.png";
 import helpIcon from "../images/questions.png";
@@ -142,7 +140,6 @@ const inputFieldCheck = () =>{
                 </div>
                 <div className="top-bar">
                     <h1 className="logo">SyllaBye</h1>
-                    <Sidebar />
                 </div>
                 <div className="form-container">
                     <div className="form-card">

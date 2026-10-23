@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {useState} from "react";
 import "../css/About.css";
 import SentFileImg from "../images/about-page-images/sent-file.png"
@@ -11,7 +10,6 @@ import Success from "../images/about-page-images/uploading-walkthrough/upload-co
 
 
 function About() {
-    const navigate = useNavigate();
     const [view, setView] = useState("account");
     const [overview, setOverview] = useState("account");
     return(
@@ -19,14 +17,6 @@ function About() {
             <div className="about">
                 <div className="about-header">
                     <h1 className="about-title">About</h1>
-                    <button
-                        className="about-return-btn"
-                        onClick={async () => {
-                            navigate("/home");
-                        }}
-                    >
-                        &lt; Return Home
-                    </button>
                 </div>
                 <div className="about-section">
                     <h2>What is Syllabye?</h2>

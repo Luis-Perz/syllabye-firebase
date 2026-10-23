@@ -8,6 +8,7 @@ import {AuthProvider} from './context/AuthContext';
 import { CheckAccess } from './components/CheckAccess';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext";
+import AppMenu from './components/AppMenu';
 
 function App() {
   return (
@@ -17,20 +18,28 @@ function App() {
                   <BrowserRouter>
                       <Routes>
                           <Route path="/" element={<Login />} />
+                          <Route path="/unauthorizedaccess" element={<UnauthorizedAccess />} />
+
                           <Route path="/home" element={
                               <CheckAccess allowedRoles={["admin", "user"]}>
+                                  <AppMenu />
                                   <Home />
                               </CheckAccess>
-                          }
-                          />
-                          <Route path="/about" element={<About />} />
+                          }/>
+                          
+                          <Route path="/about" element={
+                              <div>
+                                  <AppMenu />
+                                  <About />
+                              </div>
+                          }/>
+
                           <Route path="/admin/dashboard" element={
                               <CheckAccess allowedRoles={["admin"]}>
+                                  <AppMenu />
                                   <AdminDashboard />
                               </CheckAccess>
-                          }
-                          />
-                          <Route path="/unauthorizedaccess" element={<UnauthorizedAccess />} />
+                          }/>
                       </Routes>
                   </BrowserRouter>
               </ThemeProvider>

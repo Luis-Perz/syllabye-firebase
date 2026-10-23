@@ -1,0 +1,203 @@
+/* Fixed navigation position across all pages */
+.app-menu {
+    position: fixed;
+    top: 12px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Container for the toggle button and dropdown */
+.app-menu__container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+/* Hamburger button */
+.app-menu__toggle {
+    appearance: none;
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Hamburger bars */
+.app-menu__toggle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 5px;
+    border-radius: 3px;
+    background-color: #c8102e;
+    border: 1px solid #a20d25;
+    transform: translate(-50%, -50%);
+    transition:
+        top 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.app-menu__toggle span:nth-child(1) {
+    top: 25%;
+}
+
+.app-menu__toggle span:nth-child(3) {
+    top: 75%;
+}
+
+/* Hamburger-to-X animation */
+.app-menu__toggle--open span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.app-menu__toggle--open span:nth-child(2) {
+    opacity: 0;
+}
+
+.app-menu__toggle--open span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Dropdown menu */
+.app-menu__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 200px;
+    padding: 8px;
+    box-sizing: border-box;
+
+    flex-direction: column;
+
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure the hidden attribute always hides the dropdown */
+.app-menu__dropdown[hidden] {
+    display: none;
+}
+
+.app-menu__dropdown:not([hidden]) {
+    display: flex;
+}
+
+/* Dropdown list */
+.app-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Item Divider */
+.app-menu__divider {
+    display: block;
+    width: auto;
+    align-self: stretch;
+    margin: 6px 0;
+    border: none;
+    border-top: 1px solid
+}
+
+/* Menu items */
+.app-menu__item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation links and action buttons share the same appearance */
+.app-menu__link,
+.app-menu__action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 38px;
+    box-sizing: border-box;
+    padding: 8px 10px;
+
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text);
+
+    font: inherit;
+    font-size: 14px;
+    text-align: left;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* Hover and keyboard focus */
+.app-menu__link:hover,
+.app-menu__action:hover {
+    background-color: #8a8a8a;
+    color: #fff;
+}
+
+.app-menu__link:focus-visible,
+.app-menu__action:focus-visible,
+.app-menu__toggle:focus-visible {
+    outline: 2px solid #c8102e;
+    outline-offset: 2px;
+}
+
+/* Sign-out action */
+.app-menu__action--signout {
+    color: #c8102e;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+    .app-menu {
+        top: 10px;
+        right: 12px;
+    }
+
+    .app-menu__container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .app-menu__toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .app-menu__dropdown {
+        width: 190px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .app-menu__toggle span,
+    .app-menu__link,
+    .app-menu__action {
+        transition: none;
+    }
+}
