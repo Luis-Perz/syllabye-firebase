@@ -115,6 +115,7 @@ function About() {
                         <li> Luis P: <a href={"mailto:luisaperez1@lewisu.edu"}> luisaperez1@lewisu.edu</a></li>
                         <li> Molly P:  <a href={"mailto:mollyepaez@lewisu.edu"}>mollyepaez@lewisu.edu</a></li>
                         <li> Robert D: <a href={"mailto:robertmdidomenico@lewisu.edu"}>robertmdidomenico@lewisu.edu</a> </li>
+                        <li> Michael M: <a href={"mailto:michaelkmihailov@lewisu.edu"}>michaelkmihailov@lewisu.edu</a> </li>
                     </ol>
                 </div>
                 <footer>
