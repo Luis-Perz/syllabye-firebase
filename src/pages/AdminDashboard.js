@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { db,auth } from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import "../css/AdminDashboard.css";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
@@ -12,8 +10,6 @@ function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSemester, setSelectedSemester] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const formatSemester = (semester) => {
     return semester
@@ -54,11 +50,6 @@ function AdminDashboard() {
     }catch(err){
       console.log(err);
     }
-  };
-
-  const handleLogout = async () => {
-    await signOut(auth);
-    navigate("/");
   };
 
   const handleDelete = async (id) => {
@@ -131,25 +122,6 @@ function AdminDashboard() {
         </div>
 
         <h1 className="admin-title">Syllabus Storage</h1>
-        <div className="header-right">
-          <button
-            className="menu-button"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Toggle Navigation Menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
-          {menuOpen && (
-            <div className="dropdown-menu">
-              <button onClick={() => navigate("/home")}>Home</button>
-              <button onClick={handleLogout}>Logout</button>
-              <button>Manage User (WIP)</button>
-            </div>
-          )}
-        </div>
       </div>
 
       <div className="title-description">
