@@ -2,31 +2,37 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ---------- helpers ----------
+// checks if the user is verified. (Must be verified to Login) Also enforces proper domain
 function verified() {
-  return request.auth != null && request.auth.token.email_verified == true;
+  return request.auth != null
+    && request.auth.token.email_verified == true
+    && (
+      request.auth.token.email.lower().split('@')[1] == 'lewisu.edu'
+      || (request.auth.token.firebase.sign_in_provider == 'google.com'
+          && request.auth.token.email.lower().split('@')[1] == 'gmail.com')
+    );
 }
 
+// Once logged in, we need to check if verified user is an admin. So we reference the roles collection to check emails stored in there. If not, YOU'RE NOT an admin
 function isAdmin() {
   return verified()
     && exists(/databases/$(database)/documents/roles/$(request.auth.token.email.lower()))
     && get(/databases/$(database)/documents/roles/$(request.auth.token.email.lower())).data.role == 'admin';
 }
-
-    // ---------- collections ----------
     match /users/{userId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null && request.auth.uid == userId;
     }
 
+// currently only verified AND admins can read or create admins in the roles collection. Delete must be performed manually from within the firebase console.
     match /roles/{email} {
       allow read: if verified() && (request.auth.token.email.lower() == email || isAdmin());
       allow create, update: if isAdmin();
     }
-
+//  For this, anyone is able to upload class syllabus, but only admins can read, update, or delete
     match /syllabi/{docID} {
-      allow read, create: if verified();
-      allow update, delete: if isAdmin();
+      allow create: if verified();
+      allow read, update, delete: if isAdmin();
     }
 
     match /Department/{deptName} {
