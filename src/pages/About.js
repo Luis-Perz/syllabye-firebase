@@ -107,6 +107,9 @@ function About() {
                         <li> Robert D: <a href={"mailto:robertmdidomenico@lewisu.edu"}>robertmdidomenico@lewisu.edu</a></li>
                         <li> Michael M: <a href={"mailto:michaelkmihailov@lewisu.edu"}>michaelkmihailov@lewisu.edu</a></li>
                         <li> Bethany F: <a href={"mailto:bethanygfeddes@lewisu.edu"}>bethanygfeddes@lewisu.edu</a></li>
+                        <li> Robert D: <a href={"mailto:robertmdidomenico@lewisu.edu"}>robertmdidomenico@lewisu.edu</a> </li>
+                        <li> Michael M: <a href={"mailto:michaelkmihailov@lewisu.edu"}>michaelkmihailov@lewisu.edu</a> </li>
+                        <li> Jacob P: <a href={"mailto:jacobwpetrosky@lewisu.edu"}>jacobwpetrosky@lewisu.edu</a> </li>                    
                     </ol>
                 </div>
                 <footer>
