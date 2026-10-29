@@ -11,7 +11,7 @@ export default function CreateUserForm() {
     const submitForm = async (e) => {
         e.preventDefault();
         setError(null);
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             setError("Passwords do not match.")
             return;
         }
