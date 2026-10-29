@@ -1,9 +1,11 @@
+/* The whole background area */
 .admin-dashboard-container {
   background: var(--bg2);
   min-height: 100vh;
   padding: 20px;
 }
 
+/* The Syllabus Storage header */
 .admin-title {
   margin: 0;
   font-family: 'Alumni Sans Collegiate One', sans-serif;
@@ -29,6 +31,7 @@
   margin-bottom: 8px;
 }
 
+/* Making sure the file link is colored differently */
 .file-link {
   color: #2f6fed;
   text-decoration: none;
@@ -40,6 +43,8 @@
   text-decoration: underline;
 }
 
+/* The search bar, title, and then the hamburger menu is all 
+on the same level */
 .dashboard-header {
   position: relative;
   width: 100%;
@@ -48,6 +53,8 @@
   margin-bottom: 20px;
   grid-template-columns: 1fr auto 1fr;
 }
+
+/* Old so delete possibly? */
 .dashboard-nav{
   position: absolute;
   height: auto;
@@ -57,6 +64,7 @@
   gap: 20px;
 }
 
+/* Making sure the log out button is pretty */
 .logout-button {
   background: #d9534f;
   color: white;
@@ -71,7 +79,6 @@
 }
 
 /* Creating back to home button */
-
 .home-button {
   background: #d9534f;
   color: white;
@@ -85,6 +92,7 @@
   background: #c9302c;
 }
 
+/* Old template so delete potentially */
 .department-grid {
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -143,6 +151,8 @@
   width: 5px;
   height: 5px;
 }
+/* Up until this point */
+/* Maybe the card-buttons too need to double check */
 .card-buttons {
   display: flex;
   align-items: center;
@@ -150,6 +160,7 @@
   width: 100%;
 }
 
+/* Making sure the delete button is nice */
 .delete-button {
   background: #d9534f;
   color: white;
@@ -164,6 +175,7 @@
   background: #c9302c
 }
 
+/* Does the description below the big header */
 .title-description{
     display: flex;
     width: auto;
@@ -173,6 +185,7 @@
     color: var(--text);
 }
 
+/* ITS NOT WORKING. This is supposed to be a scroll feature */
 .syllabus-list{
   margin-bottom: 20px;
   padding-left: 20px;
@@ -182,6 +195,7 @@
   padding-right: 5px;
 }
 
+/* Making sure that the third column is positioned correctly */
 .syllabus-item{
   display: flex;
   justify-content: space-between;
@@ -189,6 +203,8 @@
   padding: 6px 0;
 }
 
+/* Supposed to control the basic page elements, but it's not 
+working how it should be. So need to look at it  */
 html, body, #root {
   min-height: 100%;
   overflow-y: auto;
@@ -197,6 +213,7 @@ html, body, #root {
   padding: 0;
 }
 
+/* Stylizing the search bar */
 .search-bar {
   padding: 8px 12px;
   font-size: 16px;
@@ -204,6 +221,7 @@ html, body, #root {
   width: 250px;
 }
 
+/* Does the whole three columns */
 .syllabus-browser{
   display:grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
@@ -225,6 +243,8 @@ html, body, #root {
   color: #c8102e;
 }
 
+/* Just stylizing the first and second columns and 
+making them pretty */
 .browser-button {
   display: block;
   width: 100%;
@@ -250,6 +270,7 @@ html, body, #root {
   flex-wrap: wrap;
 }
 
+/* Stylizes the download all button */
 .download-all-button {
   background: #d9534f;
   color: white;
@@ -266,6 +287,7 @@ html, body, #root {
   background: #c9302c;
 }
 
+/* Does the third column styling and positioning */
 .syllabi-header {
   display: flex;
   justify-content: space-between;
@@ -279,6 +301,7 @@ html, body, #root {
   margin: 5px 0;
 }
 
+/* Positions the hamburger menu and the search bar */
 .header-left {
   justify-self: start;
 }
@@ -288,6 +311,7 @@ html, body, #root {
   justify-self: end;
 }
 
+/* Does all the three lines of the hamburger menu */
 .menu-button {
   display: flex;
   flex-direction: column;
@@ -308,6 +332,8 @@ html, body, #root {
   border-radius: 3px;
 }
 
+/* The hamburger menu styling */
+/* Will change to Luis's style */
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -338,6 +364,8 @@ html, body, #root {
   color: white;
 }
 
+/* Makes sure that the scrollbar is always on the page */
+/* Doesn't work still ;( */
 html{
   overflow-y: scroll;
 }

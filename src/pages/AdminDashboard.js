@@ -6,16 +6,26 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
 function AdminDashboard() {
+  // Group it by first the semester and then the department
   const [groupedSyllabi, setGroupedSyllabi] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Need to make it so that the user picks the two first
   const [selectedSemester, setSelectedSemester] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
 
+  // Need to get rid of this
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Makes sure that it looks good rather than all bunched together
   const formatSemester = (semester) => {
     return semester
         .replace(/(\d{4})/, " $1")
         .replace(/^./, (char) => char.toUpperCase());
 };
+
+// Just grabbing the syllabi from Firebase
   useEffect(() => {
     fetchData();
   }, []);
@@ -61,7 +71,6 @@ function AdminDashboard() {
     }
   };
 
-
   const filteredGrouped = {};
   const search = searchTerm.toLowerCase();
 
@@ -76,6 +85,7 @@ function AdminDashboard() {
           item.instructor?.toLowerCase().includes(search) ||
           item.semester?.toLowerCase().includes(search)
       );
+      // Just double checking that we don't get anything null
       if (matches.length > 0) {
         filteredGrouped[semester][dept] = matches;
       }
@@ -95,6 +105,7 @@ function AdminDashboard() {
             const response = await fetch(item.fileURL);
             const blob = await response.blob();
 
+            {/* This is what needs to get fixed for the file naming convention */}
             const fileName = `${item.courseName}-${item.courseNumber}-${item.department}-${item.instructor}-${item.section}-${item.semester}.pdf`
                 .replace(/[/\\?%*:|"<>]/g, "-");
             zip.file(fileName, blob);
@@ -134,6 +145,8 @@ function AdminDashboard() {
 
       <div className="syllabus-browser">
 
+        {/* This is housing that first column so that we 
+        can go semester first*/}
         <div className="browser-column">
           <h2>Semesters</h2>
 
@@ -153,9 +166,13 @@ function AdminDashboard() {
           ))}
         </div>
 
+        {/* This is the middle column which shows all the 
+        departments that were submitted from that specific semester */}
         <div className="browser-column">
           <h2>Departments</h2>
 
+          {/* So to make sure that it's only the departments that are shown
+          AFTER the semester is picked */}
           {selectedSemester &&
             Object.keys(filteredGrouped[selectedSemester] || {}).map((dept) => (
               <button
@@ -170,7 +187,12 @@ function AdminDashboard() {
             ))}
         </div>
 
+        {/* This is the third column which will show all the syllabi
+        that have been submitted for both that SEMESTER and that DEPARTMENT
+        */}
         <div className="browser-column">
+
+          {/* I wanted to make sure that the download all button was on the same level*/}
           <div className="syllabi-header">
             <h2>Syllabi</h2>
 
@@ -185,7 +207,10 @@ function AdminDashboard() {
               </button>
           )}
         </div>
-        
+
+        {/* These will just show up when the department and syllabi 
+        aren't picked yet */}
+
           {!selectedSemester && (
             <p>Select a semester to begin.</p>
           )}
@@ -194,6 +219,10 @@ function AdminDashboard() {
             <p>Select a department to view its syllabi.</p>
           )}
 
+          {/* So now we need to show the syllabi themselves. So we then
+          get that specific syllabus to show up. Then we need to make it 
+          downloadable so ta da. Then the delete button is added in there
+          */}
           {selectedSemester &&
             selectedDepartment &&
             (filteredGrouped[selectedSemester]?.[selectedDepartment] || []).map(
