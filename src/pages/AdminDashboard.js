@@ -4,6 +4,7 @@ import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import "../css/AdminDashboard.css";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   // Group it by first the semester and then the department
