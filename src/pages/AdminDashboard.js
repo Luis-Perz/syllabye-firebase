@@ -4,7 +4,7 @@ import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import "../css/AdminDashboard.css";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   // Group it by first the semester and then the department
@@ -15,6 +15,8 @@ function AdminDashboard() {
   const [selectedSemester, setSelectedSemester] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
 
+  // Need to go to manage-user
+  const navigate = useNavigate();
 
   // Makes sure that it looks good rather than all bunched together
   const formatSemester = (semester) => {
@@ -128,6 +130,12 @@ function AdminDashboard() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <button
+            className="manage-users-button"
+            onClick={() => navigate("/admin/manage-user")}
+          >
+            Manage User
+          </button>
         </div>
 
         <h1 className="admin-title">Syllabus Storage</h1>

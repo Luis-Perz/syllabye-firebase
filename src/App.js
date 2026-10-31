@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import About from './pages/About';
 import UnauthorizedAccess from "./pages/UnauthorizedAccess";
 import AdminDashboard from './pages/AdminDashboard';
+import ManageUser from './pages/ManageUser';
 import {AuthProvider} from './context/AuthContext';
 import { CheckAccess } from './components/CheckAccess';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -38,6 +39,13 @@ function App() {
                               <CheckAccess allowedRoles={["admin"]}>
                                   <AppMenu />
                                   <AdminDashboard />
+                              </CheckAccess>
+                          }/>
+
+                          <Route path="/admin/manage-user" element={
+                              <CheckAccess allowedRoles={["admin"]}>
+                                  <AppMenu />
+                                  <ManageUser />
                               </CheckAccess>
                           }/>
                       </Routes>

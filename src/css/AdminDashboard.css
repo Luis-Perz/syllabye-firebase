@@ -364,6 +364,22 @@ making them pretty */
   color: white;
 }
 
+/* Manage user button */
+.manage-users-button {
+  background: #c8102e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 60px;
+}
+
+.manage-users-button:hover {
+  background: #a00d23;
+}
+
 /* Makes sure that the scrollbar is always on the page */
 /* Doesn't work still ;( */
 html{
