@@ -15,9 +15,6 @@ function AdminDashboard() {
   const [selectedSemester, setSelectedSemester] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
 
-  // Need to get rid of this
-  // const [menuOpen, setMenuOpen] = useState(false);
-  // const navigate = useNavigate();
 
   // Makes sure that it looks good rather than all bunched together
   const formatSemester = (semester) => {
