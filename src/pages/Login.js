@@ -30,12 +30,17 @@ function Login(){
             setError(error.message)
         }
     }
+
+    // Navigation functions
     function navigateToHome() {
         nav("/home");
     }
+
     function navigateToLogin() {
         nav("/");
     }
+
+    // HTML for the login container/cards
     return (
         <>
             <div className="login-container">
@@ -64,6 +69,7 @@ function Login(){
                             </div>
                         </>
                     )}
+
                     {view === "login" && (
                         <>
                             <LoginForm onSuccess={navigateToHome} />
@@ -78,6 +84,7 @@ function Login(){
                             <p className="back-link" onClick={() => setView("google")}>&lt; Back</p>
                         </>
                     )}
+
                     {view === "reset" && (
                         <>
                             <ResetUser/>

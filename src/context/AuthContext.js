@@ -4,6 +4,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const AuthContext = createContext({role: null, loading: true});
 
+// This code creates a React Authentication Context that makes a user's role available throughout the application
 export function AuthProvider({ children }) {
     const [role, setRole] = useState(null);
     const [loading, setLoading] = useState(true);

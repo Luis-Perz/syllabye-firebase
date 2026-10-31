@@ -115,7 +115,7 @@ function AdminDashboard() {
     const zipBlob = await zip.generateAsync({type: "blob"});
     saveAs(zipBlob, `${dept}-syallabi.zip`);
   }
-
+    // HTML for the admin dashboard
     return (
     <div className="admin-dashboard-container">
       <div className="dashboard-header">

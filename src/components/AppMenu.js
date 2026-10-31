@@ -18,6 +18,7 @@ export default function AppMenu() {
         setIsOpen(false);
     };
 
+    // Signs users out whenever that option is pressed
     const handleSignOut = async () => {
         try {
             await signOut(auth);
@@ -28,6 +29,7 @@ export default function AppMenu() {
         }
     };
 
+    // Structure of the dropdown menu
     return (
         <nav className="app-menu" aria-label="Main menu">
             <div className="app-menu__container">

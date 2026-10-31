@@ -7,6 +7,8 @@ export default function ResetUser() {
     const [error, setError] = useState(null);
 
     const auth = getAuth();
+
+    // Sends email for a password reset
     const submitForm = async (e) => {
         e.preventDefault();
         setError(null);
@@ -21,6 +23,7 @@ export default function ResetUser() {
         }
     };
 
+    // HTML for resetting passwords
     return (
         <div>
             <div className="login-inputs">
