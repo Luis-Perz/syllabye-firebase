@@ -4,7 +4,7 @@ import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import "../css/AdminDashboard.css";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { useNavigate } from "react-router-dom";
+
 
 function AdminDashboard() {
   // Group it by first the semester and then the department
@@ -16,8 +16,8 @@ function AdminDashboard() {
   const [selectedDepartment, setSelectedDepartment] = useState(null);
 
   // Need to get rid of this
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  // const [menuOpen, setMenuOpen] = useState(false);
+  // const navigate = useNavigate();
 
   // Makes sure that it looks good rather than all bunched together
   const formatSemester = (semester) => {
@@ -86,7 +86,7 @@ function AdminDashboard() {
           item.instructor?.toLowerCase().includes(search) ||
           item.semester?.toLowerCase().includes(search)
       );
-      // Just double checking that we don't get anything null
+      // Just double-checking that we don't get anything null
       if (matches.length > 0) {
         filteredGrouped[semester][dept] = matches;
       }
@@ -106,7 +106,7 @@ function AdminDashboard() {
             const response = await fetch(item.fileURL);
             const blob = await response.blob();
 
-            {/* This is what needs to get fixed for the file naming convention */}
+            /* This is what needs to get fixed for the file naming convention */
             const fileName = `${item.courseName}-${item.courseNumber}-${item.department}-${item.instructor}-${item.section}-${item.semester}.pdf`
                 .replace(/[/\\?%*:|"<>]/g, "-");
             zip.file(fileName, blob);
