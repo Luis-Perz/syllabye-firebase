@@ -18,6 +18,15 @@ function AdminDashboard() {
   // Need to go to manage-user
   const navigate = useNavigate();
 
+  // Needed for confim delete popup
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [syllabusToDelete, setSyllabusToDelete] = useState(null);
+
+  const confirmDelete = (id) => {
+    setSyllabusToDelete(id);
+    setShowDeleteModal(true);
+  };
+
   // Makes sure that it looks good rather than all bunched together
   const formatSemester = (semester) => {
     return semester
@@ -62,9 +71,15 @@ function AdminDashboard() {
     }
   };
 
-  const handleDelete = async (id) => {
-    try{
-      await deleteDoc(doc(db, "syllabi", id));
+  const handleDelete = async () => {
+    if (!syllabusToDelete) return;
+
+    try {
+      await deleteDoc(doc(db, "syllabi", syllabusToDelete));
+
+      setShowDeleteModal(false);
+      setSyllabusToDelete(null);
+
       fetchData();
     } catch (err) {
       console.error(err);
@@ -249,7 +264,7 @@ function AdminDashboard() {
 
                       <button
                         className="delete-button"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => confirmDelete(item.id)}
                       >
                         Delete
                       </button>
@@ -259,8 +274,39 @@ function AdminDashboard() {
               )
             )}
         </div>
-
       </div>
+
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="delete-modal">
+            <h3>Confirm Delete</h3>
+
+            <p>
+              Are you sure you want to delete this syllabus?
+              This action cannot be undone.
+            </p>
+
+            <div className="modal-buttons">
+              <button
+                className="cancel-button"
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setSyllabusToDelete(null);
+                }}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="confirm-delete-button"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
