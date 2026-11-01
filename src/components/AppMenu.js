@@ -9,6 +9,14 @@ export default function AppMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const { toggleTheme } = useContext(ThemeContext);
+    
+    let menuName;
+    if(auth.currentUser != null) {
+        menuName = auth.currentUser.displayName
+    };
+    if(menuName.length > 22){
+        menuName = menuName.slice(0, -3)+"...";
+    };
 
     const toggleMenu = () => {
         setIsOpen((previous) => !previous);
@@ -48,6 +56,18 @@ export default function AppMenu() {
                     className={`app-menu__dropdown ${isOpen ? "app-menu__dropdown--open" : ""}`}
                     hidden={!isOpen}
                 >
+                  <li className="app-menu__item">
+                        <div
+                            className="app-menu__static"
+                        >
+                            {menuName}
+                        </div>
+                    </li>
+
+                    <hr className="app-menu__divider" />
+
+
+                    
                     <ul className="app-menu__list">
                         <li className="app-menu__item">
                             <Link
