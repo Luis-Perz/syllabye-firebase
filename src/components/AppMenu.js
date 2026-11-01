@@ -10,12 +10,9 @@ export default function AppMenu() {
     const navigate = useNavigate();
     const { toggleTheme } = useContext(ThemeContext);
     
-    let menuName;
-    if(auth.currentUser != null) {
-        menuName = auth.currentUser.displayName
-    };
+    let menuName = auth.currentUser?.displayName || "User";
     if(menuName.length > 22){
-        menuName = menuName.slice(0, -3)+"...";
+        menuName = menuName.slice(0, 19)+"...";
     };
 
     const toggleMenu = () => {
