@@ -2,6 +2,7 @@ import { FileUploader } from "react-drag-drop-files";
 import { useState, useEffect } from "react";
 import { syllabus } from "../firebase/firestore";
 import { uploadSyllabus } from "../firebase/storage";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import {signOut} from "firebase/auth";
@@ -19,7 +20,7 @@ function Home() {
     // This helps with storing values, tracking changes, and preparing data for Firebase upload
     const [formData, setFormData] = useState({
         semester: "fall2026",
-        department: "CPSC",
+        department: "",
         courseName: "",
         courseNumber: "",
         section: "001",
@@ -38,7 +39,7 @@ function Home() {
 
     const fileTypes = ["PDF", "DOCX"];
     const [file, setFile] = useState(null);
-    const [view, setView] = useState("form");
+    const [view, setView] = useState("upload-box");
 
     async function loadCourseLookup() {
         const snapshot = await getDocs(collection(db, "Department"));
@@ -59,6 +60,34 @@ function Home() {
         });
         return lookup;
     }
+    async function readFile(file){
+        return new Promise(async (resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        })
+    }
+    async function getFileData(file){
+        const base64 = await readFile(file);
+        const detect = httpsCallable(getFunctions(), "retreiveCourseInfo");
+        const {data} = await detect({base64, mimeType: file.type});
+        return data;
+    }
+    async function updateInputFields(file) {
+        setFormData(prev => ({ ...prev, file }));
+        try {
+            const { semester, department, courseNumber, sectionNumber, courseName, instructorName } = await getFileData(file);
+            const matchedDept = departments.find(
+                d => d.label.toLowerCase() === department?.toLowerCase()
+            );
+
+            setFormData(prev => ({ ...prev, semester,  department: matchedDept ? matchedDept.id : prev.department, courseNumber, section: sectionNumber, courseName, instructor: instructorName }));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     //Grouping the professors by their department for later department selection (Professors from ECAMS faculty roster)
     const [instructorsByDepartment, setInstructorsByDepartment] = useState({});
 
@@ -215,6 +244,35 @@ const inputFieldCheck = () =>{
                         >
                             {/* GRID */}
 
+                            {view === "upload-box" && (
+                                <>
+                                    <div className="file">
+                                        <p>Drop your syllabus PDF or DOCX here</p>
+
+                                        <FileUploader
+                                            handleChange={(uploadedFile) => {
+                                                setFile(uploadedFile);
+                                                updateInputFields(uploadedFile);
+                                            }}
+                                            name="file"
+                                            types={fileTypes}
+                                            classes="upload-box"
+                                        >
+                                            <div className="upload-file">
+                                                <img src={uploadIcon} alt="" className="upload-icon" />
+                                                <p>Drop here or <u>browse</u></p>
+                                                <small>PDF or DOCX</small>
+                                            </div>
+                                        </FileUploader>
+                                        {file && <p>Selected: {file.name}</p>}
+                                    </div>
+                                    <button type="button" className="submit-btn" onClick={() => setView("form")}>Next</button>
+                                    {message && <p className="error">{message}</p>}
+                                    <p className={message.includes("Upload successful") ? "success" : "error"}>
+                                        {message}
+                                    </p>
+                                </>
+                            )}
                             {view === "form" && (
                                 <>
                                     <p className="subtitle">
@@ -343,38 +401,13 @@ const inputFieldCheck = () =>{
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="button" className="submit-btn" onClick={inputFieldCheck}>Next</button>
-                                    {message && <p className="error">{message}</p>}
-                                </>
-                            )}
-                            {view === "upload-box" && (
-                                <>
-                                    <div className="file">
-                                        <p>Drop your syllabus PDF or DOCX here</p>
-
-                                        <FileUploader
-                                            handleChange={(uploadedFile) => setFile(uploadedFile)}
-                                            name="file"
-                                            types={fileTypes}
-                                            classes="upload-box"
-                                        >
-                                            <div className="upload-file">
-                                                <img src={uploadIcon} alt="" className="upload-icon" />
-                                                <p>Drop here or <u>browse</u></p>
-                                                <small>PDF or DOCX</small>
-                                            </div>
-                                        </FileUploader>
-                                        {file && <p>Selected: {file.name}</p>}
-                                    </div>
                                     <div className="upload-box-btns">
-                                        <button type="button" className="submit-btn" onClick={() => setView("form")}>Back</button>
-                                        <button className="submit-btn" type="submit" disabled={loading}>
+                                        <button type="button" className="submit-btn" onClick={() => setView("upload-box")}>Back</button>
+                                        <button className="submit-btn" onClick={inputFieldCheck} type="submit" disabled={loading}>
                                             {loading ? "Uploading..." : "Upload Syllabus"}
                                         </button>
                                     </div>
-                                    <p className={message.includes("Upload successful") ? "success" : "error"}>
-                                        {message}
-                                    </p>
+                                    {message && <p className="error">{message}</p>}
                                 </>
                             )}
                             {view === "success" && (

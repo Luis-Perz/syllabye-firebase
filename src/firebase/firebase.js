@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDZW0cWkqHJS6s7y_rLcVXXvYyJbS97V2o",
@@ -17,12 +18,20 @@ const firebaseConfig = {
     appId: "1:556619147073:web:3dd772560ccaca68f0e3c0"
 
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+if (process.env.NODE_ENV !== "production") {
+    window.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.REACT_APP_APPCHECK_DEBUG_TOKEN;
+}
+
+initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(process.env.REACT_APP_RECAPTCHA_SITE_KEY),
+    isTokenAutoRefreshEnabled: true,
+});
+
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { auth, provider, db, storage };
+export { auth, provider, db, storage};
