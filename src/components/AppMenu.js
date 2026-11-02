@@ -52,20 +52,18 @@ export default function AppMenu() {
                     id="app-menu-dropdown"
                     className={`app-menu__dropdown ${isOpen ? "app-menu__dropdown--open" : ""}`}
                     hidden={!isOpen}
-                >
-                  <li className="app-menu__item">
-                        <div
-                            className="app-menu__static"
-                        >
-                            {menuName}
-                        </div>
-                    </li>
-
-                    <hr className="app-menu__divider" />
-
-
-                    
+                >   
                     <ul className="app-menu__list">
+                        <li className="app-menu__item">
+                            <div
+                                className="app-menu__static"
+                            >
+                                {menuName}
+                            </div>
+                        </li>
+
+                        <hr className="app-menu__divider" />
+
                         <li className="app-menu__item">
                             <Link
                                 to="/home"
