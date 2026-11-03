@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Firebase Logs and Stuff
+.firebase/
 
 # Firebase SQL Connect local emulator data
 dataconnect/.dataconnect/pgliteData/
