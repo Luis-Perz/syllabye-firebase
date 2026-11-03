@@ -1,0 +1,17 @@
+# mutations for modifying Syllabye data
+
+# NOTE: THIS IS A TEST MUTATION!!!
+mutation TestEmailEventInsert @auth(
+  level: PUBLIC,
+  insecureReason: "Temporary local emulator testing only."
+) {
+  emailEvent_upsert(data: {
+    id: "70000000-0000-4000-8000-000000000099"
+    sectionId: "50000000-0000-4000-8000-000000000001"
+    kind: INITIAL_REQUEST
+    recipientId: "30000000-0000-4000-8000-000000000001"
+    recipientEmail: "prof1@example.com"
+    sentById: "10000000-0000-4000-8000-000000000001"
+    sentAt: "2026-09-20T10:00:00Z"
+  })
+}

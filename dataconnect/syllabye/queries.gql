@@ -1,0 +1,9 @@
+# Queries for retrieving Syllabye data
+
+# NOTE: THIS IS A TEST QUERY!!!
+query ListDepartments {
+  departments {
+    code
+    name
+  }
+}

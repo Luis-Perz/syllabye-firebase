@@ -1,0 +1,68 @@
+extend type Administrator {
+  """
+  ✨ Implicit foreign key field based on `Administrator`.`account`. It must match the value of `StaffAccount`.`id`. See `@ref` for how to customize it.
+  """
+  accountId: UUID! @fdc_generated(from: "Administrator.account", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Course {
+  """
+  ✨ Implicit foreign key field based on `Course`.`department`. It must match the value of `Department`.`code`. See `@ref` for how to customize it.
+  """
+  departmentCode: String! @fdc_generated(from: "Course.department", purpose: IMPLICIT_REF_FIELD)
+}
+extend type EmailEvent {
+  """
+  ✨ Implicit foreign key field based on `EmailEvent`.`recipient`. It must match the value of `Professor`.`id`. See `@ref` for how to customize it.
+  """
+  recipientId: UUID! @fdc_generated(from: "EmailEvent.recipient", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `EmailEvent`.`section`. It must match the value of `Section`.`id`. See `@ref` for how to customize it.
+  """
+  sectionId: UUID! @fdc_generated(from: "EmailEvent.section", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `EmailEvent`.`sentBy`. It must match the value of `StaffAccount`.`id`. See `@ref` for how to customize it.
+  """
+  sentById: UUID! @fdc_generated(from: "EmailEvent.sentBy", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Professor {
+  """
+  ✨ Implicit foreign key field based on `Professor`.`account`. It must match the value of `StaffAccount`.`id`. See `@ref` for how to customize it.
+  """
+  accountId: UUID! @fdc_generated(from: "Professor.account", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Professor`.`homeDepartment`. It must match the value of `Department`.`code`. See `@ref` for how to customize it.
+  """
+  homeDepartmentCode: String! @fdc_generated(from: "Professor.homeDepartment", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Section {
+  """
+  ✨ Implicit foreign key field based on `Section`.`course`. It must match the value of `Course`.`id`. See `@ref` for how to customize it.
+  """
+  courseId: UUID! @fdc_generated(from: "Section.course", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Section`.`professor`. It must match the value of `Professor`.`id`. See `@ref` for how to customize it.
+  """
+  professorId: UUID @fdc_generated(from: "Section.professor", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Section`.`sectionCode`. It must match the value of `SectionCode`.`code`. See `@ref` for how to customize it.
+  """
+  sectionCodeCode: String! @fdc_generated(from: "Section.sectionCode", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Section`.`semester`. It must match the value of `Semester`.`name`. See `@ref` for how to customize it.
+  """
+  semesterName: String! @fdc_generated(from: "Section.semester", purpose: IMPLICIT_REF_FIELD)
+}
+extend type SyllabusVersion {
+  """
+  ✨ Implicit foreign key field based on `SyllabusVersion`.`approvedBy`. It must match the value of `StaffAccount`.`id`. See `@ref` for how to customize it.
+  """
+  approvedById: UUID @fdc_generated(from: "SyllabusVersion.approvedBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `SyllabusVersion`.`section`. It must match the value of `Section`.`id`. See `@ref` for how to customize it.
+  """
+  sectionId: UUID! @fdc_generated(from: "SyllabusVersion.section", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `SyllabusVersion`.`uploadedBy`. It must match the value of `StaffAccount`.`id`. See `@ref` for how to customize it.
+  """
+  uploadedById: UUID! @fdc_generated(from: "SyllabusVersion.uploadedBy", purpose: IMPLICIT_REF_FIELD)
+}

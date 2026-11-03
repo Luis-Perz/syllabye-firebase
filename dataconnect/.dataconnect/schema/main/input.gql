@@ -1,0 +1,2874 @@
+"""
+✨ `Administrator_KeyOutput` returns the primary key fields of table type `Administrator`.
+
+It has the same format as `Administrator_Key`, but is only used as mutation return value.
+"""
+scalar Administrator_KeyOutput
+"""
+✨ `Course_KeyOutput` returns the primary key fields of table type `Course`.
+
+It has the same format as `Course_Key`, but is only used as mutation return value.
+"""
+scalar Course_KeyOutput
+"""
+✨ `Department_KeyOutput` returns the primary key fields of table type `Department`.
+
+It has the same format as `Department_Key`, but is only used as mutation return value.
+"""
+scalar Department_KeyOutput
+"""
+✨ `EmailEvent_KeyOutput` returns the primary key fields of table type `EmailEvent`.
+
+It has the same format as `EmailEvent_Key`, but is only used as mutation return value.
+"""
+scalar EmailEvent_KeyOutput
+"""
+✨ `EmailKind_Expr` is a server value variant of enum type `EmailKind`.
+
+It accepts a CEL expression.
+"""
+scalar EmailKind_Expr
+"""
+✨ `Professor_KeyOutput` returns the primary key fields of table type `Professor`.
+
+It has the same format as `Professor_Key`, but is only used as mutation return value.
+"""
+scalar Professor_KeyOutput
+"""
+✨ `Section_KeyOutput` returns the primary key fields of table type `Section`.
+
+It has the same format as `Section_Key`, but is only used as mutation return value.
+"""
+scalar Section_KeyOutput
+"""
+✨ `SectionCode_KeyOutput` returns the primary key fields of table type `SectionCode`.
+
+It has the same format as `SectionCode_Key`, but is only used as mutation return value.
+"""
+scalar SectionCode_KeyOutput
+"""
+✨ `Semester_KeyOutput` returns the primary key fields of table type `Semester`.
+
+It has the same format as `Semester_Key`, but is only used as mutation return value.
+"""
+scalar Semester_KeyOutput
+"""
+✨ `StaffAccount_KeyOutput` returns the primary key fields of table type `StaffAccount`.
+
+It has the same format as `StaffAccount_Key`, but is only used as mutation return value.
+"""
+scalar StaffAccount_KeyOutput
+"""
+✨ `SyllabusVersion_KeyOutput` returns the primary key fields of table type `SyllabusVersion`.
+
+It has the same format as `SyllabusVersion_Key`, but is only used as mutation return value.
+"""
+scalar SyllabusVersion_KeyOutput
+"""
+✨ Generated data input type for table 'Administrator'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Administrator_Data {
+  """
+  ✨ Generated from Field `Administrator`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Administrator`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Administrator`.`accountId` of type `UUID!`
+  """
+  accountId: UUID
+  """
+  ✨ `_expr` server value variant of `accountId` (✨ Generated from Field `Administrator`.`accountId` of type `UUID!`)
+  """
+  accountId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Administrator`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Key @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'Administrator'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Administrator_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Administrator_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Administrator_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Administrator_Filter!]
+  """
+  ✨ Generated from Field `Administrator`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Administrator`.`accountId` of type `UUID!`
+  """
+  accountId: UUID_Filter
+  """
+  ✨ Generated from Field `Administrator`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Filter
+}
+"""
+✨ Generated first-row input type for table 'Administrator'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Administrator_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Administrator_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Administrator_Filter
+}
+"""
+✨ Generated having input type for table 'Administrator'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Administrator_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Administrator_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Administrator_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Administrator_Having!]
+  """
+  ✨ Generated from Field `Administrator`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Administrator`.`accountId_count` of type `Int!`
+  """
+  accountId_count: Int_Filter
+  """
+  ✨ Generated from Field `Administrator`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Administrator'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Administrator_Key {
+  """
+  ✨ Generated from Field `Administrator`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Administrator`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Administrator'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Administrator_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Administrator_Filter
+}
+"""
+✨ Generated order input type for table 'Administrator'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Administrator_Order {
+  """
+  ✨ Generated from Field `Administrator`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Administrator`.`accountId` of type `UUID!`
+  """
+  accountId: OrderDirection
+  """
+  ✨ Generated from Field `Administrator`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Order
+  """
+  ✨ Generated from Field `Administrator`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Administrator`.`accountId_count` of type `Int!`
+  """
+  accountId_count: OrderDirection
+  """
+  ✨ Generated from Field `Administrator`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Course'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Course_Data {
+  """
+  ✨ Generated from Field `Course`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Course`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Course`.`departmentCode` of type `String!`
+  """
+  departmentCode: String
+  """
+  ✨ `_expr` server value variant of `departmentCode` (✨ Generated from Field `Course`.`departmentCode` of type `String!`)
+  """
+  departmentCode_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Course`.`department` of type `Department!`
+  """
+  department: Department_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Course`.`code` of type `String!`
+  """
+  code: String
+  """
+  ✨ `_expr` server value variant of `code` (✨ Generated from Field `Course`.`code` of type `String!`)
+  """
+  code_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Course`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Course`.`name` of type `String!`)
+  """
+  name_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Course`.`sections_on_course` of type `[Section!]!`
+  """
+  sections_on_course: [Section_Data!]
+}
+"""
+✨ Generated filter input type for table 'Course'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Course_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Course_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Course_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Course_Filter!]
+  """
+  ✨ Generated from Field `Course`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Course`.`departmentCode` of type `String!`
+  """
+  departmentCode: String_Filter
+  """
+  ✨ Generated from Field `Course`.`department` of type `Department!`
+  """
+  department: Department_Filter
+  """
+  ✨ Generated from Field `Course`.`code` of type `String!`
+  """
+  code: String_Filter
+  """
+  ✨ Generated from Field `Course`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Course`.`sections_on_course` of type `[Section!]!`
+  """
+  sections_on_course: Section_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Course'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Course_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Course_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Course_Filter
+}
+"""
+✨ Generated having input type for table 'Course'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Course_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Course_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Course_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Course_Having!]
+  """
+  ✨ Generated from Field `Course`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Course`.`code_count` of type `Int!`
+  """
+  code_count: Int_Filter
+  """
+  ✨ Generated from Field `Course`.`departmentCode_count` of type `Int!`
+  """
+  departmentCode_count: Int_Filter
+  """
+  ✨ Generated from Field `Course`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Course`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Course'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Course_Key {
+  """
+  ✨ Generated from Field `Course`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Course`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Course'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Course_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Course_Filter
+}
+"""
+✨ Generated order input type for table 'Course'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Course_Order {
+  """
+  ✨ Generated from Field `Course`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`departmentCode` of type `String!`
+  """
+  departmentCode: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`department` of type `Department!`
+  """
+  department: Department_Order
+  """
+  ✨ Generated from Field `Course`.`code` of type `String!`
+  """
+  code: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`code_count` of type `Int!`
+  """
+  code_count: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`departmentCode_count` of type `Int!`
+  """
+  departmentCode_count: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Course`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Department'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Department_Data {
+  """
+  ✨ Generated from Field `Department`.`code` of type `String!`
+  """
+  code: String
+  """
+  ✨ `_expr` server value variant of `code` (✨ Generated from Field `Department`.`code` of type `String!`)
+  """
+  code_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Department`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Department`.`name` of type `String!`)
+  """
+  name_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Department`.`courses_on_department` of type `[Course!]!`
+  """
+  courses_on_department: [Course_Data!]
+  """
+  ✨ Generated from Field `Department`.`professors_on_homeDepartment` of type `[Professor!]!`
+  """
+  professors_on_homeDepartment: [Professor_Data!]
+}
+"""
+✨ Generated filter input type for table 'Department'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Department_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Department_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Department_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Department_Filter!]
+  """
+  ✨ Generated from Field `Department`.`code` of type `String!`
+  """
+  code: String_Filter
+  """
+  ✨ Generated from Field `Department`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Department`.`courses_on_department` of type `[Course!]!`
+  """
+  courses_on_department: Course_ListFilter
+  """
+  ✨ Generated from Field `Department`.`professors_on_homeDepartment` of type `[Professor!]!`
+  """
+  professors_on_homeDepartment: Professor_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Department'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Department_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Department_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Department_Filter
+}
+"""
+✨ Generated having input type for table 'Department'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Department_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Department_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Department_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Department_Having!]
+  """
+  ✨ Generated from Field `Department`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Department`.`code_count` of type `Int!`
+  """
+  code_count: Int_Filter
+  """
+  ✨ Generated from Field `Department`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Department'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Department_Key {
+  """
+  ✨ Generated from Field `Department`.`code` of type `String!`
+  """
+  code: String
+  """
+  ✨ `_expr` server value variant of `code` (✨ Generated from Field `Department`.`code` of type `String!`)
+  """
+  code_expr: String_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Department'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Department_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Department_Filter
+}
+"""
+✨ Generated order input type for table 'Department'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Department_Order {
+  """
+  ✨ Generated from Field `Department`.`code` of type `String!`
+  """
+  code: OrderDirection
+  """
+  ✨ Generated from Field `Department`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Department`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Department`.`code_count` of type `Int!`
+  """
+  code_count: OrderDirection
+  """
+  ✨ Generated from Field `Department`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'EmailEvent'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input EmailEvent_Data {
+  """
+  ✨ Generated from Field `EmailEvent`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `EmailEvent`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientId` of type `UUID!`
+  """
+  recipientId: UUID
+  """
+  ✨ `_expr` server value variant of `recipientId` (✨ Generated from Field `EmailEvent`.`recipientId` of type `UUID!`)
+  """
+  recipientId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`sectionId` of type `UUID!`
+  """
+  sectionId: UUID
+  """
+  ✨ `_expr` server value variant of `sectionId` (✨ Generated from Field `EmailEvent`.`sectionId` of type `UUID!`)
+  """
+  sectionId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`sentById` of type `UUID!`
+  """
+  sentById: UUID
+  """
+  ✨ `_expr` server value variant of `sentById` (✨ Generated from Field `EmailEvent`.`sentById` of type `UUID!`)
+  """
+  sentById_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`recipient` of type `Professor!`
+  """
+  recipient: Professor_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`section` of type `Section!`
+  """
+  section: Section_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`sentBy` of type `StaffAccount!`
+  """
+  sentBy: StaffAccount_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`kind` of type `EmailKind!`
+  """
+  kind: EmailKind
+  """
+  ✨ `_expr` server value variant of `kind` (✨ Generated from Field `EmailEvent`.`kind` of type `EmailKind!`)
+  """
+  kind_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientEmail` of type `String!`
+  """
+  recipientEmail: String
+  """
+  ✨ `_expr` server value variant of `recipientEmail` (✨ Generated from Field `EmailEvent`.`recipientEmail` of type `String!`)
+  """
+  recipientEmail_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`
+  """
+  sentAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `sentAt` (✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`)
+  """
+  sentAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `sentAt` (✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`)
+  """
+  sentAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `sentAt` (✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`)
+  """
+  sentAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'EmailEvent'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input EmailEvent_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [EmailEvent_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: EmailEvent_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [EmailEvent_Filter!]
+  """
+  ✨ Generated from Field `EmailEvent`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientId` of type `UUID!`
+  """
+  recipientId: UUID_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sectionId` of type `UUID!`
+  """
+  sectionId: UUID_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentById` of type `UUID!`
+  """
+  sentById: UUID_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`recipient` of type `Professor!`
+  """
+  recipient: Professor_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`section` of type `Section!`
+  """
+  section: Section_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentBy` of type `StaffAccount!`
+  """
+  sentBy: StaffAccount_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`kind` of type `EmailKind!`
+  """
+  kind: EmailKind_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientEmail` of type `String!`
+  """
+  recipientEmail: String_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`
+  """
+  sentAt: Timestamp_Filter
+}
+"""
+✨ Generated first-row input type for table 'EmailEvent'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input EmailEvent_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [EmailEvent_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: EmailEvent_Filter
+}
+"""
+✨ Generated having input type for table 'EmailEvent'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input EmailEvent_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [EmailEvent_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: EmailEvent_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [EmailEvent_Having!]
+  """
+  ✨ Generated from Field `EmailEvent`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`kind_count` of type `Int!`
+  """
+  kind_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientEmail_count` of type `Int!`
+  """
+  recipientEmail_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientId_count` of type `Int!`
+  """
+  recipientId_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sectionId_count` of type `Int!`
+  """
+  sectionId_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_count` of type `Int!`
+  """
+  sentAt_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentById_count` of type `Int!`
+  """
+  sentById_count: Int_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_min` of type `Timestamp`
+  """
+  sentAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_max` of type `Timestamp`
+  """
+  sentAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'EmailEvent'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input EmailEvent_Key {
+  """
+  ✨ Generated from Field `EmailEvent`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `EmailEvent`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'EmailEvent'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input EmailEvent_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: EmailEvent_Filter
+}
+"""
+✨ Generated order input type for table 'EmailEvent'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input EmailEvent_Order {
+  """
+  ✨ Generated from Field `EmailEvent`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientId` of type `UUID!`
+  """
+  recipientId: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sectionId` of type `UUID!`
+  """
+  sectionId: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentById` of type `UUID!`
+  """
+  sentById: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`recipient` of type `Professor!`
+  """
+  recipient: Professor_Order
+  """
+  ✨ Generated from Field `EmailEvent`.`section` of type `Section!`
+  """
+  section: Section_Order
+  """
+  ✨ Generated from Field `EmailEvent`.`sentBy` of type `StaffAccount!`
+  """
+  sentBy: StaffAccount_Order
+  """
+  ✨ Generated from Field `EmailEvent`.`kind` of type `EmailKind!`
+  """
+  kind: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientEmail` of type `String!`
+  """
+  recipientEmail: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt` of type `Timestamp!`
+  """
+  sentAt: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`kind_count` of type `Int!`
+  """
+  kind_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientEmail_count` of type `Int!`
+  """
+  recipientEmail_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`recipientId_count` of type `Int!`
+  """
+  recipientId_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sectionId_count` of type `Int!`
+  """
+  sectionId_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_count` of type `Int!`
+  """
+  sentAt_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentById_count` of type `Int!`
+  """
+  sentById_count: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_min` of type `Timestamp`
+  """
+  sentAt_min: OrderDirection
+  """
+  ✨ Generated from Field `EmailEvent`.`sentAt_max` of type `Timestamp`
+  """
+  sentAt_max: OrderDirection
+}
+"""
+✨ Generated filter input type for table 'EmailKind'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input EmailKind_Filter {
+  """
+  Match if field is exactly equal to provided value.
+  """
+  eq: EmailKind
+  """
+  ✨ `_expr` server value variant of `eq` (Match if field is exactly equal to provided value.)
+  """
+  eq_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if field is not equal to provided value.
+  """
+  ne: EmailKind
+  """
+  ✨ `_expr` server value variant of `ne` (Match if field is not equal to provided value.)
+  """
+  ne_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  When true, match if field `IS NULL`. When false, match if field is `NOT NULL`.
+  """
+  isNull: Boolean
+  """
+  Match if field value is among the provided list of values.
+  """
+  in: [EmailKind!]
+  """
+  Match if field value is not among the provided list of values.
+  """
+  nin: [EmailKind!]
+  """
+  Match if field value is greater than the provided value, based on index ordering of supported enum values.
+  """
+  gt: EmailKind
+  """
+  ✨ `_expr` server value variant of `gt` (Match if field value is greater than the provided value, based on index ordering of supported enum values.)
+  """
+  gt_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if field is greater than or equal to the provided value.
+  """
+  ge: EmailKind
+  """
+  ✨ `_expr` server value variant of `ge` (Match if field is greater than or equal to the provided value.)
+  """
+  ge_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if field value is less than the provided value, based on index ordering of supported enum values.
+  """
+  lt: EmailKind
+  """
+  ✨ `_expr` server value variant of `lt` (Match if field value is less than the provided value, based on index ordering of supported enum values.)
+  """
+  lt_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if field is less than or equal to the provided value, based on index ordering of supported enum values.
+  """
+  le: EmailKind
+  """
+  ✨ `_expr` server value variant of `le` (Match if field is less than or equal to the provided value, based on index ordering of supported enum values.)
+  """
+  le_expr: EmailKind_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'EmailKind'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input EmailKind_ListFilter {
+  """
+  Match if list field contains the provided value as a member.
+  """
+  includes: EmailKind
+  """
+  ✨ `_expr` server value variant of `includes` (Match if list field contains the provided value as a member.)
+  """
+  includes_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if list field contains all of the provided values as members.
+  """
+  includesAll: [EmailKind!]
+  """
+  Match if list field does not contain the provided value as a member.
+  """
+  excludes: EmailKind
+  """
+  ✨ `_expr` server value variant of `excludes` (Match if list field does not contain the provided value as a member.)
+  """
+  excludes_expr: EmailKind_Expr @fdc_forbiddenInVariables
+  """
+  Match if list field does not contain any of the provided values as members.
+  """
+  excludesAll: [EmailKind!]
+  """
+  The desired number of enum values that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: EmailKind_Filter
+}
+"""
+✨ Generated data input type for table 'Professor'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Professor_Data {
+  """
+  ✨ Generated from Field `Professor`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Professor`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`accountId` of type `UUID!`
+  """
+  accountId: UUID
+  """
+  ✨ `_expr` server value variant of `accountId` (✨ Generated from Field `Professor`.`accountId` of type `UUID!`)
+  """
+  accountId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`homeDepartmentCode` of type `String!`
+  """
+  homeDepartmentCode: String
+  """
+  ✨ `_expr` server value variant of `homeDepartmentCode` (✨ Generated from Field `Professor`.`homeDepartmentCode` of type `String!`)
+  """
+  homeDepartmentCode_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`homeDepartment` of type `Department!`
+  """
+  homeDepartment: Department_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`isActive` of type `Boolean!`
+  """
+  isActive: Boolean
+  """
+  ✨ `_expr` server value variant of `isActive` (✨ Generated from Field `Professor`.`isActive` of type `Boolean!`)
+  """
+  isActive_expr: Boolean_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Professor`.`emailEvents_on_recipient` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_recipient: [EmailEvent_Data!]
+  """
+  ✨ Generated from Field `Professor`.`sections_on_professor` of type `[Section!]!`
+  """
+  sections_on_professor: [Section_Data!]
+}
+"""
+✨ Generated filter input type for table 'Professor'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Professor_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Professor_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Professor_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Professor_Filter!]
+  """
+  ✨ Generated from Field `Professor`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Professor`.`accountId` of type `UUID!`
+  """
+  accountId: UUID_Filter
+  """
+  ✨ Generated from Field `Professor`.`homeDepartmentCode` of type `String!`
+  """
+  homeDepartmentCode: String_Filter
+  """
+  ✨ Generated from Field `Professor`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Filter
+  """
+  ✨ Generated from Field `Professor`.`homeDepartment` of type `Department!`
+  """
+  homeDepartment: Department_Filter
+  """
+  ✨ Generated from Field `Professor`.`isActive` of type `Boolean!`
+  """
+  isActive: Boolean_Filter
+  """
+  ✨ Generated from Field `Professor`.`emailEvents_on_recipient` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_recipient: EmailEvent_ListFilter
+  """
+  ✨ Generated from Field `Professor`.`sections_on_professor` of type `[Section!]!`
+  """
+  sections_on_professor: Section_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Professor'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Professor_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Professor_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Professor_Filter
+}
+"""
+✨ Generated having input type for table 'Professor'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Professor_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Professor_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Professor_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Professor_Having!]
+  """
+  ✨ Generated from Field `Professor`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Professor`.`accountId_count` of type `Int!`
+  """
+  accountId_count: Int_Filter
+  """
+  ✨ Generated from Field `Professor`.`homeDepartmentCode_count` of type `Int!`
+  """
+  homeDepartmentCode_count: Int_Filter
+  """
+  ✨ Generated from Field `Professor`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Professor`.`isActive_count` of type `Int!`
+  """
+  isActive_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Professor'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Professor_Key {
+  """
+  ✨ Generated from Field `Professor`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Professor`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Professor'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Professor_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Professor_Filter
+}
+"""
+✨ Generated order input type for table 'Professor'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Professor_Order {
+  """
+  ✨ Generated from Field `Professor`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`accountId` of type `UUID!`
+  """
+  accountId: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`homeDepartmentCode` of type `String!`
+  """
+  homeDepartmentCode: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`account` of type `StaffAccount!`
+  """
+  account: StaffAccount_Order
+  """
+  ✨ Generated from Field `Professor`.`homeDepartment` of type `Department!`
+  """
+  homeDepartment: Department_Order
+  """
+  ✨ Generated from Field `Professor`.`isActive` of type `Boolean!`
+  """
+  isActive: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`accountId_count` of type `Int!`
+  """
+  accountId_count: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`homeDepartmentCode_count` of type `Int!`
+  """
+  homeDepartmentCode_count: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Professor`.`isActive_count` of type `Int!`
+  """
+  isActive_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Section'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Section_Data {
+  """
+  ✨ Generated from Field `Section`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Section`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`courseId` of type `UUID!`
+  """
+  courseId: UUID
+  """
+  ✨ `_expr` server value variant of `courseId` (✨ Generated from Field `Section`.`courseId` of type `UUID!`)
+  """
+  courseId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`professorId` of type `UUID`
+  """
+  professorId: UUID
+  """
+  ✨ `_expr` server value variant of `professorId` (✨ Generated from Field `Section`.`professorId` of type `UUID`)
+  """
+  professorId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`sectionCodeCode` of type `String!`
+  """
+  sectionCodeCode: String
+  """
+  ✨ `_expr` server value variant of `sectionCodeCode` (✨ Generated from Field `Section`.`sectionCodeCode` of type `String!`)
+  """
+  sectionCodeCode_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`semesterName` of type `String!`
+  """
+  semesterName: String
+  """
+  ✨ `_expr` server value variant of `semesterName` (✨ Generated from Field `Section`.`semesterName` of type `String!`)
+  """
+  semesterName_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`course` of type `Course!`
+  """
+  course: Course_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`professor` of type `Professor`
+  """
+  professor: Professor_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`sectionCode` of type `SectionCode!`
+  """
+  sectionCode: SectionCode_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`semester` of type `Semester!`
+  """
+  semester: Semester_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`
+  """
+  lastReminderAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `lastReminderAt` (✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`)
+  """
+  lastReminderAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `lastReminderAt` (✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`)
+  """
+  lastReminderAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `lastReminderAt` (✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`)
+  """
+  lastReminderAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `updatedAt` (✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `updatedAt` (✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `updatedAt` (✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Section`.`emailEvents_on_section` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_section: [EmailEvent_Data!]
+  """
+  ✨ Generated from Field `Section`.`syllabusVersions_on_section` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_section: [SyllabusVersion_Data!]
+}
+"""
+✨ Generated filter input type for table 'Section'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Section_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Section_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Section_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Section_Filter!]
+  """
+  ✨ Generated from Field `Section`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Section`.`courseId` of type `UUID!`
+  """
+  courseId: UUID_Filter
+  """
+  ✨ Generated from Field `Section`.`professorId` of type `UUID`
+  """
+  professorId: UUID_Filter
+  """
+  ✨ Generated from Field `Section`.`sectionCodeCode` of type `String!`
+  """
+  sectionCodeCode: String_Filter
+  """
+  ✨ Generated from Field `Section`.`semesterName` of type `String!`
+  """
+  semesterName: String_Filter
+  """
+  ✨ Generated from Field `Section`.`course` of type `Course!`
+  """
+  course: Course_Filter
+  """
+  ✨ Generated from Field `Section`.`professor` of type `Professor`
+  """
+  professor: Professor_Filter
+  """
+  ✨ Generated from Field `Section`.`sectionCode` of type `SectionCode!`
+  """
+  sectionCode: SectionCode_Filter
+  """
+  ✨ Generated from Field `Section`.`semester` of type `Semester!`
+  """
+  semester: Semester_Filter
+  """
+  ✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`
+  """
+  lastReminderAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`emailEvents_on_section` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_section: EmailEvent_ListFilter
+  """
+  ✨ Generated from Field `Section`.`syllabusVersions_on_section` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_section: SyllabusVersion_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Section'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Section_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Section_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Section_Filter
+}
+"""
+✨ Generated having input type for table 'Section'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Section_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Section_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Section_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Section_Having!]
+  """
+  ✨ Generated from Field `Section`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`courseId_count` of type `Int!`
+  """
+  courseId_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_count` of type `Int!`
+  """
+  lastReminderAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`professorId_count` of type `Int!`
+  """
+  professorId_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`sectionCodeCode_count` of type `Int!`
+  """
+  sectionCodeCode_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`semesterName_count` of type `Int!`
+  """
+  semesterName_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`updatedAt_count` of type `Int!`
+  """
+  updatedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Section`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_min` of type `Timestamp`
+  """
+  lastReminderAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`updatedAt_min` of type `Timestamp`
+  """
+  updatedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_max` of type `Timestamp`
+  """
+  lastReminderAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Section`.`updatedAt_max` of type `Timestamp`
+  """
+  updatedAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Section'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Section_Key {
+  """
+  ✨ Generated from Field `Section`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Section`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Section'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Section_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Section_Filter
+}
+"""
+✨ Generated order input type for table 'Section'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Section_Order {
+  """
+  ✨ Generated from Field `Section`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`courseId` of type `UUID!`
+  """
+  courseId: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`professorId` of type `UUID`
+  """
+  professorId: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`sectionCodeCode` of type `String!`
+  """
+  sectionCodeCode: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`semesterName` of type `String!`
+  """
+  semesterName: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`course` of type `Course!`
+  """
+  course: Course_Order
+  """
+  ✨ Generated from Field `Section`.`professor` of type `Professor`
+  """
+  professor: Professor_Order
+  """
+  ✨ Generated from Field `Section`.`sectionCode` of type `SectionCode!`
+  """
+  sectionCode: SectionCode_Order
+  """
+  ✨ Generated from Field `Section`.`semester` of type `Semester!`
+  """
+  semester: Semester_Order
+  """
+  ✨ Generated from Field `Section`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt` of type `Timestamp`
+  """
+  lastReminderAt: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`courseId_count` of type `Int!`
+  """
+  courseId_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_count` of type `Int!`
+  """
+  lastReminderAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`professorId_count` of type `Int!`
+  """
+  professorId_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`sectionCodeCode_count` of type `Int!`
+  """
+  sectionCodeCode_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`semesterName_count` of type `Int!`
+  """
+  semesterName_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`updatedAt_count` of type `Int!`
+  """
+  updatedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_min` of type `Timestamp`
+  """
+  lastReminderAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`updatedAt_min` of type `Timestamp`
+  """
+  updatedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`lastReminderAt_max` of type `Timestamp`
+  """
+  lastReminderAt_max: OrderDirection
+  """
+  ✨ Generated from Field `Section`.`updatedAt_max` of type `Timestamp`
+  """
+  updatedAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'SectionCode'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input SectionCode_Data {
+  """
+  ✨ Generated from Field `SectionCode`.`code` of type `String!`
+  """
+  code: String
+  """
+  ✨ `_expr` server value variant of `code` (✨ Generated from Field `SectionCode`.`code` of type `String!`)
+  """
+  code_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SectionCode`.`isActive` of type `Boolean!`
+  """
+  isActive: Boolean
+  """
+  ✨ `_expr` server value variant of `isActive` (✨ Generated from Field `SectionCode`.`isActive` of type `Boolean!`)
+  """
+  isActive_expr: Boolean_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder` of type `Int!`
+  """
+  sortOrder: Int
+  """
+  ✨ `_expr` server value variant of `sortOrder` (✨ Generated from Field `SectionCode`.`sortOrder` of type `Int!`)
+  """
+  sortOrder_expr: Int_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `sortOrder` (✨ Generated from Field `SectionCode`.`sortOrder` of type `Int!`)
+  """
+  sortOrder_update: [Int_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SectionCode`.`sections_on_sectionCode` of type `[Section!]!`
+  """
+  sections_on_sectionCode: [Section_Data!]
+}
+"""
+✨ Generated filter input type for table 'SectionCode'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SectionCode_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [SectionCode_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: SectionCode_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [SectionCode_Filter!]
+  """
+  ✨ Generated from Field `SectionCode`.`code` of type `String!`
+  """
+  code: String_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`isActive` of type `Boolean!`
+  """
+  isActive: Boolean_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder` of type `Int!`
+  """
+  sortOrder: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sections_on_sectionCode` of type `[Section!]!`
+  """
+  sections_on_sectionCode: Section_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'SectionCode'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input SectionCode_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [SectionCode_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: SectionCode_Filter
+}
+"""
+✨ Generated having input type for table 'SectionCode'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SectionCode_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [SectionCode_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: SectionCode_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [SectionCode_Having!]
+  """
+  ✨ Generated from Field `SectionCode`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`code_count` of type `Int!`
+  """
+  code_count: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`isActive_count` of type `Int!`
+  """
+  isActive_count: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_count` of type `Int!`
+  """
+  sortOrder_count: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_sum` of type `Int`
+  """
+  sortOrder_sum: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_avg` of type `Float`
+  """
+  sortOrder_avg: Float_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_min` of type `Int`
+  """
+  sortOrder_min: Int_Filter
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_max` of type `Int`
+  """
+  sortOrder_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'SectionCode'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input SectionCode_Key {
+  """
+  ✨ Generated from Field `SectionCode`.`code` of type `String!`
+  """
+  code: String
+  """
+  ✨ `_expr` server value variant of `code` (✨ Generated from Field `SectionCode`.`code` of type `String!`)
+  """
+  code_expr: String_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'SectionCode'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input SectionCode_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: SectionCode_Filter
+}
+"""
+✨ Generated order input type for table 'SectionCode'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input SectionCode_Order {
+  """
+  ✨ Generated from Field `SectionCode`.`code` of type `String!`
+  """
+  code: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`isActive` of type `Boolean!`
+  """
+  isActive: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder` of type `Int!`
+  """
+  sortOrder: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`code_count` of type `Int!`
+  """
+  code_count: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`isActive_count` of type `Int!`
+  """
+  isActive_count: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_count` of type `Int!`
+  """
+  sortOrder_count: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_sum` of type `Int`
+  """
+  sortOrder_sum: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_avg` of type `Float`
+  """
+  sortOrder_avg: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_min` of type `Int`
+  """
+  sortOrder_min: OrderDirection
+  """
+  ✨ Generated from Field `SectionCode`.`sortOrder_max` of type `Int`
+  """
+  sortOrder_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Semester'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Semester_Data {
+  """
+  ✨ Generated from Field `Semester`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Semester`.`name` of type `String!`)
+  """
+  name_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Semester`.`isCurrent` of type `Boolean!`
+  """
+  isCurrent: Boolean
+  """
+  ✨ `_expr` server value variant of `isCurrent` (✨ Generated from Field `Semester`.`isCurrent` of type `Boolean!`)
+  """
+  isCurrent_expr: Boolean_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Semester`.`sections_on_semester` of type `[Section!]!`
+  """
+  sections_on_semester: [Section_Data!]
+}
+"""
+✨ Generated filter input type for table 'Semester'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Semester_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Semester_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Semester_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Semester_Filter!]
+  """
+  ✨ Generated from Field `Semester`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Semester`.`isCurrent` of type `Boolean!`
+  """
+  isCurrent: Boolean_Filter
+  """
+  ✨ Generated from Field `Semester`.`sections_on_semester` of type `[Section!]!`
+  """
+  sections_on_semester: Section_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Semester'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Semester_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Semester_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Semester_Filter
+}
+"""
+✨ Generated having input type for table 'Semester'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Semester_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Semester_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Semester_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Semester_Having!]
+  """
+  ✨ Generated from Field `Semester`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Semester`.`isCurrent_count` of type `Int!`
+  """
+  isCurrent_count: Int_Filter
+  """
+  ✨ Generated from Field `Semester`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Semester'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Semester_Key {
+  """
+  ✨ Generated from Field `Semester`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Semester`.`name` of type `String!`)
+  """
+  name_expr: String_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Semester'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Semester_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Semester_Filter
+}
+"""
+✨ Generated order input type for table 'Semester'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Semester_Order {
+  """
+  ✨ Generated from Field `Semester`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Semester`.`isCurrent` of type `Boolean!`
+  """
+  isCurrent: OrderDirection
+  """
+  ✨ Generated from Field `Semester`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Semester`.`isCurrent_count` of type `Int!`
+  """
+  isCurrent_count: OrderDirection
+  """
+  ✨ Generated from Field `Semester`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'StaffAccount'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input StaffAccount_Data {
+  """
+  ✨ Generated from Field `StaffAccount`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `StaffAccount`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`authUid` of type `String`
+  """
+  authUid: String
+  """
+  ✨ `_expr` server value variant of `authUid` (✨ Generated from Field `StaffAccount`.`authUid` of type `String`)
+  """
+  authUid_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`displayName` of type `String!`
+  """
+  displayName: String
+  """
+  ✨ `_expr` server value variant of `displayName` (✨ Generated from Field `StaffAccount`.`displayName` of type `String!`)
+  """
+  displayName_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`email` of type `String!`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `StaffAccount`.`email` of type `String!`)
+  """
+  email_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `updatedAt` (✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `updatedAt` (✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `updatedAt` (✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`)
+  """
+  updatedAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `StaffAccount`.`emailEvents_on_sentBy` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_sentBy: [EmailEvent_Data!]
+  """
+  ✨ Generated from Field `StaffAccount`.`syllabusVersions_on_approvedBy` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_approvedBy: [SyllabusVersion_Data!]
+  """
+  ✨ Generated from Field `StaffAccount`.`syllabusVersions_on_uploadedBy` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_uploadedBy: [SyllabusVersion_Data!]
+  """
+  ✨ Generated from Field `StaffAccount`.`administrator_on_account` of type `Administrator`
+  """
+  administrator_on_account: Administrator_Data
+  """
+  ✨ Generated from Field `StaffAccount`.`professor_on_account` of type `Professor`
+  """
+  professor_on_account: Professor_Data
+}
+"""
+✨ Generated filter input type for table 'StaffAccount'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input StaffAccount_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [StaffAccount_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: StaffAccount_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [StaffAccount_Filter!]
+  """
+  ✨ Generated from Field `StaffAccount`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`authUid` of type `String`
+  """
+  authUid: String_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`displayName` of type `String!`
+  """
+  displayName: String_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`email` of type `String!`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`emailEvents_on_sentBy` of type `[EmailEvent!]!`
+  """
+  emailEvents_on_sentBy: EmailEvent_ListFilter
+  """
+  ✨ Generated from Field `StaffAccount`.`syllabusVersions_on_approvedBy` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_approvedBy: SyllabusVersion_ListFilter
+  """
+  ✨ Generated from Field `StaffAccount`.`syllabusVersions_on_uploadedBy` of type `[SyllabusVersion!]!`
+  """
+  syllabusVersions_on_uploadedBy: SyllabusVersion_ListFilter
+  """
+  ✨ Generated from Field `StaffAccount`.`administrator_on_account` of type `Administrator`
+  """
+  administrator_on_account: Administrator_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`professor_on_account` of type `Professor`
+  """
+  professor_on_account: Professor_Filter
+}
+"""
+✨ Generated first-row input type for table 'StaffAccount'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input StaffAccount_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [StaffAccount_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: StaffAccount_Filter
+}
+"""
+✨ Generated having input type for table 'StaffAccount'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input StaffAccount_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [StaffAccount_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: StaffAccount_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [StaffAccount_Having!]
+  """
+  ✨ Generated from Field `StaffAccount`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`authUid_count` of type `Int!`
+  """
+  authUid_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`displayName_count` of type `Int!`
+  """
+  displayName_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_count` of type `Int!`
+  """
+  updatedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_min` of type `Timestamp`
+  """
+  updatedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_max` of type `Timestamp`
+  """
+  updatedAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'StaffAccount'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input StaffAccount_Key {
+  """
+  ✨ Generated from Field `StaffAccount`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `StaffAccount`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'StaffAccount'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input StaffAccount_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: StaffAccount_Filter
+}
+"""
+✨ Generated order input type for table 'StaffAccount'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input StaffAccount_Order {
+  """
+  ✨ Generated from Field `StaffAccount`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`authUid` of type `String`
+  """
+  authUid: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`displayName` of type `String!`
+  """
+  displayName: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`email` of type `String!`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt` of type `Timestamp!`
+  """
+  updatedAt: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`authUid_count` of type `Int!`
+  """
+  authUid_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`displayName_count` of type `Int!`
+  """
+  displayName_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_count` of type `Int!`
+  """
+  updatedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_min` of type `Timestamp`
+  """
+  updatedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+  """
+  ✨ Generated from Field `StaffAccount`.`updatedAt_max` of type `Timestamp`
+  """
+  updatedAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'SyllabusVersion'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input SyllabusVersion_Data {
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedById` of type `UUID`
+  """
+  approvedById: UUID
+  """
+  ✨ `_expr` server value variant of `approvedById` (✨ Generated from Field `SyllabusVersion`.`approvedById` of type `UUID`)
+  """
+  approvedById_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sectionId` of type `UUID!`
+  """
+  sectionId: UUID
+  """
+  ✨ `_expr` server value variant of `sectionId` (✨ Generated from Field `SyllabusVersion`.`sectionId` of type `UUID!`)
+  """
+  sectionId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedById` of type `UUID!`
+  """
+  uploadedById: UUID
+  """
+  ✨ `_expr` server value variant of `uploadedById` (✨ Generated from Field `SyllabusVersion`.`uploadedById` of type `UUID!`)
+  """
+  uploadedById_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedBy` of type `StaffAccount`
+  """
+  approvedBy: StaffAccount_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`section` of type `Section!`
+  """
+  section: Section_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedBy` of type `StaffAccount!`
+  """
+  uploadedBy: StaffAccount_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`
+  """
+  approvedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `approvedAt` (✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`)
+  """
+  approvedAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `approvedAt` (✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`)
+  """
+  approvedAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `approvedAt` (✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`)
+  """
+  approvedAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`contentType` of type `String!`
+  """
+  contentType: String
+  """
+  ✨ `_expr` server value variant of `contentType` (✨ Generated from Field `SyllabusVersion`.`contentType` of type `String!`)
+  """
+  contentType_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`fileName` of type `String!`
+  """
+  fileName: String
+  """
+  ✨ `_expr` server value variant of `fileName` (✨ Generated from Field `SyllabusVersion`.`fileName` of type `String!`)
+  """
+  fileName_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes` of type `Int64!`
+  """
+  sizeBytes: Int64
+  """
+  ✨ `_expr` server value variant of `sizeBytes` (✨ Generated from Field `SyllabusVersion`.`sizeBytes` of type `Int64!`)
+  """
+  sizeBytes_expr: Int64_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `sizeBytes` (✨ Generated from Field `SyllabusVersion`.`sizeBytes` of type `Int64!`)
+  """
+  sizeBytes_update: [Int64_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`storagePath` of type `String!`
+  """
+  storagePath: String
+  """
+  ✨ `_expr` server value variant of `storagePath` (✨ Generated from Field `SyllabusVersion`.`storagePath` of type `String!`)
+  """
+  storagePath_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`
+  """
+  uploadedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `uploadedAt` (✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`)
+  """
+  uploadedAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `uploadedAt` (✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`)
+  """
+  uploadedAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `uploadedAt` (✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`)
+  """
+  uploadedAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber` of type `Int!`
+  """
+  versionNumber: Int
+  """
+  ✨ `_expr` server value variant of `versionNumber` (✨ Generated from Field `SyllabusVersion`.`versionNumber` of type `Int!`)
+  """
+  versionNumber_expr: Int_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `versionNumber` (✨ Generated from Field `SyllabusVersion`.`versionNumber` of type `Int!`)
+  """
+  versionNumber_update: [Int_Update!] @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'SyllabusVersion'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SyllabusVersion_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [SyllabusVersion_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: SyllabusVersion_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [SyllabusVersion_Filter!]
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedById` of type `UUID`
+  """
+  approvedById: UUID_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sectionId` of type `UUID!`
+  """
+  sectionId: UUID_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedById` of type `UUID!`
+  """
+  uploadedById: UUID_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedBy` of type `StaffAccount`
+  """
+  approvedBy: StaffAccount_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`section` of type `Section!`
+  """
+  section: Section_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedBy` of type `StaffAccount!`
+  """
+  uploadedBy: StaffAccount_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`
+  """
+  approvedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`contentType` of type `String!`
+  """
+  contentType: String_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`fileName` of type `String!`
+  """
+  fileName: String_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes` of type `Int64!`
+  """
+  sizeBytes: Int64_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`storagePath` of type `String!`
+  """
+  storagePath: String_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`
+  """
+  uploadedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber` of type `Int!`
+  """
+  versionNumber: Int_Filter
+}
+"""
+✨ Generated first-row input type for table 'SyllabusVersion'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input SyllabusVersion_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [SyllabusVersion_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: SyllabusVersion_Filter
+}
+"""
+✨ Generated having input type for table 'SyllabusVersion'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SyllabusVersion_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [SyllabusVersion_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: SyllabusVersion_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [SyllabusVersion_Having!]
+  """
+  ✨ Generated from Field `SyllabusVersion`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_count` of type `Int!`
+  """
+  approvedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedById_count` of type `Int!`
+  """
+  approvedById_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`contentType_count` of type `Int!`
+  """
+  contentType_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`fileName_count` of type `Int!`
+  """
+  fileName_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sectionId_count` of type `Int!`
+  """
+  sectionId_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_count` of type `Int!`
+  """
+  sizeBytes_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`storagePath_count` of type `Int!`
+  """
+  storagePath_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_count` of type `Int!`
+  """
+  uploadedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedById_count` of type `Int!`
+  """
+  uploadedById_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_count` of type `Int!`
+  """
+  versionNumber_count: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_sum` of type `Int64`
+  """
+  sizeBytes_sum: Int64_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_sum` of type `Int`
+  """
+  versionNumber_sum: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_avg` of type `Float`
+  """
+  sizeBytes_avg: Float_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_avg` of type `Float`
+  """
+  versionNumber_avg: Float_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_min` of type `Timestamp`
+  """
+  approvedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_min` of type `Int64`
+  """
+  sizeBytes_min: Int64_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_min` of type `Timestamp`
+  """
+  uploadedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_min` of type `Int`
+  """
+  versionNumber_min: Int_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_max` of type `Timestamp`
+  """
+  approvedAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_max` of type `Int64`
+  """
+  sizeBytes_max: Int64_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_max` of type `Timestamp`
+  """
+  uploadedAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_max` of type `Int`
+  """
+  versionNumber_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'SyllabusVersion'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input SyllabusVersion_Key {
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'SyllabusVersion'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input SyllabusVersion_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: SyllabusVersion_Filter
+}
+"""
+✨ Generated order input type for table 'SyllabusVersion'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input SyllabusVersion_Order {
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedById` of type `UUID`
+  """
+  approvedById: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sectionId` of type `UUID!`
+  """
+  sectionId: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedById` of type `UUID!`
+  """
+  uploadedById: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedBy` of type `StaffAccount`
+  """
+  approvedBy: StaffAccount_Order
+  """
+  ✨ Generated from Field `SyllabusVersion`.`section` of type `Section!`
+  """
+  section: Section_Order
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedBy` of type `StaffAccount!`
+  """
+  uploadedBy: StaffAccount_Order
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt` of type `Timestamp`
+  """
+  approvedAt: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`contentType` of type `String!`
+  """
+  contentType: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`fileName` of type `String!`
+  """
+  fileName: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes` of type `Int64!`
+  """
+  sizeBytes: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`storagePath` of type `String!`
+  """
+  storagePath: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt` of type `Timestamp!`
+  """
+  uploadedAt: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber` of type `Int!`
+  """
+  versionNumber: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_count` of type `Int!`
+  """
+  approvedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedById_count` of type `Int!`
+  """
+  approvedById_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`contentType_count` of type `Int!`
+  """
+  contentType_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`fileName_count` of type `Int!`
+  """
+  fileName_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sectionId_count` of type `Int!`
+  """
+  sectionId_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_count` of type `Int!`
+  """
+  sizeBytes_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`storagePath_count` of type `Int!`
+  """
+  storagePath_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_count` of type `Int!`
+  """
+  uploadedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedById_count` of type `Int!`
+  """
+  uploadedById_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_count` of type `Int!`
+  """
+  versionNumber_count: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_sum` of type `Int64`
+  """
+  sizeBytes_sum: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_sum` of type `Int`
+  """
+  versionNumber_sum: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_avg` of type `Float`
+  """
+  sizeBytes_avg: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_avg` of type `Float`
+  """
+  versionNumber_avg: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_min` of type `Timestamp`
+  """
+  approvedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_min` of type `Int64`
+  """
+  sizeBytes_min: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_min` of type `Timestamp`
+  """
+  uploadedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_min` of type `Int`
+  """
+  versionNumber_min: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`approvedAt_max` of type `Timestamp`
+  """
+  approvedAt_max: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`sizeBytes_max` of type `Int64`
+  """
+  sizeBytes_max: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`uploadedAt_max` of type `Timestamp`
+  """
+  uploadedAt_max: OrderDirection
+  """
+  ✨ Generated from Field `SyllabusVersion`.`versionNumber_max` of type `Int`
+  """
+  versionNumber_max: OrderDirection
+}

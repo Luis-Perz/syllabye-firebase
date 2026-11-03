@@ -1,0 +1,44 @@
+
+# This is a file for you to write an un-named query.
+# Only one un-named query is allowed per file.
+query {
+  sections{
+    course {
+      department {
+        code
+        name
+      }
+      number
+      name
+    }
+    semester {
+      name
+      startDate
+      endDate
+      isCurrent
+    }
+    sectionCode
+    sortOrder
+    professor {
+      account {
+        authUid
+        email
+        displayName
+        isAdmin
+        isProfessor
+        createdAt
+        updatedAt
+      }
+      homeDepartment {
+        code
+        name
+      }
+      isActive
+    }
+    status
+    lastReminderAt
+    lastUploadedAt
+    createdAt
+    updatedAt
+  }
+}

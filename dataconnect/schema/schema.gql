@@ -1,0 +1,116 @@
+# Schema for storing Syllabye data
+
+enum EmailKind {
+  INITIAL_REQUEST 
+  REMINDER
+}
+
+# ---------- Reference data ----------
+type Department @table(key: "code") {
+  code: String! @col(dataType: "varchar(8)")
+  name: String! @col(dataType: "varchar(80)")
+}
+
+# Exactly one row should have isCurrent = true (enforced in the mutation that changes it).
+type Semester @table(key: "name") {
+  name: String! @col(dataType: "varchar(30)")
+  
+  isCurrent: Boolean! @default(value: false)
+}
+
+# ---------- People ----------
+# One row per person who may ever sign in. Never deleted.
+# Pre-registered by an admin: authUid stays null until the person's first verified sign-in.
+type StaffAccount @table(key: "id") {
+  id: UUID! @default(expr: "uuidV4()")
+  authUid: String @unique @col(dataType: "varchar(128)")
+  
+  email: String! @unique @col(dataType: "varchar(254)")   # stored lowercase
+  displayName: String! @col(dataType: "varchar(120)")
+  
+  createdAt: Timestamp! @default(expr: "request.time")
+  updatedAt: Timestamp! @default(expr: "request.time")
+}
+
+type Administrator @table(key: "id") {
+  id: UUID! @default(expr: "uuidV4()")
+  account: StaffAccount! @unique
+}
+
+type Professor @table(key: "id") {
+  id: UUID! @default(expr: "uuidV4()")
+  account: StaffAccount! @unique
+  
+  homeDepartment: Department!
+
+  isActive: Boolean! @default(value: true)
+}
+
+# ---------- Courses and sections ----------
+
+# A department + code is a unique course (e.g. "CPSC" + "44000" is a unique course)
+type Course @table(key: "id") @unique(fields: ["department", "code"]) {
+  id: UUID! @default(expr: "uuidV4()")
+
+  department: Department!
+  code: String! @col(dataType: "varchar(8)")
+
+  name: String! @col(dataType: "varchar(200)")
+}
+
+type Section @table(key: "id") @unique(fields: ["course", "semester", "sectionCode"]) {
+  id: UUID! @default(expr: "uuidV4()")
+
+  course: Course!
+  semester: Semester!
+  
+  sectionCode: SectionCode!
+
+  professor: Professor @index                              # any department; may be inactive
+  
+  lastReminderAt: Timestamp
+  createdAt: Timestamp! @default(expr: "request.time")
+  updatedAt: Timestamp! @default(expr: "request.time")    # set explicitly on update
+}
+
+# List of all possible section codes
+type SectionCode @table(key: "code") {
+  code: String! @col(dataType: "varchar(16)")
+  
+  sortOrder: Int! @unique
+
+  isActive: Boolean! @default(value: true)
+}
+
+# ---------- Syllabus files ----------
+type SyllabusVersion @table(key: "id") @unique(fields: ["section", "versionNumber"]) {
+  id: UUID! @default(expr: "uuidV4()")
+
+  section: Section!
+  versionNumber: Int!
+
+  storagePath: String! @col(dataType: "varchar(512)")    # Storage path should be based on UUID for uniqueness
+  fileName: String! @col(dataType: "varchar(512)")       # The filename to be given upon download (may differ from storagePath)
+  contentType: String! @col(dataType: "varchar(256)")
+  
+  sizeBytes: Int64!
+  uploadedBy: StaffAccount!
+  uploadedAt: Timestamp! @default(expr: "request.time")
+  
+  approvedBy: StaffAccount
+  approvedAt: Timestamp
+}
+
+# ---------- Email history ----------
+type EmailEvent @table(key: "id") {
+  id: UUID! @default(expr: "uuidV4()")
+
+  section: Section! @index
+
+  kind: EmailKind!
+
+  recipient: Professor!
+  recipientEmail: String! @col(dataType: "varchar(254)")
+  sentBy: StaffAccount!
+  sentAt: Timestamp! @default(expr: "request.time")
+}

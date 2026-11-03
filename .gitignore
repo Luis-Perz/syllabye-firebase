@@ -1,5 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
+# Firebase SQL Connect local emulator data
+dataconnect/.dataconnect/pgliteData/
+
+# Firebase emulator exported data (if used)
+exportedData/
+
+# Firebase debug logs
+firebase-debug.log
+dataconnect-debug.log
+
 # dependencies
 /node_modules
 /.pnp

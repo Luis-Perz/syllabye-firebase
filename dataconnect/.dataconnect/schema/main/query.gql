@@ -1,0 +1,517 @@
+extend type Query {
+  """
+  ✨ Look up a single `Administrator` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  administrator(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Administrator_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Administrator_FirstRow
+  ): Administrator @fdc_generated(from: "Administrator", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Course` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  course(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Course_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Course_FirstRow
+  ): Course @fdc_generated(from: "Course", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Department` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  department(
+    """
+    The key used to identify the object.
+    """
+    key: Department_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Department_FirstRow
+  ): Department @fdc_generated(from: "Department", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `EmailEvent` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  emailEvent(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: EmailEvent_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: EmailEvent_FirstRow
+  ): EmailEvent @fdc_generated(from: "EmailEvent", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Professor` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  professor(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Professor_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Professor_FirstRow
+  ): Professor @fdc_generated(from: "Professor", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Section` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  section(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Section_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Section_FirstRow
+  ): Section @fdc_generated(from: "Section", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `SectionCode` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  sectionCode(
+    """
+    The key used to identify the object.
+    """
+    key: SectionCode_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: SectionCode_FirstRow
+  ): SectionCode @fdc_generated(from: "SectionCode", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Semester` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  semester(
+    """
+    The key used to identify the object.
+    """
+    key: Semester_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Semester_FirstRow
+  ): Semester @fdc_generated(from: "Semester", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `StaffAccount` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  staffAccount(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: StaffAccount_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: StaffAccount_FirstRow
+  ): StaffAccount @fdc_generated(from: "StaffAccount", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `SyllabusVersion` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  syllabusVersion(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: SyllabusVersion_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: SyllabusVersion_FirstRow
+  ): SyllabusVersion @fdc_generated(from: "SyllabusVersion", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Administrator` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  administrators(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Administrator_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Administrator_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Administrator_Having
+  ): [Administrator!]! @fdc_generated(from: "Administrator", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Course` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  courses(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Course_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Course_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Course_Having
+  ): [Course!]! @fdc_generated(from: "Course", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Department` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  departments(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Department_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Department_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Department_Having
+  ): [Department!]! @fdc_generated(from: "Department", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `EmailEvent` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  emailEvents(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: EmailEvent_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [EmailEvent_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: EmailEvent_Having
+  ): [EmailEvent!]! @fdc_generated(from: "EmailEvent", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Professor` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  professors(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Professor_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Professor_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Professor_Having
+  ): [Professor!]! @fdc_generated(from: "Professor", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Section` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  sections(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Section_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Section_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Section_Having
+  ): [Section!]! @fdc_generated(from: "Section", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `SectionCode` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  sectionCodes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SectionCode_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SectionCode_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SectionCode_Having
+  ): [SectionCode!]! @fdc_generated(from: "SectionCode", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Semester` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  semesters(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Semester_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Semester_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Semester_Having
+  ): [Semester!]! @fdc_generated(from: "Semester", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `StaffAccount` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  staffAccounts(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: StaffAccount_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [StaffAccount_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: StaffAccount_Having
+  ): [StaffAccount!]! @fdc_generated(from: "StaffAccount", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `SyllabusVersion` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  syllabusVersions(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SyllabusVersion_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SyllabusVersion_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SyllabusVersion_Having
+  ): [SyllabusVersion!]! @fdc_generated(from: "SyllabusVersion", purpose: QUERY_MULTIPLE)
+}

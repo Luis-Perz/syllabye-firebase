@@ -1,0 +1,364 @@
+# DATA FOR TESTING PURPOSES!!!!!
+
+mutation SeedSyllaBye @transaction {
+  # ---------- Departments ----------
+  department_insertMany(data: [
+    { code: "CPSC", name: "Computer Science" }
+    { code: "MATH", name: "Mathematics" }
+    { code: "BIOL", name: "Biology" }
+  ])
+
+  # ---------- Semesters ----------
+  semester_insertMany(data: [
+    { name: "Fall 2026", isCurrent: true }
+    { name: "Spring 2027", isCurrent: false }
+  ])
+
+  # ---------- Section codes ----------
+  sectionCode_insertMany(data: [
+    { code: "001", sortOrder: 1, isActive: true }
+    { code: "002", sortOrder: 2, isActive: true }
+    { code: "003", sortOrder: 3, isActive: true }
+    { code: "L01", sortOrder: 4, isActive: true }
+    { code: "L02", sortOrder: 5, isActive: true }
+    { code: "L03", sortOrder: 6, isActive: true }
+  ])
+
+  # ---------- Staff accounts ----------
+  staffAccount_insertMany(data: [
+    {
+      id: "10000000-0000-4000-8000-000000000001"
+      authUid: null
+      email: "admin1@example.com"
+      displayName: "Alex Administrator"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000002"
+      authUid: null
+      email: "admin2@example.com"
+      displayName: "Jordan Administrator"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000003"
+      authUid: null
+      email: "prof1@example.com"
+      displayName: "Taylor Professor"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000004"
+      authUid: null
+      email: "prof2@example.com"
+      displayName: "Morgan Professor"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000005"
+      authUid: null
+      email: "prof3@example.com"
+      displayName: "Casey Professor"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+    {
+      id: "10000000-0000-4000-8000-000000000006"
+      authUid: null
+      email: "prof4@example.com"
+      displayName: "Riley Professor"
+      createdAt: "2026-08-01T09:00:00Z"
+      updatedAt: "2026-08-01T09:00:00Z"
+    }
+  ])
+
+  # ---------- Administrators ----------
+  administrator_insertMany(data: [
+    {
+      id: "20000000-0000-4000-8000-000000000001"
+      accountId: "10000000-0000-4000-8000-000000000001"
+    }
+    {
+      id: "20000000-0000-4000-8000-000000000002"
+      accountId: "10000000-0000-4000-8000-000000000002"
+    }
+  ])
+
+  # ---------- Professors ----------
+  professor_insertMany(data: [
+    {
+      id: "30000000-0000-4000-8000-000000000001"
+      accountId: "10000000-0000-4000-8000-000000000003"
+      homeDepartmentCode: "CPSC"
+      isActive: true
+    }
+    {
+      id: "30000000-0000-4000-8000-000000000002"
+      accountId: "10000000-0000-4000-8000-000000000004"
+      homeDepartmentCode: "MATH"
+      isActive: true
+    }
+    {
+      id: "30000000-0000-4000-8000-000000000003"
+      accountId: "10000000-0000-4000-8000-000000000005"
+      homeDepartmentCode: "BIOL"
+      isActive: true
+    }
+    {
+      id: "30000000-0000-4000-8000-000000000004"
+      accountId: "10000000-0000-4000-8000-000000000006"
+      homeDepartmentCode: "CPSC"
+      isActive: false
+    }
+  ])
+
+  # ---------- Courses ----------
+  course_insertMany(data: [
+    {
+      id: "40000000-0000-4000-8000-000000000001"
+      departmentCode: "CPSC"
+      code: "44000"
+      name: "Web Application Development"
+    }
+    {
+      id: "40000000-0000-4000-8000-000000000002"
+      departmentCode: "CPSC"
+      code: "45000"
+      name: "Database Systems"
+    }
+    {
+      id: "40000000-0000-4000-8000-000000000003"
+      departmentCode: "CPSC"
+      code: "46000"
+      name: "Software Engineering"
+    }
+    {
+      id: "40000000-0000-4000-8000-000000000004"
+      departmentCode: "MATH"
+      code: "30000"
+      name: "Linear Algebra"
+    }
+    {
+      id: "40000000-0000-4000-8000-000000000005"
+      departmentCode: "MATH"
+      code: "31000"
+      name: "Discrete Mathematics"
+    }
+    {
+      id: "40000000-0000-4000-8000-000000000006"
+      departmentCode: "BIOL"
+      code: "20000"
+      name: "General Biology"
+    }
+  ])
+
+  # ---------- Sections ----------
+  section_insertMany(data: [
+    {
+      id: "50000000-0000-4000-8000-000000000001"
+      courseId: "40000000-0000-4000-8000-000000000001"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "001"
+      professorId: "30000000-0000-4000-8000-000000000001"
+      lastReminderAt: "2026-09-15T10:00:00Z"
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000002"
+      courseId: "40000000-0000-4000-8000-000000000001"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "002"
+      professorId: "30000000-0000-4000-8000-000000000001"
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000003"
+      courseId: "40000000-0000-4000-8000-000000000002"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "003"
+      professorId: "30000000-0000-4000-8000-000000000002"
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000004"
+      courseId: "40000000-0000-4000-8000-000000000003"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "L01"
+      professorId: null
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000005"
+      courseId: "40000000-0000-4000-8000-000000000004"
+      semesterName: "Spring 2027"
+      sectionCodeCode: "001"
+      professorId: "30000000-0000-4000-8000-000000000004"
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000006"
+      courseId: "40000000-0000-4000-8000-000000000005"
+      semesterName: "Spring 2027"
+      sectionCodeCode: "002"
+      professorId: "30000000-0000-4000-8000-000000000002"
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000007"
+      courseId: "40000000-0000-4000-8000-000000000006"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "L02"
+      professorId: "30000000-0000-4000-8000-000000000003"
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+    {
+      id: "50000000-0000-4000-8000-000000000008"
+      courseId: "40000000-0000-4000-8000-000000000006"
+      semesterName: "Fall 2026"
+      sectionCodeCode: "L03"
+      professorId: null
+      lastReminderAt: null
+      createdAt: "2026-08-15T09:00:00Z"
+      updatedAt: "2026-08-15T09:00:00Z"
+    }
+  ])
+
+  # ---------- Syllabus versions ----------
+  syllabusVersion_insertMany(data: [
+    {
+      id: "60000000-0000-4000-8000-000000000001"
+      sectionId: "50000000-0000-4000-8000-000000000001"
+      versionNumber: 1
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000001.pdf"
+      fileName: "CPSC-44000-001-syllabus.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 102400
+      uploadedById: "10000000-0000-4000-8000-000000000003"
+      uploadedAt: "2026-08-20T10:00:00Z"
+      approvedById: "10000000-0000-4000-8000-000000000001"
+      approvedAt: "2026-08-21T10:00:00Z"
+    }
+    {
+      id: "60000000-0000-4000-8000-000000000002"
+      sectionId: "50000000-0000-4000-8000-000000000001"
+      versionNumber: 2
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000002.pdf"
+      fileName: "CPSC-44000-001-syllabus-revised.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 110000
+      uploadedById: "10000000-0000-4000-8000-000000000003"
+      uploadedAt: "2026-09-01T10:00:00Z"
+      approvedById: null
+      approvedAt: null
+    }
+    {
+      id: "60000000-0000-4000-8000-000000000003"
+      sectionId: "50000000-0000-4000-8000-000000000002"
+      versionNumber: 1
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000003.pdf"
+      fileName: "CPSC-44000-002-syllabus.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 98000
+      uploadedById: "10000000-0000-4000-8000-000000000003"
+      uploadedAt: "2026-08-20T11:00:00Z"
+      approvedById: "10000000-0000-4000-8000-000000000002"
+      approvedAt: "2026-08-22T10:00:00Z"
+    }
+    {
+      id: "60000000-0000-4000-8000-000000000004"
+      sectionId: "50000000-0000-4000-8000-000000000003"
+      versionNumber: 1
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000004.pdf"
+      fileName: "CPSC-45000-003-syllabus.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 120000
+      uploadedById: "10000000-0000-4000-8000-000000000004"
+      uploadedAt: "2026-08-21T09:00:00Z"
+      approvedById: null
+      approvedAt: null
+    }
+    {
+      id: "60000000-0000-4000-8000-000000000005"
+      sectionId: "50000000-0000-4000-8000-000000000004"
+      versionNumber: 1
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000005.pdf"
+      fileName: "CPSC-46000-L01-syllabus.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 105000
+      uploadedById: "10000000-0000-4000-8000-000000000001"
+      uploadedAt: "2026-08-22T09:00:00Z"
+      approvedById: "10000000-0000-4000-8000-000000000001"
+      approvedAt: "2026-08-23T09:00:00Z"
+    }
+    {
+      id: "60000000-0000-4000-8000-000000000006"
+      sectionId: "50000000-0000-4000-8000-000000000007"
+      versionNumber: 1
+      storagePath: "syllabi/60000000-0000-4000-8000-000000000006.pdf"
+      fileName: "BIOL-20000-L02-syllabus.pdf"
+      contentType: "application/pdf"
+      sizeBytes: 115000
+      uploadedById: "10000000-0000-4000-8000-000000000005"
+      uploadedAt: "2026-08-22T11:00:00Z"
+      approvedById: null
+      approvedAt: null
+    }
+  ])
+
+  # ---------- Email events ----------
+  emailEvent_insertMany(data: [
+    {
+      id: "70000000-0000-4000-8000-000000000001"
+      sectionId: "50000000-0000-4000-8000-000000000001"
+      kind: INITIAL_REQUEST
+      recipientId: "30000000-0000-4000-8000-000000000001"
+      recipientEmail: "prof1@example.com"
+      sentById: "10000000-0000-4000-8000-000000000001"
+      sentAt: "2026-08-16T09:00:00Z"
+    }
+    {
+      id: "70000000-0000-4000-8000-000000000002"
+      sectionId: "50000000-0000-4000-8000-000000000001"
+      kind: REMINDER
+      recipientId: "30000000-0000-4000-8000-000000000001"
+      recipientEmail: "prof1@example.com"
+      sentById: "10000000-0000-4000-8000-000000000001"
+      sentAt: "2026-09-15T10:00:00Z"
+    }
+    {
+      id: "70000000-0000-4000-8000-000000000003"
+      sectionId: "50000000-0000-4000-8000-000000000002"
+      kind: INITIAL_REQUEST
+      recipientId: "30000000-0000-4000-8000-000000000001"
+      recipientEmail: "prof1@example.com"
+      sentById: "10000000-0000-4000-8000-000000000002"
+      sentAt: "2026-08-16T09:30:00Z"
+    }
+    {
+      id: "70000000-0000-4000-8000-000000000004"
+      sectionId: "50000000-0000-4000-8000-000000000003"
+      kind: INITIAL_REQUEST
+      recipientId: "30000000-0000-4000-8000-000000000002"
+      recipientEmail: "prof2@example.com"
+      sentById: "10000000-0000-4000-8000-000000000001"
+      sentAt: "2026-08-17T09:00:00Z"
+    }
+  ])
+}
