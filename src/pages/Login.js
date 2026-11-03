@@ -24,7 +24,7 @@ function Login(){
                 return;
             }
             console.log("success")
-            nav("/home")
+            nav("/app")
         } catch (error) {
             console.log("error")
             setError(error.message)
@@ -32,8 +32,8 @@ function Login(){
     }
 
     // Navigation functions
-    function navigateToHome() {
-        nav("/home");
+    function navigateToConsole() {
+        nav("/app");
     }
 
     function navigateToLogin() {
@@ -72,7 +72,7 @@ function Login(){
 
                     {view === "login" && (
                         <>
-                            <LoginForm onSuccess={navigateToHome} />
+                            <LoginForm onSuccess={navigateToConsole} />
                             <p className="back-link" onClick={() => setView("google")}> &lt; Back </p>
                             <p className="reset-link" onClick={() => setView("reset")}>Reset Password</p>
                         </>
