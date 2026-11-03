@@ -1,7 +1,7 @@
 # Queries for retrieving Syllabye data
 
 # NOTE: THIS IS A TEST QUERY!!!
-query ListDepartments {
+query ListDepartments  @auth(level: USER_EMAIL_VERIFIED) {
   departments {
     code
     name
