@@ -62,8 +62,8 @@ function App() {
                                     <AppLayout />
                                 </CheckAccess>
                             }>
-                                <Route index element={<Navigate to="storage-syllabus" replace />} />
-                                <Route path="storage-syllabus" element={<SyllabusStorage />} />
+                                <Route index element={<Navigate to="syllabus-storage" replace />} />
+                                <Route path="syllabus-storage" element={<SyllabusStorage />} />
                                 <Route path="professor-management" element={<ProfessorManagement />} />
                                 <Route path="course-management" element={<CourseManagement />} />
                                 <Route path="email-center" element={<EmailCenter />} />

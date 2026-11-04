@@ -2,7 +2,7 @@ import { Outlet, NavLink } from 'react-router-dom';
 import { Drawer, List, ListItemButton, ListItemText, Box } from '@mui/material';
 
 const pages = [
-    { name: 'Storage Syllabus', path: 'storage-syllabus' },
+    { name: 'Syllabus Storage', path: 'syllabus-storage' },
     { name: 'Professor Management', path: 'professor-management' },
     { name: 'Course Management', path: 'course-management' },
     { name: 'Email Center', path: 'email-center' }
