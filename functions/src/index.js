@@ -1,6 +1,7 @@
 const { setGlobalOptions } = require("firebase-functions/v2");
 
 setGlobalOptions({
+    invoker: "public",
     maxInstances: 10
 });
 
