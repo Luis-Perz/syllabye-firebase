@@ -1,7 +1,6 @@
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { app } from "./index";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "./firebase";
 
-const functions = getFunctions(app);
 
 export const getCourses = httpsCallable(functions, "firestoreOperations-getCourses");
 export const getDepartments = httpsCallable(functions, "firestoreOperations-getDepartments");

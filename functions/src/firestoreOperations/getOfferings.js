@@ -3,7 +3,7 @@ const { getFirestore } = require("firebase-admin/firestore")
 
 const db = getFirestore()
 
-exports.getSyllabusMetadata = onCall(async (request) => {
+exports.getOfferings = onCall(async (request) => {
     const authId = request.auth?.uid
     if (!authId) {
         throw new HttpsError("unauthenticated", "Unauthorized: No auth ID found in request")
@@ -15,7 +15,7 @@ exports.getSyllabusMetadata = onCall(async (request) => {
 
     const { courseKey, professorKey, sectionCodeKey, semesterKey, status } = request.data ?? {}
 
-    let query = db.collection("syllabus-metadata")
+    let query = db.collection("offerings")
     if (courseKey) {
         query = query.where("courseKey", "==", courseKey)
     }
