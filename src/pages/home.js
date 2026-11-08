@@ -185,6 +185,14 @@ const inputFieldCheck = () =>{
                                 return;
                             }
 
+                            //Checks file size
+                            const maxFileSize = 1000 * 1000 * 10; 
+                            if (file.size > maxFileSize) {
+                                setMessage("File size cannot be larger than 10mb.");
+                                setLoading(false);
+                                return;
+                            }
+
                             try {
                                 const fileURL = await uploadSyllabus(file, formData);
                                 await syllabus({ ...formData, fileURL });
