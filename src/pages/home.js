@@ -40,6 +40,10 @@ function Home() {
     const [file, setFile] = useState(null);
     const [view, setView] = useState("form");
 
+    //File size limit in megabytes
+    const maxFileSize = ((10 * 1024 * 1024) / (1024 * 1024)); 
+
+
     async function loadCourseLookup() {
         const snapshot = await getDocs(collection(db, "Department"));
         const lookup = {};
@@ -186,9 +190,8 @@ const inputFieldCheck = () =>{
                             }
 
                             //Checks file size
-                            const maxFileSize = 1000 * 1000 * 10; 
                             if (file.size > maxFileSize) {
-                                setMessage("File size cannot be larger than 10mb.");
+                                setMessage(`File size cannot be larger than ${maxFileSize}mb.`);
                                 setLoading(false);
                                 return;
                             }
