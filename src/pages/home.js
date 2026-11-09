@@ -40,6 +40,10 @@ function Home() {
     const [file, setFile] = useState(null);
     const [view, setView] = useState("form");
 
+    //File size limit in megabytes
+    const MAX_FILE_SIZE_MB = 10
+
+
     async function loadCourseLookup() {
         const snapshot = await getDocs(collection(db, "Department"));
         const lookup = {};
@@ -181,6 +185,13 @@ const inputFieldCheck = () =>{
                                 !validExtensions.includes(extension)
                             ) {
                                 setMessage("Only PDF or DOCX files are allowed.");
+                                setLoading(false);
+                                return;
+                            }
+
+                            //Checks file size
+                            if (file.size > (MAX_FILE_SIZE_MB * 1024 * 1024)) {
+                                setMessage(`File size cannot be larger than ${MAX_FILE_SIZE_MB}mb.`);
                                 setLoading(false);
                                 return;
                             }
