@@ -6,6 +6,7 @@ export default function LoginForm({ onSuccess }) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
+    // Simple check if emails and passwords are the same to allow access to the site
     const submitForm = async (e) => {
         e.preventDefault();
         setError(null);
@@ -18,6 +19,7 @@ export default function LoginForm({ onSuccess }) {
         }
     };
 
+    // HTML For login
     return (
         <div>
             <form className="login-form" onSubmit={submitForm}>
@@ -32,6 +34,7 @@ export default function LoginForm({ onSuccess }) {
     );
 }
 
+// Checks for any errors regarding the sign on
 function mapFirebaseError(code) {
     switch (code) {
         case "auth/wrong-password":

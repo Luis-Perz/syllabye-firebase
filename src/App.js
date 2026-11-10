@@ -4,11 +4,20 @@ import Login from './pages/Login';
 import About from './pages/About';
 import UnauthorizedAccess from "./pages/UnauthorizedAccess";
 import AdminDashboard from './pages/AdminDashboard';
+import ManageUser from './pages/ManageUser';
 import {AuthProvider} from './context/AuthContext';
 import { CheckAccess } from './components/CheckAccess';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext";
 import AppMenu from './components/AppMenu';
+
+import { Navigate } from 'react-router-dom';
+import AppLayout from './components/AppLayout';
+
+import SyllabusStorage from './pages/SyllabusStorage';
+import ProfessorManagement from './pages/ProfessorManagement';
+import CourseManagement from './pages/CourseManagement';
+import EmailCenter from './pages/EmailCenter';
 
 function App() {
   return (
@@ -40,6 +49,25 @@ function App() {
                                   <AdminDashboard />
                               </CheckAccess>
                           }/>
+
+                          <Route path="/admin/manage-user" element={
+                              <CheckAccess allowedRoles={["admin"]}>
+                                  <AppMenu />
+                                  <ManageUser />
+                              </CheckAccess>
+                          }/>
+
+                            <Route path="/app" element={
+                                <CheckAccess allowedRoles={["admin", "user"]}>
+                                    <AppLayout />
+                                </CheckAccess>
+                            }>
+                                <Route index element={<Navigate to="syllabus-storage" replace />} />
+                                <Route path="syllabus-storage" element={<SyllabusStorage />} />
+                                <Route path="professor-management" element={<ProfessorManagement />} />
+                                <Route path="course-management" element={<CourseManagement />} />
+                                <Route path="email-center" element={<EmailCenter />} />
+                            </Route>
                       </Routes>
                   </BrowserRouter>
               </ThemeProvider>

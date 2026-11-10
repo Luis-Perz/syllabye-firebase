@@ -9,6 +9,11 @@ export default function AppMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const { toggleTheme } = useContext(ThemeContext);
+    
+    let menuName = auth.currentUser?.displayName || "User";
+    if(menuName.length > 22){
+        menuName = menuName.slice(0, 19)+"...";
+    };
 
     const toggleMenu = () => {
         setIsOpen((previous) => !previous);
@@ -18,6 +23,7 @@ export default function AppMenu() {
         setIsOpen(false);
     };
 
+    // Signs users out whenever that option is pressed
     const handleSignOut = async () => {
         try {
             await signOut(auth);
@@ -28,6 +34,7 @@ export default function AppMenu() {
         }
     };
 
+    // Structure of the dropdown menu
     return (
         <nav className="app-menu" aria-label="Main menu">
             <div className="app-menu__container">
@@ -45,8 +52,18 @@ export default function AppMenu() {
                     id="app-menu-dropdown"
                     className={`app-menu__dropdown ${isOpen ? "app-menu__dropdown--open" : ""}`}
                     hidden={!isOpen}
-                >
+                >   
                     <ul className="app-menu__list">
+                        <li className="app-menu__item">
+                            <div
+                                className="app-menu__static"
+                            >
+                                {menuName}
+                            </div>
+                        </li>
+
+                        <hr className="app-menu__divider" />
+
                         <li className="app-menu__item">
                             <Link
                                 to="/home"

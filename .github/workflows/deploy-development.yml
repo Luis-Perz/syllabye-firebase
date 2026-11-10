@@ -1,0 +1,19 @@
+name: Deploy Development Branch to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SYLLABYE_4A90D }}
+          projectId: syllabye-4a90d
+          channelId: development
+          expires: 30d

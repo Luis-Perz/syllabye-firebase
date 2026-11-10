@@ -1,8 +1,11 @@
+
+/*Login*/
 .admin-login-container {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;}
+    align-items: center;
+}
 
 .login-card{
     width: 400px;
@@ -14,6 +17,7 @@
     opacity: 0.9;
 }
 
+/*Submit Button*/
 .form-title {
     font-size: 28px;
     margin-bottom: 10px;
@@ -40,11 +44,13 @@
     background: #a50d25;
 }
 
+/*Error Message*/
 .error-text {
     color: red;
     margin-top: 10px;
 }
 
+/*Background*/
 .background{
     height: 100%;
     width: 100%;
@@ -56,4 +62,3 @@
     left: 0;
     z-index: -1;
 }
-

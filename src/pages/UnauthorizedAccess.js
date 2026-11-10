@@ -5,6 +5,8 @@ import Stop from "../images/stop.png"
 
 function UnauthorizedAccess(){
     const navigate = useNavigate();
+
+    // HTML for unauthorized access page
     return (
        <>
            <div className="ua-container">

@@ -314,7 +314,6 @@ const inputFieldCheck = () =>{
                                         <div className="form-group">
                                             <label>Course Number:</label>
                                             <input
-                                                type="number"
                                                 value={formData.courseNumber}
                                                 onChange={(e) => {
                                                     const courseNumber = e.target.value.trim();

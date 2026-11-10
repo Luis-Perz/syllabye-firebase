@@ -8,6 +8,7 @@ export default function CreateUserForm() {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
 
+    // Creates the new account
     const submitForm = async (e) => {
         e.preventDefault();
         setError(null);
@@ -29,6 +30,7 @@ export default function CreateUserForm() {
         }
     };
 
+    // HTML for creating a new account
     return (
         <div>
             <form className="create-login-form" onSubmit={submitForm}>
@@ -65,6 +67,7 @@ export default function CreateUserForm() {
     );
 }
 
+// Catches any invalid emails, weak pawwords, or if the email is already being used
 function checkError(code) {
     switch (code) {
         case "auth/email-already-in-use": return "An account with this email already exists.";

@@ -152,6 +152,28 @@
         color 0.2s ease;
 }
 
+.app-menu__static {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 38px;
+    box-sizing: border-box;
+    padding: 8px 10px;
+
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #037dff;
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+}
+
 /* Hover and keyboard focus */
 .app-menu__link:hover,
 .app-menu__action:hover {

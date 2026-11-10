@@ -18,6 +18,7 @@ function About() {
                 <div className="about-header">
                     <h1 className="about-title">About</h1>
                 </div>
+
                 <div className="about-section">
                     <h2>What is Syllabye?</h2>
                     <div className="about-section-inner">
@@ -27,8 +28,8 @@ function About() {
                             upload process while automatically ensuring each file follows the required naming convention.
                         </p>
                     </div>
-
                 </div>
+
                 <div className="how-to-section">
                     <h2 className = "how-to-use">How to use SyllaBye:</h2>
                     <div className="how-to-use-inner">
@@ -40,14 +41,15 @@ function About() {
                                 >
                                     User Account
                                 </button>
+
                                 <button className={`how-to-selector ${overview === "upload" ? "active" : ""}`} onClick={() => {
                                     setOverview("upload")
                                     setView("upload")}}>
                                     Uploading Syllabus
                                 </button>
                             </div>
-
                         </div>
+
                         <div className="account-and-upload">
                             {view === "account" && (
                                 <>
@@ -57,12 +59,14 @@ function About() {
                                         <p><em>We recommend using Google Authentication to log in. (Step 1b)</em><br />
                                             You can also create an account using your Lewis email address.</p>
                                     </div>
+
                                     <div className="walkthrough-card">
                                         <b>Step 1b: Google email Login</b>
                                         <img src={GoogleLogin} alt=" Google login screen"/>
                                         <p>Press the Google email login button and follow the steps on the pop-up screen
                                             to login using your gmail</p>
                                     </div>
+
                                     <div className="walkthrough-card">
                                         <b>Step 2: Email Login</b>
                                         <img src={LoginScreen} alt="Email login screen"/>
@@ -72,6 +76,7 @@ function About() {
                                     </div>
                                 </>
                             )}
+
                             {view === "upload" && (
                                 <>
                                     <div className="walkthrough-card">
@@ -80,11 +85,13 @@ function About() {
                                         <p>All Fields are <b>required</b><br/>
                                             <em>Note:</em> Entering Course Number will autofill Course Name </p>
                                     </div>
+
                                     <div className="walkthrough-card">
                                         <b>Step 2: Select Syllabus</b>
                                         <img src={DragDrop} alt="Selecting syllabus to upload"/>
                                         <p>Open File directory and select or drop file into the marked box.</p>
                                     </div>
+
                                     <div className="walkthrough-card">
                                         <b>Step 3: Confirmation</b>
                                         <img src={Success} alt="Syllabus upload confirmation"/>
@@ -95,9 +102,9 @@ function About() {
                                 </>
                             )}
                         </div>
-
                     </div>
                 </div>
+
                 <div className="help-section">
                     <h2 className ="help">Help</h2>
                     <p> If you encounter any issues or have questions, please contact any member of the development team: </p>
@@ -111,6 +118,7 @@ function About() {
                         <li> Jacob P: <a href={"mailto:jacobwpetrosky@lewisu.edu"}>jacobwpetrosky@lewisu.edu</a> </li>                    
                     </ol>
                 </div>
+                
                 <footer>
                     <p>SyllaBye was built by the <a href={"https://luis-perz.github.io/cookie-monster-group-site/"}>Cookie Monster</a> team</p>
                 </footer>

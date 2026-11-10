@@ -1,3 +1,5 @@
+
+/*About return button and layout*/
 .about-return-btn {
     display: block;
     margin: 10px auto;
@@ -6,6 +8,7 @@
     border: 1px solid #f9f9f9;
     border-radius: 8px;
 }
+
 .about-return-btn:hover {
     color: #a50d25;
 }
@@ -30,6 +33,7 @@
     font-size: 90px;
     font-weight: 400;
 }
+
 .about-section {
     max-height: 500px;
     text-align: center;
@@ -47,16 +51,20 @@
     font-size: 25px;
     padding: 0 10rem;
 }
+
 .about-section-inner img {
     max-width: 100%;
     height: auto;
 }
+
+/*How-to section and layout*/
 .how-to-section {
     max-height: 500px;
     text-align: center;
     padding: 50px;
     margin: 0 auto;
 }
+
 .how-to-selector-container {
     display: flex;
     flex-direction: row;
@@ -64,6 +72,7 @@
     justify-content: space-between;
     width: 26%;
 }
+
 .how-to-selector {
     height: 30px;
     display: flex;
@@ -73,68 +82,9 @@
     margin: 15px auto;
     padding: 20px;
 }
+
 .how-to-selector:hover {
     cursor: pointer;
-}
-.active {
-    background-color: #c8102e;
-    color: #fff;
-    border-radius: 30px;
-    transition: 0.5s ease-in-out;
-}
-.account-and-upload {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-.account-and-upload p {
-    text-align: start;
-    padding: 5px;
-    font-size: 14px;
-}
-.walkthrough-card {
-    border: 1px solid #c8102e;
-    border-radius: 10px;
-    max-width: 300px;
-    height: 450px;
-}
-.walkthrough-card img {
-    max-width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-top: 1px solid #121212;
-    border-bottom: 1px solid #121212;
-}
-.walkthrough-card em {
-    color: red;
-}
-.help-section {
-    max-height: 500px;
-    text-align: center;
-    padding: 50px;
-    margin: 0 auto;
-}
-.help {
-    font-family: 'Alumni Sans Collegiate One', sans-serif;
-    font-size: 65px;
-    color: #c8102e;
-    font-weight: 400;
-    margin-top: 25px;
-}
-ol {
-    list-style: none;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-}
-ol li {
-    width: 15%;
-    margin: 0 auto;
-    text-align: start;
 }
 
 .how-to-use {
@@ -143,6 +93,83 @@ ol li {
     color: #c8102e;
     font-weight: 400;
 }
+
+/*Active layout*/
+.active {
+    background-color: #c8102e;
+    color: #fff;
+    border-radius: 30px;
+    transition: 0.5s ease-in-out;
+}
+
+/*Account and upload section*/
+.account-and-upload {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-and-upload p {
+    text-align: start;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/*Walkthrough card*/
+.walkthrough-card {
+    border: 1px solid #c8102e;
+    border-radius: 10px;
+    max-width: 300px;
+    height: 450px;
+}
+
+.walkthrough-card img {
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-top: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+}
+
+.walkthrough-card em {
+    color: red;
+}
+
+/*Help section*/
+.help-section {
+    max-height: 500px;
+    text-align: center;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.help {
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 65px;
+    color: #c8102e;
+    font-weight: 400;
+    margin-top: 25px;
+}
+
+/*Lists*/
+ol {
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+ol li {
+    width: 15%;
+    margin: 0 auto;
+    text-align: start;
+}
+
+/*Footer*/
 footer {
     align-content: center;
     background: #dcdcdc;
@@ -152,6 +179,7 @@ footer {
     color: #a50d25;
     font-size: 18px;
 }
+
 footer a {
     text-decoration: none;
     color: dodgerblue;

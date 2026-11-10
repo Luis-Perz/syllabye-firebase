@@ -2,7 +2,11 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+<<<<<<< HEAD
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
+=======
+import { getFunctions } from "firebase/functions";
+>>>>>>> main
 
 const firebaseConfig = {
     apiKey: "AIzaSyDZW0cWkqHJS6s7y_rLcVXXvYyJbS97V2o",
@@ -33,5 +37,10 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
 const storage = getStorage(app);
+const functions = getFunctions(app);
 
+<<<<<<< HEAD
 export { auth, provider, db, storage};
+=======
+export { auth, provider, db, storage, functions };
+>>>>>>> main
