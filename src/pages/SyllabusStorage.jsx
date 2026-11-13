@@ -1,9 +1,6 @@
 import { useState } from 'react';
+import { Typography, Button } from '@mui/material';
 import { getOfferings } from '../firebase/functions';
-
-import { Button } from "@/shadcn/ui/button";
-import { Input } from "@/shadcn/ui/input";
-
 
 // NOTE: This is all just example code for now!!! Replace it with the actual code that will be used to display the syllabus data from the database.
 
@@ -17,20 +14,18 @@ function SyllabusStorage() {
 
     return (
         <>
-            <h1>
+            <Typography variant="h4">
                 Syllabus Storage
-            </h1>
+            </Typography>
 
-            <Button variant="default" size="lg" className="rounded-full" onClick={testFunction}>
+            <Button variant="contained" onClick={testFunction}>
                 Test Button
             </Button>
 
-            <Input placeholder="Enter syllabus data (PLACEHOLDER)..." />
-
             {example && (
-                <p>
+                <Typography>
                     {example}
-                </p>
+                </Typography>
             )}
         </>
     );
