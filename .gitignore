@@ -1,6 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-.firebase/logs
+# Firebase
+.firebase/
+
+# Vite Production builds
+dist/
 
 # dependencies
 /node_modules
@@ -13,13 +17,12 @@
 # production
 /build
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment variables
+.env
+.env.*
+!.env.example
 
+# misc
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -120,7 +120,7 @@ on the same level */
 .department-button{
   flex: 1;
   background: none;
-  color: var(text);
+  color: var(--text);
   border: none;
   padding: 15px 15px 15px 20px;
   border-radius: 50px;
