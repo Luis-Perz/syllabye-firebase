@@ -1,15 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 import { Button } from "@/shadcn/ui/button";
-import { Input } from "@/shadcn/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/shadcn/ui/select";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/shadcn/ui/table";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shadcn/ui/card"
 
 import SelectSemester from '@/components/selectors/SelectSemester';
 import SelectOfferingStatus from '@/components/selectors/SelectOfferingStatus';
 import SelectSubject from '@/components/selectors/SelectSubject';
 import SelectProfessor from '@/components/selectors/SelectProfessor';
+import OfferingTable from '@/components/offeringTable/OfferingTable';
 
 
 function SyllabusStorage() {
@@ -17,6 +15,7 @@ function SyllabusStorage() {
     const [semesterFilter, setSemesterFilter] = useState(null)
     const [subjectFilter, setSubjectFilter] = useState(null)
     const [professorFilter, setProfessorFilter] = useState(null)
+
 
 
     return (
@@ -53,27 +52,14 @@ function SyllabusStorage() {
                 </CardHeader>
                 <CardContent>
                     <h2>Offerings</h2>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Column 1</TableHead>
-                                <TableHead>Column 2</TableHead>
-                                <TableHead>Column 3</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            <TableRow>
-                                <TableCell>Data 1</TableCell>
-                                <TableCell>Data 2</TableCell>
-                                <TableCell>Data 3</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>Data 4</TableCell>
-                                <TableCell>Data 5</TableCell>
-                                <TableCell>Data 6</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
+                    <OfferingTable 
+                        filters={{
+                            statusKey: offeringStatusFilter, 
+                            semesterKey: semesterFilter, 
+                            subjectKey: subjectFilter,
+                            professorKey: professorFilter
+                        }}
+                    />
                 </CardContent>
                 <CardFooter>
                     <Button variant="outline">

@@ -27,7 +27,7 @@ function SelectSemester({ value, onValueChange, selectionMode = "required" }) {
 
     const items = semesters.map((semester) => ({
         value: semester.id,
-        label: semester.data.name
+        label: semester.fields.name
     }));
 
 

@@ -30,6 +30,6 @@ exports.getSyllabusMetadata = onCall(async (request) => {
 
     return {
         id: document.id,
-        data: document.data()
+        fields: document.data()
     }
 })

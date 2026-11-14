@@ -27,7 +27,7 @@ function SelectOfferingStatus({ value, onValueChange, selectionMode = "required"
 
     const items = offeringStatuses.map((status) => ({
         value: status.id,
-        label: status.data.name
+        label: status.fields.name
     }));
 
 

@@ -32,7 +32,7 @@ exports.getProfessors = onCall(async (request) => {
 
         return {
             id: userDoc.id,
-            data: userDoc.data()
+            fields: userDoc.data()
         }
     })
 

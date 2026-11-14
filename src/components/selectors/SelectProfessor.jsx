@@ -28,7 +28,6 @@ function SelectProfessor({ value, onValueChange, selectionMode = "optional", fil
         async function fetchProfessors() {
             try {
                 const results = await getProfessors({isActive: filterIsActive})
-                console.log(results)
                 setProfessors(results.data)
             } catch (error) {
                 console.error("Failed to fetch professors:", error)
@@ -44,7 +43,7 @@ function SelectProfessor({ value, onValueChange, selectionMode = "optional", fil
     const items = useMemo( // Create Combobox items using professor UUIDs as values
         () => ComboboxPrimitive.createItems(professors, {
             getValue: (professor) => professor.id,
-            getLabel: (professor) => `${professor.data.nameFirst} ${professor.data.nameLast}`
+            getLabel: (professor) => `${professor.fields.nameFirst} ${professor.fields.nameLast}`
         }),
         [professors]
     )
@@ -65,9 +64,9 @@ function SelectProfessor({ value, onValueChange, selectionMode = "optional", fil
             filter={(professor, query) => {
                 const search = query.toLocaleLowerCase().trim()
                 return (
-                    professor.data.nameFirst?.toLocaleLowerCase().includes(search) ||
-                    professor.data.nameLast?.toLocaleLowerCase().includes(search) ||
-                    professor.data.email?.toLocaleLowerCase().includes(search)
+                    professor.fields.nameFirst?.toLocaleLowerCase().includes(search) ||
+                    professor.fields.nameLast?.toLocaleLowerCase().includes(search) ||
+                    professor.fields.email?.toLocaleLowerCase().includes(search)
                 )
             }}
             autoHighlight
@@ -100,11 +99,11 @@ function SelectProfessor({ value, onValueChange, selectionMode = "optional", fil
                                 >
                                     <div className="flex min-w-0 flex-col gap-0.5">
                                         <span className="font-medium">
-                                            {professor.data.nameLast} {professor.data.nameFirst}
+                                            {professor.fields.nameLast} {professor.fields.nameFirst}
                                         </span>
 
                                         <span className="truncate text-xs text-muted-foreground">
-                                            {professor.data.email}
+                                            {professor.fields.email}
                                         </span>
                                     </div>
                                 </ComboboxItem>
