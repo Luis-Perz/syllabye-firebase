@@ -40,7 +40,7 @@ function SelectSubject({ value, onValueChange, selectionMode = "optional" }) {
 
     let placeholderText = ``;
     if (selectionMode === "all") {
-        placeholderText = `All subjects`;
+        placeholderText = `All Subjects`;
     } else if (selectionMode === "optional") {
         placeholderText = `None`;
     }
