@@ -43,39 +43,12 @@ function Home() {
     //File size limit in megabytes
     const MAX_FILE_SIZE_MB = 10
 
-
-    async function loadCourseLookup() {
-        const snapshot = await getDocs(collection(db, "Department"));
-        const lookup = {};
-        const deptList = [];
-
-        snapshot.forEach(docItem => {
-            const deptName = docItem.id;       
-            const fields = docItem.data();     
-
-            lookup[deptName] = fields;
-            deptList.push(deptName);
-
-            deptList.push({
-                id: deptName,
-                label: fields.name
-            });
-        });
-        return lookup;
-    }
     //Grouping the professors by their department for later department selection (Professors from ECAMS faculty roster)
     const [instructorsByDepartment, setInstructorsByDepartment] = useState({});
 
     //Course lookup table grouped by department, course name autofills when course number is put in (can add more later)
     //Eventually will need to semester too because classes change based on that too
     const [courseLookup, setCourseLookup] = useState({});
-    useEffect(() => {
-        async function fetchCourses() {
-            const data = await loadCourseLookup();
-            setCourseLookup(data);
-        }
-        fetchCourses();
-    }, []);
 
     const [departments, setDepartments] = useState([]);
     useEffect(() => {
@@ -83,36 +56,40 @@ function Home() {
             try {
                 // 1. Load departments
                 const deptSnapshot = await getDocs(collection(db, "Department"));
+
+                const instructorResults = await Promise.all(
+                    deptSnapshot.docs.map(async (docItem) => {
+                        const deptName = docItem.id;
+                        const fields = docItem.data();
+
+                        const instructorSnapshot = await getDocs(
+                            collection(db, `Department/${deptName}/Instructor`)
+                        );
+
+                        return {
+                            deptName,
+                            fields,
+                            instructors: instructorSnapshot.docs.map((instDoc) => ({
+                                value: instDoc.data().name,
+                                label: instDoc.data().name
+                            }))
+                        };
+                    })
+                );
                 const lookup = {};
                 const deptList = [];
                 const instructorMap = {};
 
-                for (const docItem of deptSnapshot.docs) {
-                    const deptName = docItem.id;
-                    const fields = docItem.data();
-
-                    lookup[deptName] = fields;
+                instructorResults.forEach(result => {
+                    lookup[result.deptName] = result.fields;
 
                     deptList.push({
-                        id: deptName,
-                        label: fields.name
+                        id: result.deptName,
+                        label: result.fields.name
                     });
 
-                    // 2. Load instructors for this department
-                    const instructorSnapshot = await getDocs(
-                        collection(db, `Department/${deptName}/Instructor`)
-                    );
-
-                    const instructors = instructorSnapshot.docs.map((instDoc) => {
-                        const instData = instDoc.data();
-                        return {
-                            value: instData.name,
-                            label: instData.name
-                        };
-                    });
-
-                    instructorMap[deptName] = instructors;
-                }
+                    instructorMap[result.deptName] = result.instructors;
+                });
 
                 setCourseLookup(lookup);
                 setDepartments(deptList);
