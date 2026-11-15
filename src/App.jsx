@@ -16,8 +16,7 @@ import AppLayout from './components/AppLayout';
 
 import SyllabusStorage from './pages/SyllabusStorage';
 import ProfessorManagement from './pages/ProfessorManagement';
-import CourseManagement from './pages/CourseManagement';
-import EmailCenter from './pages/EmailCenter';
+
 
 function App() {
   return (
@@ -65,8 +64,6 @@ function App() {
                                 <Route index element={<Navigate to="syllabus-storage" replace />} />
                                 <Route path="syllabus-storage" element={<SyllabusStorage />} />
                                 <Route path="professor-management" element={<ProfessorManagement />} />
-                                <Route path="course-management" element={<CourseManagement />} />
-                                <Route path="email-center" element={<EmailCenter />} />
                             </Route>
                       </Routes>
                   </BrowserRouter>
