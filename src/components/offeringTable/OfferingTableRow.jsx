@@ -11,8 +11,14 @@ function OfferingTableRow({ offering, onAction }) {
 
 
     return (
-        <TableRow 
-            className="group transition-colors hover:bg-muted/50"
+        <TableRow
+            className="
+                border-b border-border/80
+                odd:bg-background
+                even:bg-muted/20
+                transition-colors duration-150
+                hover:bg-muted/60
+            "
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
         >
@@ -22,7 +28,7 @@ function OfferingTableRow({ offering, onAction }) {
             <TableCell>{offering.fields.sectionCodeKey}</TableCell>
             <TableCell>{offering.display.professorNameLast + ", " + offering.display.professorNameFirst}</TableCell>
             <TableCell>{offering.display.offeringStatusName}</TableCell>
-            <TableCell>
+            <TableCell className="text-right">
                 <OfferingActions 
                     offering={offering}
                     onAction={onAction}

@@ -5,7 +5,7 @@ import { Mail, Upload, Eye, Pencil } from "lucide-react";
 function OfferingActions({ offering, onAction, hovering = false }) {
     return (
         <div className="
-            flex items-center gap-1
+            inline-flex w-fit items-center justify-end gap-1
             rounded-lg border
             bg-muted/10
             p-1
@@ -15,7 +15,7 @@ function OfferingActions({ offering, onAction, hovering = false }) {
             <Button
                 variant={hovering ? "default" : "outline"}
                 size="icon"
-                className="transition-colors duration-1000 ease-in-out"
+                className="transition-colors duration-300 ease-in-out"
                 title="Send reminder"
                 onClick={() => onAction("email", offering)}
             >
@@ -25,7 +25,7 @@ function OfferingActions({ offering, onAction, hovering = false }) {
             <Button
                 variant={hovering ? "default" : "outline"}
                 size="icon"
-                className="transition-colors duration-750 ease-in-out"
+                className="transition-colors duration-300 ease-in-out"
                 title="Upload syllabus"
                 onClick={() => onAction("upload", offering)}
             >
@@ -35,7 +35,7 @@ function OfferingActions({ offering, onAction, hovering = false }) {
             <Button
                 variant={hovering ? "default" : "outline"}
                 size="icon"
-                className="transition-colors duration-500 ease-in-out"
+                className="transition-colors duration-300 ease-in-out"
                 title="View syllabus"
                 onClick={() => onAction("view", offering)}
             >
@@ -45,7 +45,7 @@ function OfferingActions({ offering, onAction, hovering = false }) {
             <Button
                 variant={hovering ? "default" : "outline"}
                 size="icon"
-                className="transition-colors duration-250 ease-in-out"
+                className="transition-colors duration-300 ease-in-out"
                 title="Edit offering"
                 onClick={() => onAction("edit", offering)}
             >

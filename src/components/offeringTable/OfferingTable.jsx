@@ -74,40 +74,52 @@ function OfferingTable({filters = {}}) {
     // Render JSX
     return (
         <>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Semester</TableHead>
-                        <TableHead>Subject</TableHead>
-                        <TableHead>Course Number</TableHead>
-                        <TableHead>Section</TableHead>
-                        <TableHead>Professor</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead></TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {loading ? (
-                        Array.from({ length: 10 }).map((_, rowIndex) => (
-                            <TableRow key={rowIndex}>
-                                {Array.from({ length: 7 }).map((_, cellIndex) => (
-                                    <TableCell key={cellIndex}>
-                                        <Skeleton className="h-6 w-full" />
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))
-                    ) : (
-                        offerings.map((offering) => (
-                            <OfferingTableRow 
-                                key={offering.id}
-                                offering={offering}
-                                onAction={openDialog}
-                            />
-                        ))
-                    )}
-                </TableBody>
-            </Table>
+            <div className="overflow-x-auto">
+                <Table className="w-full max-w-[1600px] min-w-[700px] border-collapse">
+                    <colgroup>
+                        <col className="w-[10%]" />
+                        <col className="w-[10%]" />
+                        <col className="w-[10%]" />
+                        <col className="w-[10%]" />
+                        <col className="w-[calc(50%-180px)]" />
+                        <col className="w-[15%]" />
+                        <col className="w-[180px]" />
+                    </colgroup>
+
+                    <TableHeader className="bg-muted/75">
+                        <TableRow>
+                            <TableHead>Semester</TableHead>
+                            <TableHead>Subject</TableHead>
+                            <TableHead>Course Number</TableHead>
+                            <TableHead>Section</TableHead>
+                            <TableHead>Professor</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {loading ? (
+                            Array.from({ length: 10 }).map((_, rowIndex) => (
+                                <TableRow key={rowIndex}>
+                                    {Array.from({ length: 7 }).map((_, cellIndex) => (
+                                        <TableCell key={cellIndex}>
+                                            <Skeleton className="h-6 w-full" />
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        ) : (
+                            offerings.map((offering) => (
+                                <OfferingTableRow 
+                                    key={offering.id}
+                                    offering={offering}
+                                    onAction={openDialog}
+                                />
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
 
             {activeDialog && (
                 <OfferingDialog
