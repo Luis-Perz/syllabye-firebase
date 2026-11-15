@@ -1,32 +1,56 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Typography, Button } from '@mui/material';
+import { Button } from "@/shadcn/ui/button";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shadcn/ui/card"
+import { Separator } from "@/shadcn/ui/separator";
 
-// NOTE: This is all just example code for now!!! Replace it with the actual code that will be used to display the syllabus data from the database.
+
 
 function ProfessorManagement() {
-    const [example, setExample] = useState([]);
+    
 
-    async function testFunction() {
-        setExample("Hello World");
-    }
 
     return (
-        <>
-            <Typography variant="h4">
-                Professor Management
-            </Typography>
+        <div className="mx-auto w-full max-w-screen-2xl space-y-6 px-4 py-6">
+            <h1 className="text-3xl font-bold tracking-tight">
+                Syllabus Storage
+            </h1>
 
-            <Button variant="contained" onClick={testFunction}>
-                Test Button
-            </Button>
+            
+            <Card className="overflow-hidden">
+                <CardHeader className="pb-3">
+                    <CardTitle>Filter Professors</CardTitle>
+                    <CardDescription>
+                        Narrow down professors by status, name, and email.
+                    </CardDescription>
+                </CardHeader>
 
-            {example && (
-                <Typography>
-                    {example}
-                </Typography>
-            )}
-        </>
+                <CardContent>
+                    <p>Still working on this page...</p>
+                    <p>Maybe put the filters here...</p>
+                </CardContent>
+                
+                <Separator />
+
+                <CardContent className="space-y-4 pt-6">
+                    <div>
+                        <CardTitle>Professors</CardTitle>
+                        <CardDescription className="mt-1">
+                            Manage the filtered professors.
+                        </CardDescription>
+                    </div>
+
+                    <p>Still working on this page...</p>
+                    <p>Maybe put a table here with each row being a professor...</p>
+                </CardContent>
+
+                <CardFooter className="justify-between border-t bg-muted/20 py-4">
+                    <Button variant="outline">
+                        Example Button
+                    </Button>
+                </CardFooter>
+            </Card>
+        </div>
     );
 }
 

@@ -17,6 +17,6 @@ exports.getSemesters = onCall(async (request) => {
     
     return snapshot.docs.map((doc) => ({
         id: doc.id,
-        data: doc.data()
+        fields: doc.data()
     }))
 })

@@ -1,43 +1,44 @@
-import { Outlet, NavLink } from 'react-router-dom';
-import { Drawer, List, ListItemButton, ListItemText, Box } from '@mui/material';
+import { Outlet, NavLink } from "react-router-dom";
+
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/shadcn/ui/sidebar";
+
 
 const pages = [
-    { name: 'Syllabus Storage', path: 'syllabus-storage' },
-    { name: 'Professor Management', path: 'professor-management' },
-    { name: 'Course Management', path: 'course-management' },
-    { name: 'Email Center', path: 'email-center' }
+    { name: "Syllabus Storage", path: "syllabus-storage" },
+    { name: "Professor Management", path: "professor-management" },
 ];
 
 function AppLayout() {
     return (
-        <Box sx={{ display: 'flex' }}>
-            <Drawer
-                variant="permanent"
-                sx={{
-                    width: 240,
-                    '& .MuiDrawer-paper': {
-                        width: 240,
-                        boxSizing: 'border-box'
-                    }
-                }}
-            >
-                <List>
-                    {pages.map((page) => (
-                        <ListItemButton
-                            key={page.path}
-                            component={NavLink}
-                            to={`/app/${page.path}`}
-                        >
-                            <ListItemText primary={page.name} />
-                        </ListItemButton>
-                    ))}
-                </List>
-            </Drawer>
+        <SidebarProvider>
+            <div className="flex min-h-screen">
+                <Sidebar collapsible="none" className="border-r">
+                    <SidebarContent className="p-3">
+                        <nav className="flex flex-col gap-1">
+                            {pages.map((page) => (
+                                <NavLink
+                                    key={page.path}
+                                    to={`/app/${page.path}`}
+                                    className={({ isActive }) =>
+                                        `rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors ${
+                                            isActive
+                                                ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                                                : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                                        }`
+                                    }
+                                >
+                                    {page.name}
+                                </NavLink>
+                            ))}
+                        </nav>
+                    </SidebarContent>
+                </Sidebar>
 
-            <Box component="main" sx={{ flexGrow: 1, padding: 3 }}>
-                <Outlet />
-            </Box>
-        </Box>
+                <main className="flex-1 p-6">
+                    <Outlet />
+                </main>
+            </div>
+        </SidebarProvider>
     );
 }
 
