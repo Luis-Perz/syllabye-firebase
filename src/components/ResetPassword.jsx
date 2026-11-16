@@ -13,7 +13,13 @@ export default function ResetUser() {
         e.preventDefault();
         setError(null);
         try {
-            await sendPasswordResetEmail(auth, email.toLowerCase());
+            await sendPasswordResetEmail(auth, email.toLowerCase(), {
+                // Firebase uses this as the continue URL after the reset action.
+                // Set the Firebase Auth password-reset email template's Action URL
+                // to https://syllabye-4a90d.web.app/reset-password to use our custom form.
+                url: `${window.location.origin}/`,
+                handleCodeInApp: false,
+            });
             setEmail("")
             setResetMessage("Check your email to reset your password");
 
