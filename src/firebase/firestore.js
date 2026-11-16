@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { collection, addDoc} from "firebase/firestore";
+import { collection, addDoc, serverTimestamp} from "firebase/firestore";
 
 export async function syllabus(data) {
     await addDoc(collection(db, "syllabi"), {
@@ -9,6 +9,7 @@ export async function syllabus(data) {
         courseNumber: data.courseNumber,
         section: data.section,
         instructor: data.instructor,
-        fileURL: data.fileURL
+        fileURL: data.fileURL,
+        createdAt: serverTimestamp(),
     });
 }

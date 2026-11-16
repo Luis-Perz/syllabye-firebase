@@ -3,7 +3,7 @@ const { getFirestore } = require("firebase-admin/firestore")
 
 const db = getFirestore()
 
-exports.getDepartments = onCall(async (request) => {
+exports.getSubjects = onCall(async (request) => {
     const authId = request.auth?.uid
     if (!authId) {
         throw new HttpsError("unauthenticated", "Unauthorized: No auth ID found in request")
@@ -13,10 +13,10 @@ exports.getDepartments = onCall(async (request) => {
     // All professors
     // All admins
 
-    const snapshot = await db.collection("departments").get()
+    const snapshot = await db.collection("subjects").get()
     
     return snapshot.docs.map((doc) => ({
         id: doc.id,
-        data: doc.data()
+        fields: doc.data()
     }))
 })

@@ -38,40 +38,17 @@ function Home() {
 
     const fileTypes = ["PDF", "DOCX"];
     const [file, setFile] = useState(null);
-    const [view, setView] = useState("form");
+    const [view, setView] = useState("upload-box");
 
-    async function loadCourseLookup() {
-        const snapshot = await getDocs(collection(db, "Department"));
-        const lookup = {};
-        const deptList = [];
+    //File size limit in megabytes
+    const MAX_FILE_SIZE_MB = 10
 
-        snapshot.forEach(docItem => {
-            const deptName = docItem.id;       
-            const fields = docItem.data();     
-
-            lookup[deptName] = fields;
-            deptList.push(deptName);
-
-            deptList.push({
-                id: deptName,
-                label: fields.name
-            });
-        });
-        return lookup;
-    }
     //Grouping the professors by their department for later department selection (Professors from ECAMS faculty roster)
     const [instructorsByDepartment, setInstructorsByDepartment] = useState({});
 
     //Course lookup table grouped by department, course name autofills when course number is put in (can add more later)
     //Eventually will need to semester too because classes change based on that too
     const [courseLookup, setCourseLookup] = useState({});
-    useEffect(() => {
-        async function fetchCourses() {
-            const data = await loadCourseLookup();
-            setCourseLookup(data);
-        }
-        fetchCourses();
-    }, []);
 
     const [departments, setDepartments] = useState([]);
     useEffect(() => {
@@ -79,36 +56,40 @@ function Home() {
             try {
                 // 1. Load departments
                 const deptSnapshot = await getDocs(collection(db, "Department"));
+
+                const instructorResults = await Promise.all(
+                    deptSnapshot.docs.map(async (docItem) => {
+                        const deptName = docItem.id;
+                        const fields = docItem.data();
+
+                        const instructorSnapshot = await getDocs(
+                            collection(db, `Department/${deptName}/Instructor`)
+                        );
+
+                        return {
+                            deptName,
+                            fields,
+                            instructors: instructorSnapshot.docs.map((instDoc) => ({
+                                value: instDoc.data().name,
+                                label: instDoc.data().name
+                            }))
+                        };
+                    })
+                );
                 const lookup = {};
                 const deptList = [];
                 const instructorMap = {};
 
-                for (const docItem of deptSnapshot.docs) {
-                    const deptName = docItem.id;
-                    const fields = docItem.data();
-
-                    lookup[deptName] = fields;
+                instructorResults.forEach(result => {
+                    lookup[result.deptName] = result.fields;
 
                     deptList.push({
-                        id: deptName,
-                        label: fields.name
+                        id: result.deptName,
+                        label: result.fields.name
                     });
 
-                    // 2. Load instructors for this department
-                    const instructorSnapshot = await getDocs(
-                        collection(db, `Department/${deptName}/Instructor`)
-                    );
-
-                    const instructors = instructorSnapshot.docs.map((instDoc) => {
-                        const instData = instDoc.data();
-                        return {
-                            value: instData.name,
-                            label: instData.name
-                        };
-                    });
-
-                    instructorMap[deptName] = instructors;
-                }
+                    instructorMap[result.deptName] = result.instructors;
+                });
 
                 setCourseLookup(lookup);
                 setDepartments(deptList);
@@ -120,17 +101,6 @@ function Home() {
 
         fetchData();
     }, []);
-
-const inputFieldCheck = () =>{
-        if (!formData.courseName || !formData.courseNumber ||!formData.instructor ||!formData.section) {
-            setMessage("Please fill in all fields.");
-            setLoading(false);
-            return false;
-        }
-        setMessage("")
-        setView("upload-box")
-        return true;
-    };
 
     return (
         <>
@@ -185,6 +155,13 @@ const inputFieldCheck = () =>{
                                 return;
                             }
 
+                            //Checks file size
+                            if (file.size > (MAX_FILE_SIZE_MB * 1024 * 1024)) {
+                                setMessage(`File size cannot be larger than ${MAX_FILE_SIZE_MB}mb.`);
+                                setLoading(false);
+                                return;
+                            }
+
                             try {
                                 const fileURL = await uploadSyllabus(file, formData);
                                 await syllabus({ ...formData, fileURL });
@@ -215,6 +192,31 @@ const inputFieldCheck = () =>{
                         >
                             {/* GRID */}
 
+                            {view === "upload-box" && (
+                                <>
+                                    <div className="file">
+                                        <p>Drop your syllabus PDF or DOCX here</p>
+
+                                        <FileUploader
+                                            handleChange={(uploadedFile) => setFile(uploadedFile)}
+                                            name="file"
+                                            types={fileTypes}
+                                            classes="upload-box"
+                                        >
+                                            <div className="upload-file">
+                                                <img src={uploadIcon} alt="" className="upload-icon" />
+                                                <p>Drop here or <u>browse</u></p>
+                                                <small>PDF or DOCX</small>
+                                            </div>
+                                        </FileUploader>
+                                        {file && <p>Selected: {file.name}</p>}
+                                    </div>
+                                    <div className="upload-box-btns">
+                                        <button type="button" className="submit-btn" onClick={() => setView("form")}>Next</button>
+                                    </div>
+                                    {message && <p className="error">{message}</p>}
+                                </>
+                            )}
                             {view === "form" && (
                                 <>
                                     <p className="subtitle">
@@ -342,35 +344,13 @@ const inputFieldCheck = () =>{
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="button" className="submit-btn" onClick={inputFieldCheck}>Next</button>
-                                    {message && <p className="error">{message}</p>}
-                                </>
-                            )}
-                            {view === "upload-box" && (
-                                <>
-                                    <div className="file">
-                                        <p>Drop your syllabus PDF or DOCX here</p>
-
-                                        <FileUploader
-                                            handleChange={(uploadedFile) => setFile(uploadedFile)}
-                                            name="file"
-                                            types={fileTypes}
-                                            classes="upload-box"
-                                        >
-                                            <div className="upload-file">
-                                                <img src={uploadIcon} alt="" className="upload-icon" />
-                                                <p>Drop here or <u>browse</u></p>
-                                                <small>PDF or DOCX</small>
-                                            </div>
-                                        </FileUploader>
-                                        {file && <p>Selected: {file.name}</p>}
-                                    </div>
                                     <div className="upload-box-btns">
-                                        <button type="button" className="submit-btn" onClick={() => setView("form")}>Back</button>
+                                        <button type="button" className="submit-btn" onClick={() => setView("upload-box")}>Back</button>
                                         <button className="submit-btn" type="submit" disabled={loading}>
                                             {loading ? "Uploading..." : "Upload Syllabus"}
                                         </button>
                                     </div>
+                                    {file && <p>Selected: {file.name}</p>}
                                     <p className={message.includes("Upload successful") ? "success" : "error"}>
                                         {message}
                                     </p>
@@ -382,7 +362,7 @@ const inputFieldCheck = () =>{
                                     <p>Syllabus successfully uploaded</p>
                                     <div className="upload-box-btns">
                                         <button className="upload-box-signout" onClick={handleSignOut}>Logout</button>
-                                        <button className="submit-btn" onClick={() => setView("form")}>Upload Another</button>
+                                        <button className="submit-btn" onClick={() => setView("upload-box")}>Upload Another</button>
                                     </div>
 
                                 </div>
