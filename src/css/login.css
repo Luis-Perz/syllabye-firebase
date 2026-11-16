@@ -196,3 +196,67 @@
     background-color: #a50d25;
 }
 
+
+
+/* Password visibility controls */
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-field input {
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 58px;
+}
+
+.password-visibility-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #a50d25;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.password-visibility-button:focus-visible {
+    outline: 2px solid #a50d25;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.password-reset-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #f5f6f8;
+}
+
+.password-reset-card {
+    width: min(100%, 440px);
+    padding: 30px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.password-reset-card .login-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.password-reset-card .password-field {
+    margin-bottom: 5px;
+}

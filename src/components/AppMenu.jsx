@@ -86,6 +86,16 @@ export default function AppMenu() {
 
                         <li className="app-menu__item">
                             <Link
+                                to="/developers"
+                                className="app-menu__link"
+                                onClick={closeMenu}
+                            >
+                                Developer Information
+                            </Link>
+                        </li>
+
+                        <li className="app-menu__item">
+                            <Link
                                 to="/admin/dashboard"
                                 className="app-menu__link"
                                 onClick={closeMenu}

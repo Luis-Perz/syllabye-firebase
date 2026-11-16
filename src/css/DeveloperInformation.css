@@ -1,0 +1,54 @@
+.developer-information {
+    min-height: calc(100vh - 80px);
+    padding: 48px 24px;
+    box-sizing: border-box;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.developer-information__header {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.developer-information__header h1 {
+    margin: 0 0 12px;
+    color: #c8102e;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+.developer-information__header p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.developer-information__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.developer-information__card {
+    padding: 20px;
+    border: 1px solid #c8102e;
+    border-radius: 10px;
+    background: var(--bg);
+    overflow-wrap: anywhere;
+}
+
+.developer-information__card h2 {
+    margin: 0 0 8px;
+    color: #c8102e;
+    font-size: 1.25rem;
+}
+
+.developer-information__card a {
+    color: var(--text);
+}
+
+.developer-information__card a:hover {
+    color: #c8102e;
+}

@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { Link } from "react-router-dom";
 import "../css/About.css";
 import SentFileImg from "../images/about-page-images/sent-file.png"
 import CreateAccount from "../images/about-page-images/login-walkthrough/create-account.png"
@@ -105,23 +106,45 @@ function About() {
                     </div>
                 </div>
 
-                <div className="help-section">
-                    <h2 className ="help">Help</h2>
-                    <p> If you encounter any issues or have questions, please contact any member of the development team: </p>
-                    <ol>
-                        <li> Luis P: <a href={"mailto:luisaperez1@lewisu.edu"}> luisaperez1@lewisu.edu</a></li>
-                        <li> Molly P:  <a href={"mailto:mollyepaez@lewisu.edu"}>mollyepaez@lewisu.edu</a></li>
-                        <li> Robert D: <a href={"mailto:robertmdidomenico@lewisu.edu"}>robertmdidomenico@lewisu.edu</a></li>
-                        <li> Michael M: <a href={"mailto:michaelkmihailov@lewisu.edu"}>michaelkmihailov@lewisu.edu</a></li>
-                        <li> Bethany F: <a href={"mailto:bethanygfeddes@lewisu.edu"}>bethanygfeddes@lewisu.edu</a></li>
-                        <li> Troy N: <a href={"mailto:troyanaill@lewisu.edu"}>troyanaill@lewisu.edu</a> </li>
-                        <li> Jacob P: <a href={"mailto:jacobwpetrosky@lewisu.edu"}>jacobwpetrosky@lewisu.edu</a> </li>                    
-                    </ol>
-                </div>
                 
-                <footer>
-                    <p>SyllaBye was built by the <a href={"https://luis-perz.github.io/cookie-monster-group-site/"}>Cookie Monster</a> team</p>
-                </footer>
+            <div className="help-section">
+                <h2 className="help">Help</h2>
+                <p>
+                    If you have questions or need assistance, visit our
+                    {" "}
+                    <Link to="/developers">Developer Information</Link>
+                    {" "} page to contact a member of our development team.
+                </p>
+            </div>
+
+                
+                
+<footer>
+    <p>
+        SyllaBye was built by the{" "}
+        <a
+            href="https://luis-perz.github.io/cookie-monster-group-site/"
+            target="_blank"
+            rel="noreferrer"
+        >
+            Cookie Monster
+        </a>{" "}
+        team
+    </p>
+
+    <p>
+        <a
+            href="https://red-mushroom-02a0e8d10.3.azurestaticapps.net/"
+            target="_blank"
+            rel="noreferrer"
+        >
+            TheUltimateNullPointers
+        </a>
+    </p>
+
+   
+</footer>
+
             </div>
         </>
     );
