@@ -5,6 +5,8 @@ import "../css/AdminDashboard.css";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
+import RecentUploads from "../components/RecentUploads";
+
 
 function AdminDashboard() {
   // Group it by first the semester and then the department
@@ -155,7 +157,7 @@ function AdminDashboard() {
 
         <h1 className="admin-title">Syllabus Storage</h1>
       </div>
-
+      <RecentUploads/>
       <div className="title-description">
         <p>
           Please first select the semester you would like to view. Then 

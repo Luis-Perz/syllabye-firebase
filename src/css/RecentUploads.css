@@ -1,0 +1,72 @@
+.most-recent-container {
+    --row-height: 40px;
+    --visible-rows: 4;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.most-recent-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font: inherit;
+    color: #a50d25;
+}
+
+.most-recent-title p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.dots-toggle {
+    display: flex;
+    gap: 4px;
+}
+
+.dots-toggle span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #666666;
+}
+
+.most-recent-uploads {
+    max-height: calc(var(--row-height) * var(--visible-rows));
+    overflow-y: auto;
+}
+
+.most-recent-uploads ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.most-recent-uploads li {
+    height: var(--row-height);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.most-recent-uploads li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.most-recent-uploads li a:hover {
+    color: #a50d25;
+}
