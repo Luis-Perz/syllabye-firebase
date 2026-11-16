@@ -2,6 +2,8 @@ import './css/App.css';
 import Home from './pages/home';
 import Login from './pages/Login';
 import About from './pages/About';
+import DeveloperInformation from './pages/DeveloperInformation';
+import CompletePasswordReset from './pages/CompletePasswordReset';
 import UnauthorizedAccess from "./pages/UnauthorizedAccess";
 import AdminDashboard from './pages/AdminDashboard';
 import ManageUser from './pages/ManageUser';
@@ -26,6 +28,7 @@ function App() {
                   <BrowserRouter>
                       <Routes>
                           <Route path="/" element={<Login />} />
+                          <Route path="/reset-password" element={<CompletePasswordReset />} />
                           <Route path="/unauthorizedaccess" element={<UnauthorizedAccess />} />
 
                           <Route path="/home" element={
@@ -39,6 +42,13 @@ function App() {
                               <div>
                                   <AppMenu />
                                   <About />
+                              </div>
+                          }/>
+
+                          <Route path="/developers" element={
+                              <div>
+                                  <AppMenu />
+                                  <DeveloperInformation />
                               </div>
                           }/>
 
