@@ -94,7 +94,7 @@ function UploadSyllabusDialog({ offering, onClose }) {
                                     )}
                                 </>
                             ) : (
-                                "Select a PDF or DOCX file before confirming upload."
+                                "Select a PDF or DOCX file before confirming the upload."
                             )}
                         </span>
                     )}
