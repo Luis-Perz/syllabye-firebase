@@ -6,3 +6,5 @@ exports.getSectionCodes = require("./getSectionCodes").getSectionCodes;
 exports.getSemesters = require("./getSemesters").getSemesters;
 exports.getSubjects = require("./getSubjects").getSubjects;
 exports.getSyllabusMetadata = require("./getSyllabusMetadata").getSyllabusMetadata;
+
+exports.createSyllabusMetadata = require("./createSyllabusMetadata").createSyllabusMetadata;
