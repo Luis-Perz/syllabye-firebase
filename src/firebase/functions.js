@@ -10,3 +10,5 @@ export const getSectionCodes = httpsCallable(functions, "firestoreOperations-get
 export const getSemesters = httpsCallable(functions, "firestoreOperations-getSemesters");
 export const getSubjects = httpsCallable(functions, "firestoreOperations-getSubjects");
 export const getSyllabusMetadata = httpsCallable(functions, "firestoreOperations-getSyllabusMetadata");
+
+export const createSyllabusMetadata = httpsCallable(functions, "firestoreOperations-createSyllabusMetadata");

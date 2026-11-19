@@ -6,3 +6,21 @@
 .filepond--drop-label {
     color: var(--muted-foreground);
 }
+
+@keyframes success-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-success-pop {
+    animation: success-pop 0.4s ease-out;
+}
