@@ -29,13 +29,25 @@ exports.createSyllabusMetadata = onCall(async (request) => {
         throw new HttpsError("not-found", "Uploaded syllabus file not found");
     }
 
-    // Create syllabus metadata
-    await db.collection("syllabi-metadata").doc(syllabusMetadataUUID).set({
+
+    // Create metadata and update offering status
+    const batch = db.batch();
+
+    const metadataRef = db.collection("syllabi-metadata").doc(syllabusMetadataUUID);
+    const offeringRef = db.collection("offerings").doc(offeringKey);
+
+    batch.set(metadataRef, {
         offeringKey: offeringKey,
         uploadedBy: "TODO: Feature not implemented",
         uploadedAt: FieldValue.serverTimestamp(),
         version: -1
     });
+
+    batch.update(offeringRef, {
+        statusKey: "PENDING_APPROVAL"
+    });
+
+    await batch.commit();
 
     return { success: true };
 });
