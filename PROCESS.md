@@ -15,4 +15,3 @@ This document describes how we implement scrum in our team.
 - prioritized from top to bottom (High to Low priority)
 - Definition of Ready: a backlog item is pulled from product backlog to sprint backlog
 - Definition of Done: code is merged to the Main branch in the GitHub repo.
-
