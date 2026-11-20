@@ -1,0 +1,32 @@
+# Builds and validates pull requests and deploys a temporary Firebase Hosting preview.
+
+name: Validate Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate_pull_request:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies and build
+        run: npm ci && npm run build
+
+      - name: Deploy Firebase Hosting preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SYLLABYE_4A90D }}
+          projectId: syllabye-4a90d
