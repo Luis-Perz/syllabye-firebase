@@ -100,6 +100,7 @@ function planUser(row, known, writes, newId) {
     const id = newId("users");
     known.users.set(row.email, id);
     writes.users.push(create(id, {
+        activeProfessor: true,
         email: row.email,
         nameFirst: row.firstName,
         nameLast: row.lastName,
