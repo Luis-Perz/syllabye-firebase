@@ -13,28 +13,25 @@ exports.getProfessors = onCall(async (request) => {
     // All professors
     // All admins
 
-    const { isActive = true } = request.data
 
-    const professorUserRoleDocs = (await db.collection("user-roles")
-        .where("roleOptionKey", "==", "professor")
-        .where("isActive", "==", isActive)
-        .get()).docs
-    const professorPromises = professorUserRoleDocs.map((userRoleDoc) => {
-        const userKey = userRoleDoc.data().userKey
-        return db.collection("users").doc(userKey).get()
-    })
-    const professorSnapshots = await Promise.all(professorPromises)
+    // isActive: filter by active professor status if request field is present
+    const { isActive = null } = request.data ?? {}
 
-    const professors = professorSnapshots.map((userDoc) => {
-        if (!userDoc.exists) {
-            throw new HttpsError("internal", `User document ${userDoc.id} does not exist`);
-        }
+    let query = db.collection("users")
+    if (isActive === null) {
+        query = query.where("activeProfessor", "in", [true, false])
+    } else if (isActive === true) {
+        query = query.where("activeProfessor", "==", true)
+    } else if (isActive === false) {
+        query = query.where("activeProfessor", "==", false)
+    } else {
+        throw new HttpsError("invalid-argument", "isActive must be true, false, or null.")
+    }
 
-        return {
-            id: userDoc.id,
-            fields: userDoc.data()
-        }
-    })
+    const snapshot = await query.get()
 
-    return professors
+    return snapshot.docs.map((doc) => ({
+        id: doc.id,
+        fields: doc.data()
+    }))
 })
