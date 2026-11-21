@@ -1,8 +1,12 @@
+// Private onRequest function: only Google Cloud project members can call it.
+// Intentionally not onCall like the other operations; don't change it.
+
 const { onRequest } = require("firebase-functions/v2/https");
 const { getFirestore } = require("firebase-admin/firestore");
 const { parseCsv, validateRows, semesterId } = require("./importLogic");
+const { createFirestoreRepository } = require("./firestoreRepository");
 
-const db = getFirestore();
+const repository = createFirestoreRepository(getFirestore());
 
 exports.importSemester = onRequest({ invoker: "private" }, async (req, res) => {
 
@@ -38,11 +42,30 @@ exports.importSemester = onRequest({ invoker: "private" }, async (req, res) => {
         return;
     }
 
+    const semester = semesterId(rows[0].semester);
+
+    let existing;
+    try {
+        existing = await repository.loadExisting(semester);
+    } catch (err) {
+        res.status(500).json({ error: "Could not read Firestore", details: err.message });
+        return;
+    }
+
     res.status(200).json({
-        message: "CSV is valid",
+        message: "CSV is valid; existing data loaded",
         rowCount: rows.length,
-        semester: semesterId(rows[0].semester),
+        semester,
         withoutProfessor: rows.filter((row) => !row.email).length,
+        existing: {
+            semesters: existing.semesterIds.size,
+            subjects: existing.subjectIds.size,
+            sectionCodes: existing.sectionCodeIds.size,
+            periods: existing.periodIds.size,
+            users: existing.userIdsByEmail.size,
+            courses: existing.courseIdsByLookup.size,
+            offerings: existing.offeringIdsByLookup.size,
+        },
         warnings,
     });
 

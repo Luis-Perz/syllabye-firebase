@@ -33,3 +33,7 @@ scripts/data/
 
 # Firebase emulator logs
 *-debug.log
+emulator-data/
+
+# test
+functions/test/
