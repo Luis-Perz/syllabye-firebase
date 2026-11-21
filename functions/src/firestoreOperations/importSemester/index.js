@@ -1,4 +1,4 @@
-const { onRequest } = nh("firebase-functions/v2/https");
+const { onRequest } = require("firebase-functions/v2/https");
 const { getFirestore } = require("firebase-admin/firestore");
 const { parseCsv, validateRows, semesterId } = require("./importLogic");
 
