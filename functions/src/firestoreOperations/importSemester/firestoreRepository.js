@@ -1,3 +1,5 @@
+const { courseLookup, offeringLookup } = require("./importLogic");
+
 const COLLECTIONS = Object.freeze({
     semesters: "semesters",
     subjects: "subjects",
@@ -7,10 +9,6 @@ const COLLECTIONS = Object.freeze({
     courses: "courses",
     offerings: "offerings",
 });
-
-// In-memory labels for finding docs with random IDs; not stored in Firestore.
-const courseLookup = (subjectKey, courseCode) => `${subjectKey}|${courseCode}`;
-const offeringLookup = (courseId, sectionCode) => `${courseId}|${sectionCode}`;
 
 function createFirestoreRepository(db) {
     const getAll = (name) => db.collection(COLLECTIONS[name]).get();
@@ -45,7 +43,9 @@ function createFirestoreRepository(db) {
         };
     }
 
-    return { loadExisting };
+    const newId = (group) => db.collection(COLLECTIONS[group]).doc().id;
+
+    return { loadExisting, newId };
 }
 
-module.exports = { createFirestoreRepository, courseLookup, offeringLookup };
+module.exports = { createFirestoreRepository };

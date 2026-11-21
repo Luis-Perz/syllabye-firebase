@@ -5,6 +5,7 @@ const { onRequest } = require("firebase-functions/v2/https");
 const { getFirestore } = require("firebase-admin/firestore");
 const { parseCsv, validateRows, semesterId } = require("./importLogic");
 const { createFirestoreRepository } = require("./firestoreRepository");
+const { buildPlan } = require("./planner");
 
 const repository = createFirestoreRepository(getFirestore());
 
@@ -52,20 +53,14 @@ exports.importSemester = onRequest({ invoker: "private" }, async (req, res) => {
         return;
     }
 
+    const plan = buildPlan(rows, existing, repository.newId);
+
     res.status(200).json({
-        message: "CSV is valid; existing data loaded",
+        message: "Dry run: nothing was written",
         rowCount: rows.length,
         semester,
         withoutProfessor: rows.filter((row) => !row.email).length,
-        existing: {
-            semesters: existing.semesterIds.size,
-            subjects: existing.subjectIds.size,
-            sectionCodes: existing.sectionCodeIds.size,
-            periods: existing.periodIds.size,
-            users: existing.userIdsByEmail.size,
-            courses: existing.courseIdsByLookup.size,
-            offerings: existing.offeringIdsByLookup.size,
-        },
+        plan: plan.summary,
         warnings,
     });
 

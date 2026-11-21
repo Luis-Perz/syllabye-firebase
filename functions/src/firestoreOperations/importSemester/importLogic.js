@@ -70,6 +70,10 @@ function periodId(value) {
         .replace(/^-|-$/g, "");
 }
 
+// In-memory labels for finding docs with random IDs; not stored in Firestore.
+const courseLookup = (subjectKey, courseCode) => `${subjectKey}|${courseCode}`;
+const offeringLookup = (courseId, sectionCode) => `${courseId}|${sectionCode}`;
+
 function normalizeRow(rawRow) {
     const get = (field) => rawRow[COLUMNS[field]];
     return {
@@ -108,7 +112,7 @@ const ERROR_RULES = [
 ];
 
 const WARNING_RULES = [
-    (raw, row) => row.status && row.status.toLowerCase() !== "active"
+    (_raw, row) => row.status && row.status.toLowerCase() !== "active"
         ? `STATUS is "${row.status}", not Active`
         : null,
 ];
@@ -125,7 +129,7 @@ function validateRows(rawRows) {
         return { rows: [], errors: ["The file has no data rows."], warnings: [] };
     }
 
-    const missing = REQUIRED_FIELDS
+    const missing = [...REQUIRED_FIELDS, ...INSTRUCTOR_FIELDS]
         .map((field) => COLUMNS[field])
         .filter((header) => !(header in rawRows[0]));
     if (missing.length > 0) {
@@ -176,10 +180,13 @@ function parseCsv(csvText) {
 
 module.exports = {
     parseCsv,
-    normalizeSection,
-    parseSemester,
+    validateRows,
     semesterId,
     semesterName,
     periodId,
-    validateRows,
+    courseLookup,
+    offeringLookup,
+    // exported for unit tests
+    parseSemester,
+    normalizeSection,
 };
