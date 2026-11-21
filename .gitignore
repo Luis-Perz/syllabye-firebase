@@ -26,3 +26,10 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# import scripts
+scripts/node_modules
+scripts/data/
+
+# Firebase emulator logs
+*-debug.log
