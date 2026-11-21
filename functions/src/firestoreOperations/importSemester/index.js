@@ -54,14 +54,37 @@ exports.importSemester = onRequest({ invoker: "private" }, async (req, res) => {
     }
 
     const plan = buildPlan(rows, existing, repository.newId);
-
-    res.status(200).json({
-        message: "Dry run: nothing was written",
+    
+    const summary = {
         rowCount: rows.length,
         semester,
         withoutProfessor: rows.filter((row) => !row.email).length,
         plan: plan.summary,
         warnings,
-    });
+    };
 
+if (req.query.commit !== "true") {
+    res.status(200).json({ message: "Dry run: nothing was written. Add ?commit=true to import.", ...summary });
+    return;
+}
+
+    let result;
+    try {
+        result = await repository.commit(plan.writes);
+    } catch (err) {
+        res.status(500).json({ error: "Import failed", details: err.message, ...summary });
+        return;
+    }
+
+    if (result.failures.length > 0) {
+        res.status(500).json({
+            error: "Import incomplete. Fix the cause and rerun; reruns are safe.",
+            written: result.written,
+            failures: result.failures.slice(0, 50),
+            ...summary,
+        });
+        return;
+    }
+
+    res.status(200).json({ message: "Import complete", written: result.written, ...summary });
 });
