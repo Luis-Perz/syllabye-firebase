@@ -7,3 +7,4 @@ exports.getSemesters = require("./getSemesters").getSemesters;
 exports.getSubjects = require("./getSubjects").getSubjects;
 exports.getSyllabusMetadata = require("./getSyllabusMetadata").getSyllabusMetadata;
 exports.importSemester = require("./importSemester").importSemester;
+exports.createSyllabusMetadata = require("./createSyllabusMetadata").createSyllabusMetadata;

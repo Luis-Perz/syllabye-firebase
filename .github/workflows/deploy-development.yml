@@ -1,4 +1,6 @@
-name: Deploy Development Branch to Firebase Hosting
+# Builds and deploys the development version of Syllabye to Firebase Hosting.
+
+name: Deploy Development
 
 on:
   push:
@@ -6,13 +8,21 @@ on:
       - development
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  build_and_preview:
+  deploy_development:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies and build
+        run: npm ci && npm run build
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SYLLABYE_4A90D }}
           projectId: syllabye-4a90d
